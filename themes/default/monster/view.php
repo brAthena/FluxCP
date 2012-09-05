@@ -69,19 +69,19 @@
 	</tr>
 	<tr>
 		<th>Experiência</th>
-		<td><?php echo number_format($monster->base_exp*$server->baseExpRates) ?></td>
+		<td><?php echo number_format($monster->base_exp) ?></td>
 		<th>Ataque</th>
 		<td><?php echo number_format($monster->attack1) ?>~<?php echo number_format($monster->attack2) ?></td>
 	</tr>
 	<tr>
 		<th>Experiência de Job</th>
-		<td><?php echo number_format($monster->job_exp*$server->jobExpRates) ?></td>
+		<td><?php echo number_format($monster->job_exp) ?></td>
 		<th>Defesa</th>
 		<td><?php echo number_format($monster->defense) ?></td>
 	</tr>
 	<tr>
 		<th>Experiência de MVP</th>
-		<td><?php echo number_format($monster->mvp_exp*$server->mvpExpRates) ?></td>
+		<td><?php echo number_format($monster->mvp_exp) ?></td>
 		<th>Defesa Mágica</th>
 		<td><?php echo number_format($monster->magic_defense) ?></td>
 	</tr>
