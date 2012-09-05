@@ -26,8 +26,8 @@ class Flux_Athena {
 	public $serverName;
 	
 	/**
-	* PreÃ§os para bÃ´nus mvp, emprego e base de experiÃªncia. Valores em porcentagens.
-	* Por exemplo, 100 significa que Ã© 1 x oficial taxas 100%.
+	* Preços para bônus mvp, emprego de base e experiência. Valores em porcentagens.
+	* Por exemplo, 100 significa que é 1 x oficial taxas 100%.
 	 *
 	 * @access public
 	 * @var int
