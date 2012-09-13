@@ -79,7 +79,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th><label for="equip_locations">Lugar Para Equip</label></th>
+			<th><label for="equip_locations">Lugar Para Equipar</label></th>
 			<td colspan="3">
 				<select name="equip_locations" id="equip_locations">
 				<?php foreach (Flux::config('EquipLocationCombinations')->toArray() as $locId => $locName): ?>

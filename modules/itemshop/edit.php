@@ -3,7 +3,7 @@ if (!defined('FLUX_ROOT')) exit;
 
 $this->loginRequired();
 
-$title = 'Modify Item in the Shop';
+$title = 'Modificar Item da Loja';
 
 require_once 'Flux/TemporaryTable.php';
 require_once 'Flux/ItemShop.php';
@@ -16,7 +16,7 @@ $item        = $shop->getItem($shopItemID);
 
 if ($item) {
 	if($server->isRenewal) {
-		$fromTables = array("{$server->charMapDatabase}.item_db", "{$server->charMapDatabase}.item_db_re", "{$server->charMapDatabase}.item_db2");
+		$fromTables = array("{$server->charMapDatabase}.item_db_re", "{$server->charMapDatabase}.item_db2");
 	} else {
 		$fromTables = array("{$server->charMapDatabase}.item_db", "{$server->charMapDatabase}.item_db2");
 	}
@@ -46,35 +46,35 @@ if ($item) {
 		$useExisting = (int)$params->get('use_existing');
 
 		if (!$cost) {
-			$errorMessage = 'You must input a credit cost greater than zero.';
+			$errorMessage = 'Você deve colocar um custo de crédito maior que zero.';
 		}
 		elseif ($cost > $maxCost) {
-			$errorMessage = "The credit cost must not exceed $maxCost.";
+			$errorMessage = "O custo do item não pode exceder $maxCost.";
 		}
 		elseif (!$quantity) {
-			$errorMessage = 'You must input a quantity greater than zero.';
+			$errorMessage = 'Você deve colocar uma quantidade maior que zero.';
 		}
 		elseif ($quantity > 1 && !$stackable) {
-			$errorMessage = 'This item is not stackable. Quantity must be 1.';
+			$errorMessage = 'Este item não é acumulável. Quantidade deve ser 1.';
 		}
 		elseif ($quantity > $maxQty) {
-			$errorMessage = "The item quantity must not exceed $maxQty.";
+			$errorMessage = "A quantidade máxima não pode exceder $maxQty.";
 		}
 		elseif (!$info) {
-			$errorMessage = 'You must input at least some info text.';
+			$errorMessage = 'Você deve colocar alguma informação sobre o item.';
 		}
 		else {
 			if ($shop->edit($shopItemID, $category, $cost, $quantity, $info, $useExisting)) {
 				if ($image && $image->get('size') && !$shop->uploadShopItemImage($shopItemID, $image)) {
-					$errorMessage = 'Failed to upload image.';
+					$errorMessage = 'Falha ao fazer upload da imagem.';
 				}
 				else {
-					$session->setMessageData('Item has been successfully modified.');
+					$session->setMessageData('Item foi modificado com sucesso.');
 					$this->redirect($this->url('purchase'));
 				}
 			}
 			else {
-				$errorMessage = 'Failed to modify the item.';
+				$errorMessage = 'Falha ao modificar item.';
 			}
 		}
 	}

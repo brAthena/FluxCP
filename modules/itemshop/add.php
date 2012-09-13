@@ -3,7 +3,7 @@ if (!defined('FLUX_ROOT')) exit;
 
 $this->loginRequired();
 
-$title = 'Add Item to Shop';
+$title = 'Adicionar Item a Loja';
 
 require_once 'Flux/TemporaryTable.php';
 require_once 'Flux/ItemShop.php';
@@ -14,7 +14,7 @@ $category   = null;
 $categories = Flux::config('ShopCategories')->toArray();
 
 if($server->isRenewal) {
-	$fromTables = array("{$server->charMapDatabase}.item_db", "{$server->charMapDatabase}.item_db_re", "{$server->charMapDatabase}.item_db2");
+	$fromTables = array("{$server->charMapDatabase}.item_db_re", "{$server->charMapDatabase}.item_db2");
 } else {
 	$fromTables = array("{$server->charMapDatabase}.item_db", "{$server->charMapDatabase}.item_db2");
 }
@@ -46,28 +46,28 @@ if ($item && count($_POST)) {
 	$useExisting = (int)$params->get('use_existing');
 	
 	if (!$cost) {
-		$errorMessage = 'You must input a credit cost greater than zero.';
+		$errorMessage = 'Você deve digitar um custo de crédito maior que zero.';
 	}
 	elseif ($cost > $maxCost) {
-		$errorMessage = "The credit cost must not exceed $maxCost.";
+		$errorMessage = "O custo do item não pode exceder $maxCost.";
 	}
 	elseif (!$quantity) {
-		$errorMessage = 'You must input a quantity greater than zero.';
+		$errorMessage = 'Você deve colocar uma quantidade maior que zero.';
 	}
 	elseif ($quantity > 1 && !$stackable) {
-		$errorMessage = 'This item is not stackable. Quantity must be 1.';
+		$errorMessage = 'Este item não é acumulável. Quantidade deve ser 1.';
 	}
 	elseif ($quantity > $maxQty) {
-		$errorMessage = "The item quantity must not exceed $maxQty.";
+		$errorMessage = "A quantidade máxima não pode exceder $maxQty.";
 	}
 	elseif (!$info) {
-		$errorMessage = 'You must input at least some info text.';
+		$errorMessage = 'Você deve colocar alguma informação sobre o item.';
 	}
 	else {
 		if ($id=$shop->add($itemID, $category, $cost, $quantity, $info, $useExisting)) {
-			$message = 'Item has been successfully added to the shop';
+			$message = 'Item adicionado com sucesso à loja';
 			if ($image && $image->get('size') && !$shop->uploadShopItemImage($id, $image)) {
-				$message .= ', but the image failed to upload. You can re-attempt by modifying.';
+				$message .= ', mas o upload da imagem falhou. Tente novamente modificando o item.';
 			}
 			else {
 				$message .= '.';
@@ -76,7 +76,7 @@ if ($item && count($_POST)) {
 			$this->redirect($this->url('purchase'));	
 		}
 		else {
-			$errorMessage = 'Failed to add the item to the shop.';
+			$errorMessage = 'Falha ao adicionar o item à loja.';
 		}
 	}
 }
