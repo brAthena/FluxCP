@@ -20,7 +20,7 @@
 		<script src="<?php echo $this->themePath('js/ie9.js') ?>" type="text/javascript"></script>
 		<script type="text/javascript" src="<?php echo $this->themePath('js/flux.unitpngfix.js') ?>"></script>
 		<![endif]-->
-		<script type="text/javascript" src="<?php echo $this->themePath('js/jquery-1.8.1.min.js') ?>"></script>
+		<script type="text/javascript" src="<?php echo $this->themePath('js/jquery-1.8.3.min.js') ?>"></script>
 		<script type="text/javascript" src="<?php echo $this->themePath('js/flux.datefields.js') ?>"></script>
 		<script type="text/javascript" src="<?php echo $this->themePath('js/flux.unitip.js') ?>"></script>
 		<script type="text/javascript">
@@ -118,7 +118,7 @@
 				<td bgcolor="#8ebceb" width="20"></td>
 				<td bgcolor="#8ebceb" colspan="3">
 					<a href="<?php echo $this->basePath ?>">
-						<img src="<?php echo $this->themePath($session->account->level >= Flux::config('AdminMenuLevel') ? 'img/logo_admin.gif' : 'img/logo.gif') ?>" id="logo" />
+						<img src="<?php echo $this->themePath($session->account->group_level >= Flux::config('AdminMenuGroupLevel') ? 'img/logo_admin.gif' : 'img/logo.gif') ?>" id="logo" />
 					</a>
 				</td>
 				<td bgcolor="#8ebceb" width="20"></td>

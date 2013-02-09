@@ -22,7 +22,7 @@ class Flux {
 	/**
 	 * Current version.
 	 */
-	const VERSION = '1.0.0';
+	const VERSION = '2.0.0';
 	
 	/**
 	 * Repository SVN version or GIT hash of the top-level revision.
@@ -385,12 +385,12 @@ class Flux {
 				//
 				// Char/Map normalization.
 				//
-			$expRates = array(
+				$expRates = array(
 					'Base'        => 100,
 					'Job'         => 100,
 					'Mvp'         => 100
 				);
-			$dropRates = array(
+				$dropRates = array(
 					'Common'      => 100,
 					'CommonBoss'  => 100,
 					'Heal'        => 100,

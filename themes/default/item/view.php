@@ -61,8 +61,8 @@
 				<?php echo number_format((int)$item->price_sell) ?>
 			<?php endif ?>
 		</td>
-		<th>Ataque</th>
-		<td><?php echo number_format((int)$item->attack) ?></td>
+		<th>Level da Arma </th>
+		<td><?php echo number_format((int)$item->weapon_level) ?></td>
 	</tr>
 	<tr>
 		<th>Alcance</th>
@@ -83,11 +83,25 @@
 		</td>
 	</tr>
 	<tr>
-		<th>Level para Equipar</th>
-		<td><?php echo number_format((int)$item->equip_level) ?></td>
-		<th>Level da Arma</th>
-		<td><?php echo number_format((int)$item->weapon_level) ?></td>
+		<th>Ataque</th>
+		<td><?php echo number_format((int)$item->attack) ?></td>
+		<th>Mínimo de Level para Equipar</th>
+		<td><?php echo number_format((int)$item->equip_level_min) ?></td>
 	</tr>
+	<?php if($server->isRenewal): ?>
+	<tr>
+		<th>MATK</th>
+		<td><?php echo number_format((int)$item->matk) ?></td>
+		<th>Max Equip Level</th>
+		<td>
+			<?php if ($item->equip_level_max == 0): ?>
+				<span class="not-applicable">None</span>
+			<?php else: ?>
+				<?php echo number_format((int)$item->equip_level_max) ?>
+			<?php endif ?>
+		</td>
+	</tr>
+	<?php endif ?>
 	<tr>
 		<th>Equipado em</th>
 		<td colspan="<?php echo $image ? 4 : 3 ?>">

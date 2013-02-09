@@ -2,9 +2,9 @@
 // This is the application configuration file. All values have been set to
 // the default, and should be changed as needed.
 return array(
-	'ServerAddress'        => '127.0.0.1',              // This value is the hostname:port under which Flux runs. (e.g., example.com or example.com:80)
-	'BaseURI'              => '/cpf',                       // The base URI is the base web root on which your application lies.
-	'InstallerPassword'    => '123',         // Installer/updater password.
+	'ServerAddress'        => 'localhost',              // This value is the hostname:port under which Flux runs. (e.g., example.com or example.com:80)
+	'BaseURI'              => '',                       // The base URI is the base web root on which your application lies.
+	'InstallerPassword'    => 'secretpassword',         // Installer/updater password.
 	'RequireOwnership'     => true,                     // Require the executing user to be owner of the FLUX_ROOT/data/ directory tree? (Better for security)
 	                                                    // WARNING: This will be mostly IGNORED on non-POSIX-compliant OSes (e.g. Windows).
 	'DefaultLoginGroup'    => null,
@@ -14,13 +14,13 @@ return array(
 	'ThemeName'            => 'default',                // The theme name of the theme you would like to use.  Themes are in FLUX_ROOT/themes.
 	'ScriptTimeLimit'      => 0,                        // Script execution time limit. Specifies (in seconds) how long a page should run before timing out. (0 means forever)
 	'MissingEmblemBMP'     => 'empty.bmp',              //
-	'ItemIconNameFormat'   => '%d.png',                 // The filename format for item icons (defaults to {itemid}.gif).
+	'ItemIconNameFormat'   => '%d.gif',                 // The filename format for item icons (defaults to {itemid}.gif).
 	'ItemImageNameFormat'  => '%d.png',                 // The filename format for item images (defaults to {itemid}.png).
 	'MonsterImageNameFormat' => '%d.gif',               // The filename format for monster images (defaults to {monsterid}.gif).
 	'ForceEmptyEmblem'     => false,                    // Forcefully display empty guild emblems, helpful when you don't have GD2 installed.
 	'EmblemCacheInterval'  => 12,                       // Hourly interval to re-cache guild emblems (set to 0 to disable emblem cache).
 	'SessionCookieExpire'  => 48,                       // Duration in hours.
-	'AdminMenuLevel'       => AccountLevel::LOWGM,      // The starting level for which module actions are moved into the admin menu for display.
+	'AdminMenuGroupLevel'  => AccountLevel::LOWGM,      // The starting level for which module actions are moved into the admin menu for display.
 	'DateDefaultTimezone'  => 'America/Sao_Paulo',                     // The default timezone, consult the PHP manual for valid timezones: http://php.net/timezones (null for defaut system TZ)
 	'DateFormat'           => 'Y-m-d',                  // Default DATE format to be displayed in pages.
 	'DateTimeFormat'       => 'Y-m-d H:i:s',            // Default DATETIME format to be displayed in pages.
@@ -111,9 +111,9 @@ return array(
 	'AutoRemoveTempBans'   => true,                     // Automatically remove expired temporary bans on certain pages.
 	'ItemShopMaxCost'      => 99,                       // Max price an item can be sold for.
 	'ItemShopMaxQuantity'  => 99,                       // Max quantity the item may be sold at once for.
-	'HideFromWhosOnline'   => AccountLevel::HELPER,     // Levels greater than or equal to this will be hidden from the "Who's Online" page.
-	'HideFromMapStats'     => AccountLevel::HELPER,     // Levels greater than or equal to this will be hidden from the "Map Stats" page.
-	'EnableGMPassSecurity' => AccountLevel::HELPER,     // Levels greater than or equal to this will be required to use passwords that meet the earlier GM Password settings.
+	'HideFromWhosOnline'   => AccountLevel::LOWGM,      // Levels greater than or equal to this will be hidden from the "Who's Online" page.
+	'HideFromMapStats'     => AccountLevel::LOWGM,      // Levels greater than or equal to this will be hidden from the "Map Stats" page.
+	'EnableGMPassSecurity' => AccountLevel::LOWGM,      // Levels greater than or equal to this will be required to use passwords that meet the earlier GM Password settings.
 	'ChargeGenderChange'   => 0,                        // You can specify this as the number of credits to charge for gender change.  Can be 0 for free change.
 	'BanPaymentStatuses'   => array(                    // Payment statuses that will automatically ban the account owner if received.
 		'Cancelled_Reversal',                           // -- 'Cancelled_Reversal'
@@ -140,47 +140,54 @@ return array(
 	'ShopImageExtensions'  => array(                    // These are the image extensions allowed for uploading in the item shop.
 		'png', 'jpg', 'gif', 'bmp', 'jpeg'
 	),
-	'NoResetPassLevel'    => AccountLevel::HELPER,      // Level of account to prevent password reset using control panel.
+	'NoResetPassGroupLevel'  => AccountLevel::LOWGM,    // Minimum group level of account to prevent password reset using control panel.
 	
-	'CharRankingLimit'    => 20,                        //
-	'GuildRankingLimit'   => 20,                        //
-	'ZenyRankingLimit'    => 20,                        //
-	'DeathRankingLimit'   => 20,                        //
-	'RankingHideLevel'    => AccountLevel::LOWGM,       //
-	'InfoHideZenyLevel'   => AccountLevel::LOWGM,       // Level of account to hide zeny from in server information page.
+	'CharRankingLimit'       => 20,                     //
+	'GuildRankingLimit'      => 20,                     //
+	'ZenyRankingLimit'       => 20,                     //
+	'DeathRankingLimit'      => 20,                     //
+	'AlchemistRankingLimit'  => 20,                     //
+	'BlacksmithRankingLimit' => 20,                     //
 	
-	'CharRankingThreshold' => 0,                         // Number of days the character must have logged in within to be listed in character ranking. (0 = disabled)
-	'ZenyRankingThreshold' => 0,                         // Number of days the character must have logged in within to be listed in zeny ranking. (0 = disabled)
-	'DeathRankingThreshold' => 0,                        // Number of days the character must have logged in within to be listed in death ranking. (0 = disabled)
+	'RankingHideGroupLevel'  => AccountLevel::LOWGM,    //
+	'InfoHideZenyGroupLevel' => AccountLevel::LOWGM,    // Minimum group level of account to hide zeny from in server information page.
 	
-	'HideTempBannedCharRank'  => false,                  // Hide temporarily banned characters from ranking.
-	'HidePermBannedCharRank'  => true,                   // Hide permanently banned characters from ranking.
+	'CharRankingThreshold'      => 0,                   // Number of days the character must have logged in within to be listed in character ranking. (0 = disabled)
+	'ZenyRankingThreshold'      => 0,                   // Number of days the character must have logged in within to be listed in zeny ranking. (0 = disabled)
+	'DeathRankingThreshold'     => 0,                   // Number of days the character must have logged in within to be listed in death ranking. (0 = disabled)
+	'AlchemistRankingThreshold' => 0,                   // Number of days the character must have logged in within to be listed in death ranking. (0 = disabled)
 	
-	'HideTempBannedZenyRank'  => false,                  // Hide temporarily banned characters from ranking.
-	'HidePermBannedZenyRank'  => true,                   // Hide permanently banned characters from ranking.
+	'HideTempBannedCharRank'  => false,                 // Hide temporarily banned characters from ranking.
+	'HidePermBannedCharRank'  => true,                  // Hide permanently banned characters from ranking.
 	
-	'HideTempBannedZenyRank'  => false,                  // Hide temporarily banned characters from ranking.
-	'HidePermBannedZenyRank'  => true,                   // Hide permanently banned characters from ranking.
+	'HideTempBannedZenyRank'  => false,                 // Hide temporarily banned characters from ranking.
+	'HidePermBannedZenyRank'  => true,                  // Hide permanently banned characters from ranking.
 	
-	'HideTempBannedDeathRank' => false,                  // Hide temporarily banned characters from ranking.
-	'HidePermBannedDeathRank' => true,                   // Hide permanently banned characters from ranking.
+	'HideTempBannedDeathRank' => false,                 // Hide temporarily banned characters from ranking.
+	'HidePermBannedDeathRank' => true,                  // Hide permanently banned characters from ranking.
 	
-	'HideTempBannedStats'     => false,                  // Hide temporarily banned accounts from statistics.  	
-	'HidePermBannedStats'     => true,                   // Hide permanently banned accounts from statistics.
+	'HideTempBannedAlcheRank' => false,                 // Hide temporarily banned characters from ranking.
+	'HidePermBannedAlcheRank' => true,                  // Hide permanently banned characters from ranking.
 	
-	'SortJobsByAmount'        => false,                  // Sort job class information on statistics page by descending quantity (false = Sort by Job ID).
+	'HideTempBannedSmithRank' => false,                 // Hide temporarily banned characters from ranking.
+	'HidePermBannedSmithRank' => true,                  // Hide permanently banned characters from ranking.
 	
-	'CpLoginLogShowPassword'  => false,                  // Show password in CP login log (also see access.php's SeeCpLoginLogPass).
+	'HideTempBannedStats'     => false,                 // Hide temporarily banned accounts from statistics.
+	'HidePermBannedStats'     => true,                  // Hide permanently banned accounts from statistics.
 	
-	'CpResetLogShowPassword'  => false,                  // Show password in CP "password resets" log (also see access.php's SeeCpResetPass).
+	'SortJobsByAmount'        => false,                 // Sort job class information on statistics page by descending quantity (false = Sort by Job ID).
 	
-	'CpChangeLogShowPassword' => false,                  // Show password in CP "password changes" log (also see access.php's SeeCpChangePass).
+	'CpLoginLogShowPassword'  => false,                 // Show password in CP login log (also see access.php's SeeCpLoginLogPass).
 	
-	'AdminMenuNewStyle'       => true,                   // Use new-style admin menu;  Applies to 'default' theme.
+	'CpResetLogShowPassword'  => false,                 // Show password in CP "password resets" log (also see access.php's SeeCpResetPass).
+	
+	'CpChangeLogShowPassword' => false,                 // Show password in CP "password changes" log (also see access.php's SeeCpChangePass).
+	
+	'AdminMenuNewStyle'       => true,                  // Use new-style admin menu;  Applies to 'default' theme.
 	
 	// These are the main menu items that should be displayed by themes.
 	// They route to modules and actions.  Whether they are displayed or
-	 // not at any given time depends on the user's account level and/or
+	// not at any given time depends on the user's account group level and/or
 	// their login status.
 	'MenuItems' => array(
 		'Menu Principal'   => array(
@@ -299,6 +306,8 @@ return array(
 			'guild'     => 'Ranking de Clãs',
 			'zeny'      => 'Ranking de Zenys',
 			'death'     => 'Ranking de morte'
+			'alchemist'  => 'Alchemist Ranking',
+			'blacksmith' => 'Blacksmith Ranking'
 		),
 		'item' => array(
 			'index' => 'Listar Items',
@@ -319,8 +328,16 @@ return array(
 	// Job classes, loaded from another file to avoid cluttering this one.
 	// There isn't normally a need to modify this file, unless it's been
 	// modified in an update. (In English: DON'T TOUCH THIS.)
-	'JobClasses'    => include('jobs.php'),
+	'JobClasses' => include('jobs.php'),
 	
+	// Alchemist job classes, mostly used for alchemist rankings.
+	// Should be left alone unless new alchemist-related job classes are introduced.
+	'AlchemistJobClasses' => include('jobs_alchemist.php'),
+	
+	// Blacksmith job classes, mostly used for blacksmith rankings.
+	// Should be left alone unless new blacksmith-related job classes are introduced.
+	'BlacksmithJobClasses' => include('jobs_blacksmith.php'),
+
 	// Gender-linked Job class IDs and their corresponding names.
 	// Should be left alone unless new gender-specific job classes are introduced.
 	'GenderLinkedJobClasses' => include('jobs_gender_linked.php'),
