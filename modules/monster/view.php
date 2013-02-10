@@ -58,13 +58,11 @@ $monster = $sth->fetch();
 if ($monster) {
 	$title   = "Viewing Monster ({$monster->kro_name})";
 	
-	+  
 	$monster->boss = $monster->mvp_exp;
 
 	$monster->base_exp = $monster->base_exp * $server->expRates['Base'] / 100;
 	$monster->job_exp  = $monster->job_exp * $server->expRates['Job'] / 100;
 	$monster->mvp_exp  = $monster->mvp_exp * $server->expRates['Mvp'] / 100;
-
 
 	$dropIDs = array(
 		'drop1'    => $monster->drop1_id,
@@ -114,7 +112,7 @@ if ($monster) {
 			);
 			
 			if (preg_match('/^dropcard/', $dropField)) {
-				$adjust = ($monster->boss) ? $server->dropRates['CardBoss'] : $server->dropRates['Card'];	
+				$adjust = ($monster->boss) ? $server->dropRates['CardBoss'] : $server->dropRates['Card'];
 				$itemDrops[$dropField]['type'] = 'card';
 			}
 			elseif (preg_match('/^mvpdrop/', $dropField)) {
@@ -147,13 +145,13 @@ if ($monster) {
 			}
 			
 			$itemDrops[$dropField]['chance'] = $itemDrops[$dropField]['chance'] * $adjust / 10000;
-			
+
 			if ($itemDrops[$dropField]['chance'] > 100) {
 				$itemDrops[$dropField]['chance'] = 100;
 			}
 		}
 	}
-	
+
 	$sql = "SELECT * FROM $skillDB WHERE mob_id = ?";
 	$sth = $server->connection->getStatement($sql);
 	$sth->execute(array($mobID));

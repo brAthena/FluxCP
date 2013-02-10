@@ -60,7 +60,7 @@ if (count($_POST) && $params->get('additem')) {
 	// If renewal is enabled, sanitize matk and equipLevelMax to NULL
 	if($server->isRenewal) {
 		array_push($nullables, 'matk', 'equipLevelMax');
-	}	
+	}
 	foreach ($nullables as $nullable) {
 		if (trim($$nullable) == '') {
 			$$nullable = null;

@@ -27,7 +27,7 @@ return array(
 	'LoginToDonate'           => 'Por favor, faça login para poder doar.',
 	'UnknownCharacter'        => 'Nenhum personagem encontrado.',
 	'AccountIdLabel'          => 'ID da Conta',
-	'AccountLevelLabel'       => 'Level da Conta',
+	'AccountGroupIDLabel'     => 'Level do Grupo',
 	'AccountStateLabel'       => 'Status da Conta',
 	'CreditBalanceLabel'      => 'Balanço de Crédito',
 	'UsernameLabel'           => 'Usuário',
@@ -60,6 +60,7 @@ return array(
 	'EmailChangeTitle'        => 'Alterar E-mail',
 	'EnterEmailAddress'       => 'Insira um E-mail.',
 	'EmailCannotBeSame'       => 'Seu novo e-mail não pode ser igual ao atual.',
+	'EmailInvalid'            => 'Endereço de e-mail inválido.',
 	'EmailAlreadyRegistered'  => "Esse e-mail já está registrado para outra conta, insira outro.",
 	'EmailChangeSent'         => 'Uma mensagem foi enviada para o seu novo email com um link para confirmar a alteração.',
 	'EmailAddressChanged'     => 'Seu e-mail foi alterado com sucesso!',
@@ -76,26 +77,23 @@ return array(
 	'NeedNewPassword'         => 'Insira a sua nova senha.',
 	'OldPasswordInvalid'      => "A senha que você digitou não bate com a sua senha real.",
 	'ConfirmNewPassword'      => 'Confirme sua nova senha.',
-	'NewPasswordSameAsOld'    => 'Sua nova senha não pode ser igual a sua senha atual.',
-	'PasswordHasBeenChanged'  => 'Senha alterada com sucesso, favor faça login novamente.',
-	'FailedToChangePassword'  => 'Falha ao alterar sua senha, por favor entre com contato algum Administrador.',
-	'PasswordChangeHeading'   => 'Altere Sua Senha',
-	'PasswordChangeInfo'      => 'Por favor, insira a sua senha atual, então insira a nova que você quer utilizar, confirme-a abaixo e então altere.',
+	'NewPasswordHasUsername'  => 'Sua nova senha não deve conter seu nome de usuário..',
+	'NewPasswordInvalid'      => 'Senha alterada com sucesso, favor faça login novamente.',
+	'NewPasswordSameAsOld'    => 'Nova senha não pode ser a mesma que sua senha atual.',
+	'NewPasswordNeedUpper'    => 'Sua nova senha deve conter pelo menos %d letra(s) maiúsculas.',
+	'NewPasswordNeedLower'    => 'Sua nova senha deve conter pelo menos %d letra(s) minúsculas.',
+	'NewPasswordNeedNumber'   => 'Sua nova senha deve conter pelo menos %d número(s).',
+	'NewPasswordNeedSymbol'   => 'Sua nova senha deve conter pelo menos %d símbolo (s).',
+	'PasswordHasBeenChanged'  => 'Sua senha foi alterada, por favor, faça log-in novamente.',
+	'FailedToChangePassword'  => 'Falha ao alterar sua senha. Por favor, contate um administrador.',
+	'PasswordChangeHeading'   => 'Alterar sua Senha',
+	'PasswordChangeInfo'      => 'Por favor, digite sua senha atual e, em seguida, digite a nova senha que deseja usar e digite novamente para confirmar.',
 	'CurrentPasswordLabel'    => 'Senha Atual',
 	'NewPasswordLabel'        => 'Nova Senha',
-	'NewPasswordConfirmLabel' => 'Confirme a Nova Senha',
-	'PasswordChangeNote'      => 'Esteja certo que você digitou as informações corretas.',
-	'PasswordChangeNote2'     => 'Depois que você alterar sua senha, você será deslogado.',
+	'NewPasswordConfirmLabel' => 'Re-digite a nova senha',
+	'PasswordChangeNote'      => 'Por favor, certifique-se de digitar as informações corretas.',
+	'PasswordChangeNote2'     => 'Após alterar sua senha, você será registrado.',
 	'PasswordChangeButton'    => 'Alterar Senha',
-	'PasswordContainsUser'    => 'Sua senha não pode conter seu nome de usuário.',
-	'PasswordHasUsername'     => 'Sua senha não deve conter seu nome de utilizador.',
-	'PasswordTooShort'        => 'Sua senha deve ser em torno de %d a %d caracteres.',
-	'PasswordTooLong'         => 'Sua senha deve ser em torno de %d a %d caracteres.',
-	'PasswordsDoNotMatch'     => "Suas senhas não coincidem, por favor, certifique-se de que você digitou os dois corretamente.",
-	'PasswordNeedUpper'       => 'Sua senha deve conter pelo menos %d letra(s) maiúscula(s).',
-	'PasswordNeedLower'       => 'Sua senha deve conter pelo menos %d letra(s) minúscula(s).',
-	'PasswordNeedNumber'      => 'Sua senha deve conter pelo menos %d número(s).',
-	'PasswordNeedSymbol'      => 'Sua senha deve conter pelo menos %d símbolo(s).',
 	// - account/changesex
 	'GenderChangeTitle'       => 'Alterar Gênero',
 	'GenderChangeBadChars'    => 'Você não pode trocar de gênero se algum dos seus personagens é um %s',
@@ -105,6 +103,7 @@ return array(
 	'GenderChangeCost'        => 'Mudança de Gênero vai custar %s créditos para você.',
 	'GenderChangeBalance'     => 'Você possui atualmente %s créditos.',
 	'GenderChangeNoFunds'     => 'Você não possui créditos suficiente para completar a sua troca de gênero.',
+	'GenderChangeNoCost'      => 'Para você, as mudanças de sexo são livres.',
 	'GenderChangeCharInfo'    => 'Você não pode alterar seu gênero se você tiver um personagem que for um: %s',
 	'GenderChangeSubHeading'  => 'Tenha certeza que você quer realmente alterar!',
 	'GenderChangeFormText'    => 'Você deseja mudar seu gênero para %s?',
@@ -138,30 +137,39 @@ return array(
 	'AccountBirthdateLabel'   => 'Data de nascimento',
 	'AccountSecurityLabel'    => 'Código de Segurança',
 	'AccountCreateButton'     => 'Criar Minha Conta',
-	'InvalidLoginServer'      => 'Login-server inválido, por favor tente novamente com um servidor válido.',
-	'InvalidLoginCredentials' => 'Informações de Login erradas, verifique se você digitou as informações corretas e tente de novo.',
-	'UnexpectedLoginError'    => 'Erro inesperado, por favor tente de novo ou fale com algum Administrador.',
-	'CriticalLoginError'      => 'Algo ruim aconteceu! Avise para algum Administrador o mais rápido possível.',
-	'UsernameAlreadyTaken'    => "O Usuário que você escolheu já foi registrado.",
-	'UsernameTooShort'        => sprintf('Seu usuário deve ter entre %d e %d caracteres.', Flux::config('MinUsernameLength'), Flux::config('MaxUsernameLength')),
-	'UsernameTooLong'         => sprintf('Seu usuário deve ter entre %d e %d caracteres.', Flux::config('MinUsernameLength'), Flux::config('MaxUsernameLength')),
-	'PasswordTooShort'        => sprintf('Sua senha deve ter entre %d e %d caracteres.', Flux::config('MinPasswordLength'), Flux::config('MaxPasswordLength')),
-	'PasswordTooLong'         => sprintf('Sua senha deve ter entre %d e %d caracteres.', Flux::config('MinPasswordLength'), Flux::config('MaxPasswordLength')),
-	'PasswordsDoNotMatch'     => "As senhas não conferem, tenha cereza que você digitou as senhas iguais.",
-	'EmailAddressInUse'       => "O e-mail que você inseriu já está registrado para outra conta. Por favor, insira um e-mail diferente.",
-	'InvalidEmailAddress'     => "O e-mail que você inseriu não é um email válido.",
-	'InvalidGender'           => 'O seu gênero deve ser "M" ou "F"',
-	'InvalidBirthdate'        => 'Data de nascimento inválida.',
-	'InvalidServer'           => "O servidor que você escolheu não existe.",
-	'InvalidSecurityCode'     => 'Insira o código de segurança correto.',
-	'CriticalRegisterError'   => 'Algo ruim aconteceu! Avise para algum Administrador o mais rápido possível.',
+	'AccountInvalidChars'     => "Um nome de usuário pode conter somente estes caracteres: ' %s'",
+	'InvalidLoginServer'      => 'Login inválido para servidor selecionado, por favor, tente novamente com um servidor válido.',
+	'InvalidLoginCredentials' => 'Login inválido credenciais, verifique se você digitou as informações corretas e tente novamente.',
+	'UnexpectedLoginError'    => 'Ocorreu um erro inesperado, tente novamente ou reporte ao administrador.',
+	'CriticalLoginError'      => 'Algo ruim aconteceu. Comunicar ao administrador o mais cedo possível.',
+	'UsernameAlreadyTaken'    => "O nome de usuário que você escolheu já está em uso por outro usuário.",
+	'UsernameTooShort'        => sprintf('Seu nome de usuário deve ser em torno de %d a %d caracteres longos.', Flux::config('MinUsernameLength'), Flux::config('MaxUsernameLength')),
+	'UsernameTooLong'         => sprintf('Seu nome de usuário deve ser em torno de %d a %d caracteres longos.', Flux::config('MinUsernameLength'), Flux::config('MaxUsernameLength')),
+	'PasswordContainsUser'    => 'Sua senha não pode conter seu nome de usuário.',
+	'PasswordHasUsername'     => 'Sua senha não deve conter seu nome de usuário.',
+	'PasswordTooShort'        => 'Sua senha deve ser em torno de %d a %d caracteres longo.',
+	'PasswordTooLong'         => 'Sua senha deve ser em torno de %d a %d caracteres longo.',
+	'PasswordsDoNotMatch'     => "Suas senhas não coincidem, por favor, certifique-se de que você digitou corretamente.",
+	'PasswordNeedUpper'       => 'Sua senha deve conter pelo menos %d letra(s) maiúscula.',
+	'PasswordNeedLower'       => 'Sua senha deve conter pelo menos %d letra(s) minúsculas.',
+	'PasswordNeedNumber'      => 'Sua senha deve conter pelo menos %d número(s).',
+	'PasswordNeedSymbol'      => 'Sua senha deve conter pelo menos %d símbolo(s).',
+	'EmailAddressInUse'       => "Você digitou o endereço de e-mail já está registrado para outra conta. Por favor use um endereço de e-mail diferente.",
+	'InvalidEmailAddress'     => "O endereço de email que você digitou não está em um formato de endereço de email válido.",
+	'InvalidGender'           => 'Sexo deve ser "M" ou "F"',
+	'InvalidServer'           => "O servidor que você selecionou não existe.",
+	'InvalidSecurityCode'     => 'Por favor introduza o código de segurança corretamente.',
+	'InvalidPassword'         => 'A senha contém caracteres inválidos.',
+	'InvalidBirthdate'        => 'Entrada de Data de nascimento inválida.',
+	'CriticalRegisterError'   => 'Algo ruim aconteceu. Comunicar ao administrador o mais cedo possível.',
 	// - account/edit
 	'AccountEditTitle'        => 'Modificar Conta',
 	'AccountEditTitle2'       => 'Modificando Minha Conta',
 	'AccountEditTitle3'       => 'Modificando Conta (%s)',
-	'CannotModifyOwnLevel'    => 'Você não pode mudar o seu próprio Level de Conta.',
-	'CannotModifyAnyLevel'    => 'Você não pode mudar Levels de Conta.',
-	'CannotModifyLevelSoHigh' => 'Você não pode mudar o Level da Conta para um mais alto que o seu.',
+	'CannotModifyOwnGroupID'  => 'Você não pode modificar seu próprio ID do grupo da conta.',
+	'CannotModifyAnyGroupID'  => 'Você não pode modificar IDs do grupo de contas.',
+	'CannotModifyGroupIDHigh' => 'Você não pode definir um ID do grupo de conta para ser maior do que o seu próprio.',
+	'InvalidGroupID'          => 'ID do grupo inválido.',
 	'CannotModifyBalance'     => 'Você não pode mudar o balanço da conta.',
 	'InvalidLastLoginDate'    => 'Última data e hora de login inválidos.',
 	'AccountModified'         => 'Conta modificada com sucesso.',
@@ -207,6 +215,7 @@ return array(
 	'ResetPassTitle'          => 'Redefinir Senha',
 	'ResetPassEnterAccount'   => 'Por favor, digite o seu Usuário.',
 	'ResetPassEnterEmail'     => 'Por favor, digite o seu e-mail.',
+	'ResetPassDisallowed'     => 'Recuperação de senha não pode ser usada para esta conta.',
 	'ResetPassFailed'         => 'Falha ao enviar o email de redefinição de senha.',
 	'ResetPassEmailSent'      => 'Um e-mail foi enviado para você com os detalhes de como proceder para redefinir sua senha.',
 	'ResetPassTitle'          => 'Redefinir Senha',
@@ -285,7 +294,6 @@ return array(
 	'AccountViewJlvlLabel'    => 'Job Level',
 	'AccountViewZenyLabel'    => 'Zeny',
 	'AccountViewGuildLabel'   => 'Clã',
-	'pages' => 'página',
 	'AccountViewStatusLabel'  => 'Status',
 	'AccountViewPrefsLabel'   => 'Preferências',
 	'CharModifyPrefsLink'     => 'Modificar Preferências',
@@ -322,6 +330,19 @@ return array(
 	'ResetPositionSuccessful' => "A posição de %s foi redefinida!",
 	'ResetPositionFailed'     => "Falha ao redefinir a posição de %s.",
 	// - character/view
+	// - character/divorce
+	'DivorceTitle'            => 'Divórcio',
+	'DivorceHeading'          => 'Divórcio',
+	'DivorceNotMarried'       => '%s não é casado.',
+	'DivorceInvalidPartner'   => 'ID de parceiro inválido.',
+	'DivorceInvalidChild'     => 'ID de filho inválido.',
+	'DivorceMustBeOffline'    => 'Ambos s% e seu/sua parceiro(a) deve estar off-line.',
+	'DivorceMustBeOffline2'   => '%s, seu/sua parceiro(a) e seu filho deve estar off-line.',
+	'DivorceText1'            => "Você tem certeza que quer se divorciar de %s seu/sua parceiro(a)?",
+	'DivorceText2'            => 'Se %s tem um filho, o filho também vai ser órfão.',
+	'DivorceText3'            => 'Anéis de casamento também serão excluídos.',
+	'DivorceButton'           => 'Sim, fazê-lo por favor.',
+	'DivorceSuccessful'       => '%s já se divorciou!',
 	
 	// Module: cplog
 	// - cplog/index.php
@@ -329,43 +350,6 @@ return array(
 	// - cplog/paypal.php
 	// - cplog/resetpass.php
 	// - cplog/txnview.php
-	// - logdata/command
-	'CommandLogTitle'         => 'Lista de comandos',
-	'CommandLogHeading'       => 'Log de comandos',
-	'CommandLogNotFound'      => 'Nehuma comando registrado',
-	'CommandLogDateLabel'     => 'Comando Data/Hora',
-	'CommandLogAccountIdLabel'=> 'ID da conta',
-	'CommandLogCharIdLabel'   => 'ID do char',
-	'CommandLogCharNameLabel' => 'Personagem',
-	'CommandLogCommandLabel'  => 'Comando',
-	'CommandLogMapLabel'      => 'Mapa',
-	// - logdata/index
-	// - logdata/login
-	// - logdata/pick
-	'PickLogTitle'            => 'Lista de log de itens',
-	'PickLogHeading'          => 'Log de itens',
-	'PickLogNotFound'         => 'Nenhum item registrado',
-	'PickLogDateLabel'        => 'Data/Hora',
-	'PickLogCharacterLabel'   => 'Personagem',
-	'PickLogTypeLabel'        => 'Tipo',
-	'PickLogItemLabel'        => 'Nome do item',
-	'PickLogAmountLabel'      => 'Quantidade',
-	'PickLogRefineLabel'      => 'Refino',
-	'PickLogCard0Label'       => 'Carta 1',
-	'PickLogCard1Label'       => 'Carta 2',
-	'PickLogCard2Label'       => 'Carta 3',
-	'PickLogCard3Label'       => 'Carta 4',
-	'PickLogMapLabel'         => 'Mapa',
-	// - logdata/zeny	
-  'ZenyLogTitle'            => 'Lista de log de zeny',	
-  'ZenyLogHeading'          => 'Log de zeny',
-  'ZenyLogNotFound'         => 'Não há registro de logs de zeny',
-  'ZenyLogDateLabel'        => 'Data/Hora',
-  'ZenyLogCharacterLabel'   => 'Personagem',
-  'ZenyLogSourceLabel'      => 'ID do Personagem',
-  'ZenyLogTypeLabel'        => 'Tipo',	
-  'ZenyLogAmountLabel'      => 'Valor',	
-  'ZenyLogMapLabel'         => 'Mapa',
 	
 	// Module: donate
 	// - donate/complete
@@ -411,7 +395,18 @@ return array(
 	'HistoryEmailNewAddress'  => 'E-Mail Novo',
 	'HistoryEmailChangeDate'  => 'Data da Mudança',
 	'HistoryEmailChangeIp'    => 'IP que fez a mudança',
-	'HistoryNoEmailChanges'   => 'Não foram feitas alteraçõs de e-mail ainda.',
+	'HistoryNoEmailChanges'   => 'Nenhuma tentativa de mudança de email encontrada.',
+	// - history/gamelogin
+	'HistoryGameLoginTitle'   => 'Logins No Jogo',
+	'HistoryGameLoginHeading' => 'Logins No Jogo',
+	'HistoryRepsCodeLabel'    => 'Resposta',
+	'HistoryLogMessageLabel'  => 'Mensagem de Log',
+	'HistoryNoGameLogins'     => 'Não foram feitos logins no jogo ainda.',
+	// - history/index
+	'HistoryIndexTitle'       => 'Histórico da Minha Conta',
+	'HistoryIndexHeading'     => 'Histórico da Minha Conta',
+	'HistoryIndexInfo'        => 'Aqui você pode ver a atividade passada da sua conta.',
+	'HistoryIndexInfo2'       => 'Por favor, selecione a página desejada no menu.',
 	// - history/passchange
 	'HistoryPassChangeTitle'      => 'Alterações de senha',
 	'HistoryPassChangeHeading'    => 'Alterações de senha',
@@ -426,23 +421,13 @@ return array(
 	'HistoryPassResetResetDate'   => 'Redefinir a data',
 	'HistoryPassResetResetIp'     => 'Redefinir o IP',
 	'HistoryNoPassResets'         => 'Nenhuma senha Redefinida encontradas.',
-	// - history/gamelogin
-	'HistoryGameLoginTitle'   => 'Logins No Jogo',
-	'HistoryGameLoginHeading' => 'Logins No Jogo',
-	'HistoryRepsCodeLabel'    => 'Resposta',
-	'HistoryLogMessageLabel'  => 'Mensagem de Log',
-	'HistoryNoGameLogins'     => 'Não foram feitos logins no jogo ainda.',
-	// - history/index
-	'HistoryIndexTitle'       => 'Histórico da Minha Conta',
-	'HistoryIndexHeading'     => 'Histórico da Minha Conta',
-	'HistoryIndexInfo'        => 'Aqui você pode ver a atividade passada da sua conta.',
-	'HistoryIndexInfo2'       => 'Por favor, selecione a página desejada no menu.',
 	
 	// Module: ipban
 	// - ipban/add
 	'IpbanAddTitle'           => 'Banir IP',
 	'IpbanEnterIpPattern'     => 'Por favor, digite um IP ou um padrão de IP.',
 	'IpbanInvalidPattern'     => 'IP ou padrão inválido.',
+	'IpbanWhitelistedPattern' => 'Esse padrão é lista branca e não pode ser bloqueado.',
 	'IpbanEnterReason'        => 'Digite a razão do ban para o IP.',
 	'IpbanSelectUnbanDate'    => 'Data de desbanimento necessária.',
 	'IpbanFutureDate'         => 'Data de desbanimento deve ser uma data futura.',
@@ -457,8 +442,10 @@ return array(
 	'IpbanAddButton'          => 'Banir IP',
 	// - ipban/edit
 	'IpbanEditTitle'          => 'Modificar Ban de IP',
+	'IpbanEnterEditReason'    => 'Por favor, digite uma razão para a modificação de Banimento de IP .',
 	'IpbanEditFailed'         => 'Falha ao modificar Ban de IP.',
 	'IpbanEditHeading'        => 'Modificar Ban de IP',
+	'IpbanEditReasonLabel'    => 'Editar a razão',
 	'IpbanEditButton'         => 'Modificar Ban de IP',
 	// - ipban/index
 	'IpbanListTitle'          => 'Lista de IP Banidos',
@@ -468,11 +455,23 @@ return array(
 	'IpbanBanReasonLabel'     => 'Razão',
 	'IpbanBanExpireLabel'     => 'Data de expiração do Ban',
 	'IpbanModifyLink'         => 'Modificar',
+	'IpbanRemoveLink'         => 'Remover'
 	'IpbanUnbanButton'        => 'Desbanir Selecionados',
 	'IpbanListNoBans'         => 'Atualmente não há IPs banidos.',
+	// - ipban/remove
+	'IpbanRemoveTitle'        => 'Remover Banimento de IP',
+	'IpbanEnterRemoveReason'  => 'Por favor, digite uma razão para a remoção do Banimento de IP.',
+	'IpbanNotBanned'          => 'Nenhum IP correspondente (%s) atualmente é proibido.',
+	'IpbanPatternUnbanned'    => "O endereço IP/padrão '%s' foi banido.",
+	'IpbanRemoveFailed'       => 'Falha ao remover a Banimento de IP.',
+	'IpbanRemoveHeading'      => 'Remover Banimento de IP',
+	'IpbanRemoveReasonLabel'  => 'Razão do desbanimento',
+	'IpbanRemoveButton'       => 'Remover Banimento de IP',
 	// - ipban/unban
 	'IpbanNothingToUnban'     => 'Nada para desbanir.',
+	'IpbanEnterUnbanReason'   => 'Por favor, digite uma razão para desbanir o(s) IP(s).',
 	'IpbanUnbanned'           => 'IP(s) selecionado(s) desbanido(s)!',
+	'IpbanUnbanFailed'        => 'Falha ao desbanir %d IP(s) especificado(s)!',
 	
 	// Module: item
 	// - item/add
@@ -488,8 +487,44 @@ return array(
 	// - itemshop/imagedel
 	
 	// Module: logdata
+	// - logdata/chat
+	// - logdata/command
+	'CommandLogTitle'         => 'Lista de comandos',
+	'CommandLogHeading'       => 'Log de comandos',
+	'CommandLogNotFound'      => 'Nehuma comando registrado',
+	'CommandLogDateLabel'     => 'Comando Data/Hora',
+	'CommandLogAccountIdLabel'=> 'ID da conta',
+	'CommandLogCharIdLabel'   => 'ID do char',
+	'CommandLogCharNameLabel' => 'Personagem',
+	'CommandLogCommandLabel'  => 'Comando',
+	'CommandLogMapLabel'      => 'Mapa',
 	// - logdata/index
 	// - logdata/login
+	// - logdata/pick
+	'PickLogTitle'            => 'Lista de log de itens',
+	'PickLogHeading'          => 'Log de itens',
+	'PickLogNotFound'         => 'Nenhum item registrado',
+	'PickLogDateLabel'        => 'Data/Hora',
+	'PickLogCharacterLabel'   => 'Personagem',
+	'PickLogTypeLabel'        => 'Tipo',
+	'PickLogItemLabel'        => 'Nome do item',
+	'PickLogAmountLabel'      => 'Quantidade',
+	'PickLogRefineLabel'      => 'Refino',
+	'PickLogCard0Label'       => 'Carta 1',
+	'PickLogCard1Label'       => 'Carta 2',
+	'PickLogCard2Label'       => 'Carta 3',
+	'PickLogCard3Label'       => 'Carta 4',
+	'PickLogMapLabel'         => 'Mapa',
+	// - logdata/zeny
+	'ZenyLogTitle'            => 'Lista de log de zeny',
+	'ZenyLogHeading'          => 'Log de zeny',
+	'ZenyLogNotFound'         => 'Não há registro de logs de zeny',
+	'ZenyLogDateLabel'        => 'Data/Hora',
+	'ZenyLogCharacterLabel'   => 'Personagem',
+	'ZenyLogSourceLabel'      => 'ID do Personagem',
+	'ZenyLogTypeLabel'        => 'Tipo',
+	'ZenyLogAmountLabel'      => 'Valor',
+	'ZenyLogMapLabel'         => 'Mapa',
 	
 	// Module: mail
 	// - mail/index
@@ -539,20 +574,6 @@ return array(
 	// - ranking/character
 	// - ranking/guild
 	// - ranking/zeny
-	
-	// Module: reload
-	// - reload/index
-	'ReloadTitle'             => 'Recarregar Banco de Dados',
-	'ReloadHeading'           => 'Recarregar Banco de Dados',
-	'ReloadInfo'              => 'Você pode recarregar os bancos de dados aqui.',
-	'ReloadInfo2'             => 'Por favor, escolha o banco de dados que você quer recarregar das ações disponíveis.',
-	// - reload/mobskill
-	'ReloadMobSkillsTitle'    => 'Recarregar Mob Skills',
-	'ReloadMobSkillsHeading'  => 'Recarregar Mob Skills',
-	'ReloadMobSkillsError1'   => '%s não tem permissão de leitura.',
-	'ReloadMobSkillsError2'   => '%s não tem permissão de leitura.',
-	'ReloadMobSkillsError3'   => '%s não tem permissão de escrita.',
-	'ReloadMobSkillsInfo'     => 'Banco de dados das Skills de Mobs foi recarregado com sucesso! (%s bytes escritos)',
 	
 	// Module: server
 	// - server/info

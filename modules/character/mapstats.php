@@ -12,9 +12,14 @@ if (($hideGroupLevel=(int)Flux::config('HideFromMapStats')) > 0 && !$auth->allow
 
 $sql .= "WHERE online > 0 ";
 
-if ($hideLevel > 0 && !$auth->allowedToSeeHiddenMapStats) {  	
-  $sql   .= "AND login.level < ? ";	  	
-  $bind[] = $hideLevel;
+if ($hideGroupLevel > 0 && !$auth->allowedToSeeHiddenMapStats) {
+	$groups = AccountLevel::getGroupID($hideGroupLevel, '<');
+	
+	if(!empty($groups)) {
+		$ids   = implode(', ', array_fill(0, count($groups), '?'));
+		$sql  .= "AND login.group_id IN ($ids) ";
+		$bind  = array_merge($bind, $groups);
+	}
 }
 
 $sql .= " GROUP BY map_name, online HAVING player_count > 0 ORDER BY map_name ASC";

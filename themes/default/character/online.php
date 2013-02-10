@@ -37,7 +37,7 @@
 		<?php if ($auth->allowedToViewOnlinePosition): ?>
 			<th><?php echo $paginator->sortableColumn('last_map', 'Map') ?></th>
 		<?php else: ?>
-			<th>Maap</th>
+			<th>Mapa</th>
 		<?php endif ?>
 	</tr>
 	<?php foreach ($chars as $char): ?>

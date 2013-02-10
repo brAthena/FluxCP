@@ -112,8 +112,9 @@ class Flux_SessionData {
 		}
 		
 		// Get new account data every request.
-		if ($this->loginAthenaGroup && $this->username && ($account = $this->getAccount($this->loginAthenaGroup, $this->username))) {
+		if ($this->loginAthenaGroup && $this->username && ($account = $this->getAccount($this->loginAthenaGroup, $this->username))) {	
 			$this->account = $account;
+			$this->account->group_level = AccountLevel::getGroupLevel($account->group_id);
 			
 			// Automatically log out of account when detected as banned.
 			$permBan = ($account->state == 5 && !Flux::config('AllowPermBanLogin'));
@@ -124,7 +125,7 @@ class Flux_SessionData {
 			}
 		}
 		else {
-			$this->account = new Flux_DataObject(null, array('level' => AccountLevel::UNAUTH));
+			$this->account = new Flux_DataObject(null, array('group_level' => AccountLevel::UNAUTH));
 		}
 		
 		//if (!$this->isLoggedIn()) {
@@ -240,7 +241,7 @@ class Flux_SessionData {
 	 */
 	public function isLoggedIn()
 	{
-		return $this->account->level >= AccountLevel::NORMAL;
+		return $this->account->group_level >= AccountLevel::NORMAL;
 	}
 	
 	/**
@@ -263,10 +264,6 @@ class Flux_SessionData {
 			throw new Flux_LoginError('IP address is banned', Flux_LoginError::IPBANNED);
 		}
 		
-		if (!$loginAthenaGroup->isAuth($username, $password)) {
-			throw new Flux_LoginError('Invalid login', Flux_LoginError::INVALID_LOGIN);
-		}
-		
 		if ($securityCode !== false && Flux::config('UseLoginCaptcha')) {
 			if (strtolower($securityCode) != strtolower($this->securityCode)) {
 				throw new Flux_LoginError('Invalid security code', Flux_LoginError::INVALID_SECURITY_CODE);
@@ -286,12 +283,16 @@ class Flux_SessionData {
 			}
 		}
 		
+		if (!$loginAthenaGroup->isAuth($username, $password)) {
+			throw new Flux_LoginError('Invalid login', Flux_LoginError::INVALID_LOGIN);
+		}
+		
 		$creditsTable  = Flux::config('FluxTables.CreditsTable');
 		$creditColumns = 'credits.balance, credits.last_donation_date, credits.last_donation_amount';
 		
 		$sql  = "SELECT login.*, {$creditColumns} FROM {$loginAthenaGroup->loginDatabase}.login ";
 		$sql .= "LEFT OUTER JOIN {$loginAthenaGroup->loginDatabase}.{$creditsTable} AS credits ON login.account_id = credits.account_id ";
-		$sql .= "WHERE login.sex != 'S' AND login.level >= 0 AND login.userid = ? LIMIT 1";
+		$sql .= "WHERE login.sex != 'S' AND login.group_id >= 0 AND login.userid = ? LIMIT 1";
 		$smt  = $loginAthenaGroup->connection->getStatement($sql);
 		$res  = $smt->execute(array($username));
 		
@@ -351,7 +352,7 @@ class Flux_SessionData {
 		
 		$sql  = "SELECT login.*, {$creditColumns} FROM {$loginAthenaGroup->loginDatabase}.login ";
 		$sql .= "LEFT OUTER JOIN {$loginAthenaGroup->loginDatabase}.{$creditsTable} AS credits ON login.account_id = credits.account_id ";
-		$sql .= "WHERE login.sex != 'S' AND login.level >= 0 AND login.userid = ? LIMIT 1";
+		$sql .= "WHERE login.sex != 'S' AND login.group_id >= 0 AND login.userid = ? LIMIT 1";
 		$smt  = $loginAthenaGroup->connection->getStatement($sql);
 		$res  = $smt->execute(array($username));
 		

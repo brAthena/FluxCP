@@ -9,8 +9,8 @@ return array(
 		'DbConfig'       => array(
 			//'Socket'     => '/tmp/mysql.sock',
 			//'Port'       => 3306,
-			'Encoding'   => 'utf8', // Connection encoding -- use whatever here your MySQL tables collation is.
-			//'Convert'    => 'utf8',
+			//'Encoding'   => 'utf8', // Connection encoding -- use whatever here your MySQL tables collation is.
+			'Convert'    => 'utf8',
 				// -- 'Convert' option only works when 'Encoding' option is specified and iconv (http://php.net/iconv) is available.
 				// -- It specifies the encoding to convert your MySQL data to on the website (most likely needs to be utf8)
 			'Hostname'   => '127.0.0.1',
@@ -37,7 +37,7 @@ return array(
 			'Hostname'   => '127.0.0.1',
 			'Username'   => 'ragnarok',
 			'Password'   => 'ragnarok',
-			'Database'   => 'log',
+			'Database'   => 'ragnarok',
 			'Persistent' => true,
 			'Timezone'   => null // Possible values is as described in the comment in DbConfig.
 		),
@@ -45,15 +45,15 @@ return array(
 		'LoginServer'    => array(
 			'Address'  => '127.0.0.1',
 			'Port'     => 6900,
-			'UseMD5'   => false,
+			'UseMD5'   => true,
 			'NoCase'   => true, // rA account case-sensitivity; Default: Case-INsensitive (true).
-			'Level'    => 0,    // Default account level during registration.
+			'GroupID'  => 0,    // Default account group ID during registration.
 			//'Database' => 'ragnarok'
 		),
 		'CharMapServers' => array(
 			array(
 				'ServerName'      => 'FluxRO',
-				'Renewal'         => false,
+				'Renewal'         => true,
 				'MaxCharSlots'    => 9,
 				'DateTimezone'    => null, // Specifies game server's timezone for this char/map pair. (See: http://php.net/timezones)
 				//'ResetDenyMaps'   => 'sec_pri', // Defaults to 'sec_pri'. This value can be an array of map names.

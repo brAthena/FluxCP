@@ -104,7 +104,7 @@ return array(
 	'DivorceKeepRings'     => false,                    // Keep wedding rings after divorce?
 	'IpWhitelistPattern'   =>                           // PCRE Format Pattern. It's recommended you add your gameserver, webserver and server owner's IPs here.
 		'(127\.0\.0\.1|0(\.[0\*]){3})',                 // WARNING: This string isn't escaped so be careful which chars you use!
-	                                                // By default, whitelists 127.0.0.1 (localhost) and 0.0.0.0 (all interfaces; whitelists all wildcard bans that can achive this too)
+		                                                // By default, whitelists 127.0.0.1 (localhost) and 0.0.0.0 (all interfaces; whitelists all wildcard bans that can achive this too)
 	'AllowIpBanLogin'      => false,                    // Allow logging into account from banned IP.
 	'AllowTempBanLogin'    => false,                    // Allow logging in of temporarily banned accounts.
 	'AllowPermBanLogin'    => false,                    // Allow logging in of permanently banned accounts.
@@ -262,7 +262,7 @@ return array(
 		),
 		'server' => array(
 			'status'     => 'Ver Status',
-			//'status-xml' => 'VVer Status como XML'
+			'status-xml' => 'VVer Status como XML'
 		),
 		'logdata' => array(
 			//'char'    => 'Personagens',
@@ -302,10 +302,10 @@ return array(
 			'add'   => 'Banir IP'
 		),
 		'ranking' => array(
-			'character' => 'Ranking de Personagens',
-			'guild'     => 'Ranking de Clãs',
-			'zeny'      => 'Ranking de Zenys',
-			'death'     => 'Ranking de morte'
+			'character'  => 'Ranking de Personagens',
+			'guild'      => 'Ranking de Clãs',
+			'zeny'       => 'Ranking de Zenys',
+			'death'      => 'Ranking de morte'
 			'alchemist'  => 'Alchemist Ranking',
 			'blacksmith' => 'Blacksmith Ranking'
 		),

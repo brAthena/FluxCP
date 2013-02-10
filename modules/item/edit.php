@@ -216,7 +216,7 @@ if ($item) {
 				}
 			}
 			if (empty($errorMessage)) {
-					$equipLevel = $equipLevelMin;
+				$equipLevel = $equipLevelMin;
 				if($server->isRenewal && !is_null($equipLevelMax)) {
 					$equipLevel .= ':'. $equipLevelMax;
 				}
@@ -254,7 +254,7 @@ if ($item) {
 						'attack' => $attack
 					));
 				}
-				
+
 				foreach ($vals as $col => $val) {
 					$cols[] = $col;
 					$bind[] = $val;

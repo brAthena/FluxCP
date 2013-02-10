@@ -39,8 +39,8 @@ if (ini_get('magic_quotes_gpc')) {
 
 set_include_path(FLUX_LIB_DIR.PATH_SEPARATOR.get_include_path());
 
-// Default account levels.	  	
-require_once FLUX_CONFIG_DIR.'/levels.php';
+// Default account group IDs.
+require_once FLUX_CONFIG_DIR.'/groups.php';
 
 // Some necessary Flux core libraries.
 require_once 'Flux.php';
