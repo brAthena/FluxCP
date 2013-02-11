@@ -455,7 +455,7 @@ return array(
 	'IpbanBanReasonLabel'     => 'Razão',
 	'IpbanBanExpireLabel'     => 'Data de expiração do Ban',
 	'IpbanModifyLink'         => 'Modificar',
-	'IpbanRemoveLink'         => 'Remover'
+	'IpbanRemoveLink'         => 'Remover',
 	'IpbanUnbanButton'        => 'Desbanir Selecionados',
 	'IpbanListNoBans'         => 'Atualmente não há IPs banidos.',
 	// - ipban/remove

@@ -305,7 +305,7 @@ return array(
 			'character'  => 'Ranking de Personagens',
 			'guild'      => 'Ranking de Clãs',
 			'zeny'       => 'Ranking de Zenys',
-			'death'      => 'Ranking de morte'
+			'death'      => 'Ranking de morte',
 			'alchemist'  => 'Alchemist Ranking',
 			'blacksmith' => 'Blacksmith Ranking'
 		),
