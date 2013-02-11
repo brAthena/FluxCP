@@ -54,8 +54,8 @@ return array(
 	'RequireEmailConfirm'  => false,                    // Require e-mail confirmation during registration.
 	'RequireChangeConfirm' => false,                    // Require confirmation when changing e-mail addresses.
 	'EmailConfirmExpire'   => 48,                       // E-mail confirmations expire hours. Unconfirmed accounts will expire after this period of time.
-	'MailerFromAddress'    => 'noreply@localhost',      // The e-mail address displayed in the From field.
-	'MailerFromName'       => 'MailerName',             // The name displayed with the From e-mail address.
+	'MailerFromAddress'    => 'Megasantos@localhost',   // The e-mail address displayed in the From field.
+	'MailerFromName'       => 'Megasantos',             // The name displayed with the From e-mail address.
 	'MailerUseSMTP'        => false,                    // Whether or not to use a separate SMTP server for sending mail.
 	'MailerSMTPUseSSL'     => false,                    // Whether or not mailer should connect using SSL (yes for GMail).
 	'MailerSMTPUseTLS'     => false,                    // Same as above SSL setting, but for TLS.  This setting will override the SSL setting.
@@ -262,7 +262,7 @@ return array(
 		),
 		'server' => array(
 			'status'     => 'Ver Status',
-			'status-xml' => 'VVer Status como XML'
+			'status-xml' => 'Ver Status como XML'
 		),
 		'logdata' => array(
 			//'char'    => 'Personagens',
@@ -306,8 +306,8 @@ return array(
 			'guild'      => 'Ranking de Clãs',
 			'zeny'       => 'Ranking de Zenys',
 			'death'      => 'Ranking de morte',
-			'alchemist'  => 'Alchemist Ranking',
-			'blacksmith' => 'Blacksmith Ranking'
+			'alchemist'  => 'Ranking de Alquimista',
+			'blacksmith' => 'Ranking de Ferreiro'
 		),
 		'item' => array(
 			'index' => 'Listar Items',
@@ -362,28 +362,28 @@ return array(
 	// Shouldn't need touching, however modifying loginerrors.php should be relatively safe.
 	'LoginErrors' => include('loginerrors.php'),
 	
-	// rA equip jobs mapping.
+	// brA equip jobs mapping.
 	'EquipJobs' => include('equip_jobs.php'),
 	
-	// rA equip locations mapping.
+	// brA equip locations mapping.
 	'EquipLocations' => include('equip_locations.php'),
 	
-	// rA equip upper mapping.
+	// brA equip upper mapping.
 	'EquipUpper' => include('equip_upper.php'),
 	
-	// rA monster sizes mapping.
+	// brA monster sizes mapping.
 	'MonsterSizes' => include('sizes.php'),
 	
-	// rA monster races mapping.
+	// brA monster races mapping.
 	'MonsterRaces' => include('races.php'),
 	
-	// rA elements mapping.
+	// brA elements mapping.
 	'Elements' => include('elements.php'),
 	
-	// rA attributes mapping.
+	// brA attributes mapping.
 	'Attributes' => include('attributes.php'),
 	
-	// rA monster modes mapping.
+	// brA monster modes mapping.
 	'MonsterModes' => include('monstermode.php'),
 	
 	// Item shop categories.

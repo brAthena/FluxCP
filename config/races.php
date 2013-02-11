@@ -1,5 +1,5 @@
 <?php
-// rA monster races.
+// brA monster races.
 return array(
 	 0 => 'Amorfo',
 	 1 => 'Morto-Vivo',

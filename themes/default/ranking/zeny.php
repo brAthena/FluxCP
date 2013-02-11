@@ -28,12 +28,12 @@
 </form>
 <table class="horizontal-table">
 	<tr>
-		<th>Posição de Rank</th>
+		<th>Posição no Rank</th>
 		<th>Nome do Personagem</th>
 		<th>Zeny</th>
 		<th>Classe</th>
-		<th>Base Level</th>
-		<th>Job Level</th>
+		<th>Nível de Base</th>
+		<th>Nível de Job</th>
 		<th colspan="2">Nome do Clã</th>
 	</tr>
 	<?php $topRankType = !is_null($jobClass) ? $className : '' ?>

@@ -28,14 +28,14 @@ Top <?php echo number_format($limit=(int)Flux::config('CharRankingLimit')) ?> de
 </form>
 <table class="horizontal-table">
 	<tr>
-		<th>Posição de Rank</th>
+		<th>Posição no Rank</th>
 		<th>Nome do Personagem</th>
 		<th>Classe</th>
 		<th colspan="2">Nome do Clã</th>
-		<th>Base Level</th>
-		<th>Job Level</th>
-		<th>Base Exp</th>
-		<th>Job Exp</th>
+		<th>Nível de Base</th>
+		<th>Nível de Job</th>
+		<th>Nível de Exp de Base</th>
+		<th>Nível de Exp de Job</th>
 	</tr>
 	<?php $topRankType = !is_null($jobClass) ? $className : '' ?>
 	<?php for ($i = 0; $i < $limit; ++$i): ?>

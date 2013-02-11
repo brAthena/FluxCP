@@ -1,7 +1,7 @@
 <?php
 if (!defined('FLUX_ROOT')) exit;
 
-$title          = 'Blacksmith Ranking';
+$title          = 'Ranking de Ferreiro';
 $blacksmithJobs = Flux::config('BlacksmithJobClasses')->toArray();
 $jobClass       = $params->get('jobclass');
 $bind           = array();

@@ -6,7 +6,7 @@
 	<form action="<?php echo $this->url ?>" method="get" class="search-form">
 		<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 		<p>
-			<label for="char_name">Nome:</label>
+			<label for="char_name">Nome do Personagem:</label>
 			<input type="text" name="char_name" id="char_name" value="<?php echo htmlspecialchars($params->get('char_name')) ?>" />
 			...
 			<label for="char_class">Classe:</label>
@@ -29,13 +29,13 @@
 
 <table class="horizontal-table">
 	<tr>
-		<th><?php echo $paginator->sortableColumn('char_name', 'Character Name') ?></th>
-		<th>Job Class</th>
-		<th><?php echo $paginator->sortableColumn('base_level', 'Base Level') ?></th>
-		<th><?php echo $paginator->sortableColumn('job_level', 'Job Level') ?></th>
-		<th colspan="2"><?php echo $paginator->sortableColumn('guild_name', 'Guild') ?></th>
+		<th><?php echo $paginator->sortableColumn('char_name', 'Nome do Personagem') ?></th>
+		<th>Classe</th>
+		<th><?php echo $paginator->sortableColumn('base_level', 'Nível de Base') ?></th>
+		<th><?php echo $paginator->sortableColumn('job_level', 'Nível de Job') ?></th>
+		<th colspan="2"><?php echo $paginator->sortableColumn('guild_name', 'Clã') ?></th>
 		<?php if ($auth->allowedToViewOnlinePosition): ?>
-			<th><?php echo $paginator->sortableColumn('last_map', 'Map') ?></th>
+			<th><?php echo $paginator->sortableColumn('last_map', 'Último Mapa') ?></th>
 		<?php else: ?>
 			<th>Mapa</th>
 		<?php endif ?>
@@ -64,7 +64,7 @@
 				<?php endif ?>
 			</td>
 		<?php else: ?>
-			<td colspan="2"><span class="not-applicable">None</span></td>
+			<td colspan="2"><span class="not-applicable">Nada</span></td>
 		<?php endif ?>
 		
 		<td>

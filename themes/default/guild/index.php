@@ -1,71 +1,71 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
-<h2>Guilds</h2>
-<p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
+<h2>Clãs</h2>
+<p class="toggler"><a href="javascript:toggleSearchForm()">Procurar...</a></p>
 <form action="<?php echo $this->url ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module')) ?>
 	<p>
-		<label for="id">Guild ID:</label>
+		<label for="id">ID do Clã:</label>
 		<input type="text" name="id" id="id" value="<?php echo htmlspecialchars($params->get('id')) ?>" />
 		...
-		<label for="guild_name">Guild Name:</label>
+		<label for="guild_name">Nome do Clã:</label>
 		<input type="text" name="guild_name" id="guild_name" value="<?php echo htmlspecialchars($params->get('guild_name')) ?>" />
 		...
-		<label for="char_id">Leader ID:</label>
+		<label for="char_id">ID do Líder:</label>
 		<input type="text" name="char_id" id="char_id" value="<?php echo htmlspecialchars($params->get('char_id')) ?>" />
 		...
-		<label for="master">Leader Name:</label>
+		<label for="master">Nome do Líder:</label>
 		<input type="text" name="master" id="master" value="<?php echo htmlspecialchars($params->get('master')) ?>" />
 	</p>
 	<p>
-		<label for="guild_level">Guild Level:</label>
+		<label for="guild_level">Nível do Clã:</label>
 		<select name="guild_level_op">
-			<option value="eq"<?php if (($guild_level_op=$params->get('guild_level_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
-			<option value="gt"<?php if ($guild_level_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
-			<option value="lt"<?php if ($guild_level_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
+			<option value="eq"<?php if (($guild_level_op=$params->get('guild_level_op')) == 'eq') echo ' selected="selected"' ?>>é igual a</option>
+			<option value="gt"<?php if ($guild_level_op == 'gt') echo ' selected="selected"' ?>>é maior que</option>
+			<option value="lt"<?php if ($guild_level_op == 'lt') echo ' selected="selected"' ?>>é menor que</option>
 		</select>
 		<input type="text" name="guild_level" id="guild_level" value="<?php echo htmlspecialchars($params->get('guild_level')) ?>" />
 		...
-		<label for="connect_member">Online Members:</label>
+		<label for="connect_member">Membros Online:</label>
 		<select name="connect_member_op">
-			<option value="eq"<?php if (($connect_member_op=$params->get('connect_member_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
-			<option value="gt"<?php if ($connect_member_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
-			<option value="lt"<?php if ($connect_member_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
+			<option value="eq"<?php if (($connect_member_op=$params->get('connect_member_op')) == 'eq') echo ' selected="selected"' ?>>é igual a</option>
+			<option value="gt"<?php if ($connect_member_op == 'gt') echo ' selected="selected"' ?>>é maior que</option>
+			<option value="lt"<?php if ($connect_member_op == 'lt') echo ' selected="selected"' ?>>é menor que</option>
 		</select>
 		<input type="text" name="connect_member" id="connect_member" value="<?php echo htmlspecialchars($params->get('connect_member')) ?>" />
 		...
-		<label for="max_member">Capacity:</label>
+		<label for="max_member">Capacidade:</label>
 		<select name="max_member_op">
-			<option value="eq"<?php if (($max_member_op=$params->get('max_member_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
-			<option value="gt"<?php if ($max_member_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
-			<option value="lt"<?php if ($max_member_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
+			<option value="eq"<?php if (($max_member_op=$params->get('max_member_op')) == 'eq') echo ' selected="selected"' ?>>é igual a</option>
+			<option value="gt"<?php if ($max_member_op == 'gt') echo ' selected="selected"' ?>>é maior que</option>
+			<option value="lt"<?php if ($max_member_op == 'lt') echo ' selected="selected"' ?>>é menor que</option>
 		</select>
 		<input type="text" name="max_member" id="max_member" value="<?php echo htmlspecialchars($params->get('max_member')) ?>" />
 	</p>
 	<p>
-		<label for="average_lv">Average Level:</label>
+		<label for="average_lv">Level médio dos membros:</label>
 		<select name="average_lv_op">
-			<option value="eq"<?php if (($average_lv_op=$params->get('average_lv_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
-			<option value="gt"<?php if ($average_lv_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
-			<option value="lt"<?php if ($average_lv_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
+			<option value="eq"<?php if (($average_lv_op=$params->get('average_lv_op')) == 'eq') echo ' selected="selected"' ?>>é igual a</option>
+			<option value="gt"<?php if ($average_lv_op == 'gt') echo ' selected="selected"' ?>>é maior que</option>
+			<option value="lt"<?php if ($average_lv_op == 'lt') echo ' selected="selected"' ?>>é menor que</option>
 		</select>
 		<input type="text" name="average_lv" id="average_lv" value="<?php echo htmlspecialchars($params->get('average_lv')) ?>" />
 
-		<input type="submit" value="Search" />
-		<input type="button" value="Reset" onclick="reload()" />
+		<input type="submit" value="Procurar" />
+		<input type="button" value="Resetar" onclick="reload()" />
 	</p>
 </form>
 <?php if ($guilds): ?>
 <?php echo $paginator->infoText() ?>
 <table class="horizontal-table">
 	<tr>
-		<th><?php echo $paginator->sortableColumn('guild.guild_id', 'Guild ID') ?></th>
-		<th colspan="2"><?php echo $paginator->sortableColumn('guildName', 'Guild Name') ?></th>
-		<th><?php echo $paginator->sortableColumn('charID', 'Leader ID') ?></th>
-		<th><?php echo $paginator->sortableColumn('charName', 'Leader Name') ?></th>
-		<th><?php echo $paginator->sortableColumn('guildLevel', 'Guild Level') ?></th>
-		<th><?php echo $paginator->sortableColumn('connectMem', 'Online Members') ?></th>
-		<th><?php echo $paginator->sortableColumn('maxMem', 'Capacity') ?></th>
-		<th><?php echo $paginator->sortableColumn('avgLevel', 'Average Level') ?></th>
+		<th><?php echo $paginator->sortableColumn('guild.guild_id', 'ID do Clã') ?></th>
+		<th colspan="2"><?php echo $paginator->sortableColumn('guildName', 'Nome do Clã') ?></th>
+		<th><?php echo $paginator->sortableColumn('charID', 'ID do Líder') ?></th>
+		<th><?php echo $paginator->sortableColumn('charName', 'Nome do Líder') ?></th>
+		<th><?php echo $paginator->sortableColumn('guildLevel', 'Level do Clã') ?></th>
+		<th><?php echo $paginator->sortableColumn('connectMem', 'Membros Online') ?></th>
+		<th><?php echo $paginator->sortableColumn('maxMem', 'Capacidade') ?></th>
+		<th><?php echo $paginator->sortableColumn('avgLevel', 'Level Médio dos Membros') ?></th>
 	</tr>
 	<?php foreach ($guilds as $guild): ?>
 	<tr>
@@ -100,5 +100,5 @@
 </table>
 <?php echo $paginator->getHTML() ?>
 <?php else: ?>
-<p>No guilds found. <a href="javascript:history.go(-1)">Go back</a>.</p>
+<p>Nenhum clã encontrado. <a href="javascript:history.go(-1)">Voltar</a>.</p>
 <?php endif ?>

@@ -98,7 +98,7 @@
 		<th><?php echo $paginator->sortableColumn('birthdate', Flux::message('AccountBirthdateLabel')) ?></th>
 		<th><?php echo $paginator->sortableColumn('lastlogin', Flux::message('LastLoginDateLabel')) ?></th>
 		<th><?php echo $paginator->sortableColumn('last_ip', Flux::message('LastUsedIpLabel')) ?></th>
-		<!-- <th><?php echo $paginator->sortableColumn('reg_date', 'Register Date') ?></th> -->
+		<!-- <th><?php echo $paginator->sortableColumn('reg_date', 'Data do registo') ?></th> -->
 	</tr>
 	<?php foreach ($accounts as $account): ?>
 	<tr>

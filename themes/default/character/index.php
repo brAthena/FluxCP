@@ -10,14 +10,14 @@
 		<label for="account">Conta:</label>
 		<input type="text" name="account" id="account" value="<?php echo htmlspecialchars($params->get('account')) ?>" />
 		...
-		<label for="char_name">Nome:</label>
+		<label for="char_name">Nome do Personagem:</label>
 		<input type="text" name="char_name" id="char_name" value="<?php echo htmlspecialchars($params->get('char_name')) ?>" />
 		...
 		<label for="char_class">Classe:</label>
 		<input type="text" name="char_class" id="char_class" value="<?php echo htmlspecialchars($params->get('char_class')) ?>" />
 	</p>
 	<p>
-		<label for="base_level">Base Level:</label>
+		<label for="base_level">Nível de Base:</label>
 		<select name="base_level_op">
 			<option value="eq"<?php if (($base_level_op=$params->get('base_level_op')) == 'eq') echo ' selected="selected"' ?>>é igual a</option>
 			<option value="gt"<?php if ($base_level_op == 'gt') echo ' selected="selected"' ?>>é maior que</option>
@@ -25,7 +25,7 @@
 		</select>
 		<input type="text" name="base_level" id="base_level" value="<?php echo htmlspecialchars($params->get('base_level')) ?>" />
 		...
-		<label for="job_level">Job Level:</label>
+		<label for="job_level">Nível de Job:</label>
 		<select name="job_level_op">
 			<option value="eq"<?php if (($job_level_op=$params->get('job_level_op')) == 'eq') echo ' selected="selected"' ?>>é igual a</option>
 			<option value="gt"<?php if ($job_level_op == 'gt') echo ' selected="selected"' ?>>é maior que</option>
@@ -81,12 +81,12 @@
 <?php echo $paginator->infoText() ?>
 <table class="vertical-table">
 	<tr>
-		<th><?php echo $paginator->sortableColumn('ch.char_id', 'Char ID') ?></th>
+		<th><?php echo $paginator->sortableColumn('ch.char_id', 'ID do Personagem') ?></th>
 		<th><?php echo $paginator->sortableColumn('userid', 'Conta') ?></th>
-		<th><?php echo $paginator->sortableColumn('char_name', 'Personagem') ?></th>
-		<th>Job Class</th>
-		<th><?php echo $paginator->sortableColumn('ch.base_level', 'Base Level') ?></th>
-		<th><?php echo $paginator->sortableColumn('ch.job_level', 'Job Level') ?></th>
+		<th><?php echo $paginator->sortableColumn('char_name', 'Nome do Personagem') ?></th>
+		<th>Classe</th>
+		<th><?php echo $paginator->sortableColumn('ch.base_level', 'Nível de Base') ?></th>
+		<th><?php echo $paginator->sortableColumn('ch.job_level', 'Nível de Job') ?></th>
 		<th><?php echo $paginator->sortableColumn('ch.zeny', 'Zeny') ?></th>
 		<th colspan="2"><?php echo $paginator->sortableColumn('guild_name', 'Clã') ?></th>
 		<th><?php echo $paginator->sortableColumn('partner_name', 'Cônjuge') ?></th>

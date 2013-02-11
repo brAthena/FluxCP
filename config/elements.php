@@ -1,5 +1,5 @@
 <?php
-// rA elements.
+// brA elements.
 return array(
 	0 => 'Neutro',
 	1 => 'Água',

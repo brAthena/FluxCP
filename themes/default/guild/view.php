@@ -1,21 +1,21 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
-<h2>Viewing Guild</h2>
+<h2>Vendo Clã</h2>
 <?php if ($guild): ?>
-<h3>Guild Information for “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+<h3>Informações do Clã “<?php echo htmlspecialchars($guild->name) ?>”</h3>
 <table class="vertical-table">
 	<tr>
-		<th>Guild ID</th>
+		<th>ID do Clã</th>
 		<td><?php echo htmlspecialchars($guild->guild_id) ?></td>
-		<th>Guild Name</th>
+		<th>Nome do Clã</th>
 		<td><?php echo htmlspecialchars($guild->name) ?></td>
-		<th>Emblem ID</th>
+		<th>ID do Emblema</th>
 		<td><?php echo number_format($guild->emblem_id) ?></td>
 		<td><img src="<?php echo $this->emblem($guild->guild_id) ?>" /></td>
 	</tr>
 	<tr>
-		<th>Leader ID</th>
+		<th>ID do Líder</th>
 		<td><?php echo htmlspecialchars($guild->char_id) ?></td>
-		<th>Leader Name</th>
+		<th>Nome do Líder</th>
 		<td>
 			<?php if ($auth->allowedToViewCharacter): ?>
 				<?php echo $this->linkToCharacter($guild->char_id, $guild->guild_master) ?>
@@ -23,53 +23,53 @@
 				<?php echo htmlspecialchars($guild->guild_master) ?>
 			<?php endif ?>
 		</td>
-		<th>Guild Level</th>
+		<th>Level do Clã</th>
 		<td colspan="2"><?php echo number_format($guild->guild_lv) ?></td>
 	</tr>
 	<tr>
-		<th>Online Members</th>
+		<th>Membros Online</th>
 		<td><?php echo number_format($guild->connect_member) ?></td>
-		<th>Capacity</th>
+		<th>Capacidade</th>
 		<td><?php echo number_format($guild->max_member) ?></td>
-		<th>Average Level</th>
+		<th>Nível Médio dos Membros</th>
 		<td colspan="2"><?php echo number_format($guild->average_lv) ?></td>
 	</tr>
 	<tr>
-		<th>Guild EXP</th>
+		<th>EXP do Clã</th>
 		<td><?php echo number_format($guild->exp) ?></td>
-		<th>EXP until Level Up</th>
+		<th>EXP até Subir de Nível</th>
 		<td><?php echo number_format($guild->next_exp) ?></td>
-		<th>Skill Point</th>
+		<th>Pontos de Habilidade</th>
 		<td colspan="2"><?php echo number_format($guild->skill_point) ?></td>
 	</tr>
 	<tr>
-		<th>Guild Notice 1</th>
+		<th>Notícias do Clã 1</th>
 		<td colspan="6">
 			<?php if (trim($guild->mes1)): ?>
 				<?php echo htmlspecialchars($guild->mes1) ?>
 			<?php else: ?>
-				<span class="not-applicable">None</span>
+				<span class="not-applicable">Nada</span>
 			<?php endif ?>
 		</td>
 	</tr>
 	<tr>
-		<th>Guild Notice 2</th>
+		<th>Notícias do Clã 2</th>
 		<td colspan="6">
 			<?php if (trim($guild->mes2)): ?>
 				<?php echo htmlspecialchars($guild->mes2) ?></td>
 			<?php else: ?>
-				<span class="not-applicable">None</span>
+				<span class="not-applicable">Nada</span>
 			<?php endif ?>
 		</td>
 	</tr>
 </table>
-<h3>Alliances of “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+<h3>Alianças de “<?php echo htmlspecialchars($guild->name) ?>”</h3>
 <?php if ($alliances): ?>
-	<p><?php echo htmlspecialchars($guild->name) ?> has <?php echo count($alliances) ?> Alliance(s).</p>
+	<p><?php echo htmlspecialchars($guild->name) ?> tem <?php echo count($alliances) ?> Aliança(s).</p>
 	<table class="vertical-table">
 		<tr>
-			<th>Guild ID</th>
-			<th>Guild Name</th>
+			<th>ID do Clã</th>
+			<th>Nome do Clã</th>
 		</tr>
 		<?php foreach ($alliances AS $alliance): ?>
 		<tr>
@@ -85,15 +85,15 @@
 		<?php endforeach ?>
 	</table>
 <?php else: ?>
-	<p>There are no alliances for this guild.</p>
+	<p>Esse clã não possui aliança(s).</p>
 <?php endif ?>
-<h3>Oppositions of “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+<h3>Inimigos de “<?php echo htmlspecialchars($guild->name) ?>”</h3>
 <?php if ($oppositions): ?>
-	<p><?php echo htmlspecialchars($guild->name) ?> has <?php echo count($oppositions) ?> Opposition(s).</p>
+	<p><?php echo htmlspecialchars($guild->name) ?> tem <?php echo count($oppositions) ?> Inimigo(s).</p>
 	<table class="vertical-table">
 		<tr>
-			<th>Guild ID</th>
-			<th>Guild Name</th>
+			<th>ID do Clã</th>
+			<th>Nome do Clã</th>
 		</tr>
 		<?php foreach ($oppositions AS $opposition): ?>
 		<tr>
@@ -109,23 +109,23 @@
 		<?php endforeach ?>
 	</table>
 <?php else: ?>
-	<p>There are no oppositions for this guild.</p>
+	<p>Esse clã não possui inimigo(s).</p>
 <?php endif ?>
-<h3>Guild Members of “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+<h3>Membros do Clã “<?php echo htmlspecialchars($guild->name) ?>”</h3>
 <?php if ($members): ?>
-	<p><?php echo htmlspecialchars($guild->name) ?> has <?php echo count($members) ?> guild member(s).</p>
+	<p><?php echo htmlspecialchars($guild->name) ?> tem <?php echo count($members) ?> membro(s).</p>
 	<table class="vertical-table">
 		<tr>
-			<th>Name</th>
-			<th>Job Class</th>
-			<th>Base Level</th>
-			<th>Job Level</th>
-			<th>EXP Devotion</th>
-			<th>Position ID</th>
-			<th>Position Name</th>
-			<th>Guild Rights</th>
-			<th>Tax</th>
-			<th>Last Login</th>
+			<th>Nome</th>
+			<th>Classe</th>
+			<th>Nível de Base</th>
+			<th>Nível de Job</th>
+			<th>EXP de Devoção</th>
+			<th>ID de Posição</th>
+			<th>Posição no Clã</th>
+			<th>Direitos do Clã</th>
+			<th>Taxa</th>
+			<th>Último Login</th>
 		</tr>
 		<?php foreach ($members AS $member): ?>
 		<tr>
@@ -140,7 +140,7 @@
 				<?php if ($job=$this->jobClassText($member->class)): ?>
 					<?php echo htmlspecialchars($job) ?>
 				<?php else: ?>
-					<span class="not-applicable">Unknown</span>
+					<span class="not-applicable">Desconhecido</span>
 				<?php endif ?>
 			</td>
 			<td><?php echo htmlspecialchars($member->base_level) ?></td>
@@ -150,15 +150,15 @@
 			<td><?php echo htmlspecialchars($member->position_name) ?></td>
 			<td>
 				<?php if ($member->mode == 17): ?>
-					<?php echo htmlspecialchars("Invite/Expel") ?>
+					<?php echo htmlspecialchars("Convidar/Expulsar") ?>
 				<?php elseif ($member->mode == 16): ?>
-					<?php echo htmlspecialchars("Expel") ?>
+					<?php echo htmlspecialchars("Expulsar") ?>
 				<?php elseif ($member->mode == 1): ?>
-					<?php echo htmlspecialchars("Invite") ?>
+					<?php echo htmlspecialchars("Convidar") ?>
 				<?php elseif ($member->mode == 0): ?>
-					<span class="not-applicable">None</span>
+					<span class="not-applicable">Nada</span>
 				<?php else: ?>
-					<span class="not-applicable">Unknown</span>
+					<span class="not-applicable">Desconhecido</span>
 				<?php endif ?>
 			</td>
 			<td><?php echo number_format($member->exp_mode) ?>%</td>
@@ -167,16 +167,16 @@
 		<?php endforeach ?>
 	</table>
 <?php else: ?>
-	<p>There are no members in this guild.</p>
+	<p>Não há membros nesse clã.</p>
 <?php endif ?>
-<h3>Member Expulsions of “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+<h3>Membros expulsos de “<?php echo htmlspecialchars($guild->name) ?>”</h3>
 <?php if ($expulsions): ?>
-	<p><?php echo htmlspecialchars($guild->name) ?> has <?php echo count($expulsions) ?> member expulsion(s).</p>
+	<p><?php echo htmlspecialchars($guild->name) ?> tem <?php echo count($expulsions) ?> membro(s) expulso(s).</p>
 	<table class="vertical-table">
 		<tr>
-			<th>Account ID</th>
-			<th>Character Name</th>
-			<th>Expulsion Reason</th>
+			<th>ID da Conta</th>
+			<th>Nome do Personagem</th>
+			<th>Razão da Expulsão</th>
 		</tr>
 		<?php foreach ($expulsions AS $expulsion): ?>
 		<tr>
@@ -192,33 +192,33 @@
 			<?php if($expulsion->mes): ?>
 				<?php echo htmlspecialchars($expulsion->mes) ?>
 			<?php else: ?>
-				<span class="not-applicable">None</span>
+				<span class="not-applicable">Nada</span>
 			<?php endif ?>
 			</td>
 		</tr>
 		<?php endforeach ?>
 	</table>
 <?php else: ?>
-	<p>There are no member expulsions for this guild.</p>
+	<p>Nenhum membro foi expluso desse clã.</p>
 <?php endif ?>
 <?php if (!Flux::config('GStorageLeaderOnly') || $amOwner || $auth->allowedToViewGuild): ?>
-	<h3>Guild Storage Items of “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+	<h3>Itens no Armazém do Clã “<?php echo htmlspecialchars($guild->name) ?>”</h3>
 	<?php if (Flux::config('GStorageLeaderOnly')): ?>
-		<p>Note: Guild Storage Items are only visible to you, the guild leader.</p>
+		<p>Nota: Itens de armazenamento do Clã apenas estão disponíveis para você, o Líder do Clã.</p>
 	<?php endif ?>
 	<?php if ($items): ?>
-		<p><?php echo htmlspecialchars($guild->name) ?> has <?php echo count($items) ?> guild storage item(s).</p>
+		<p><?php echo htmlspecialchars($guild->name) ?> tem <?php echo count($items) ?> item(s) em seu Armazém do Clã.</p>
 		<table class="vertical-table">
 			<tr>
-				<th>Item ID</th>
-				<th colspan="2">Name</th>
-				<th>Amount</th>
-				<th>Identified</th>
-				<th>Broken</th>
-				<th>Card0</th>
-				<th>Card1</th>
-				<th>Card2</th>
-				<th>Card3</th>
+				<th>ID do Item</th>
+				<th colspan="2">Nome</th>
+				<th>Quantidade</th>
+				<th>Identificado</th>
+				<th>Quebrado</th>
+				<th>Carta 0</th>
+				<th>Carta 1</th>
+				<th>Carta 2</th>
+				<th>Carta 3</th>
 				</th>
 			</tr>
 			<?php foreach ($items AS $item): ?>
@@ -234,9 +234,9 @@
 					<?php endif ?>
 					<?php if ($item->card0 == 255 && intval($item->card1/1280) > 0): ?>
 						<?php for ($i = 0; $i < intval($item->card1/1280); $i++): ?>
-							Very
+							Muito
 						<?php endfor ?>
-						Strong
+						Forte
 					<?php endif ?>
 					<?php if ($item->card0 == 254 || $item->card0 == 255): ?>
 						<?php if ($item->char_name): ?>
@@ -255,7 +255,7 @@
 					<?php if ($item->name_japanese): ?>
 						<span class="item_name"><?php echo htmlspecialchars($item->name_japanese) ?></span>
 					<?php else: ?>
-						<span class="not-applicable">Unknown Item</span>
+						<span class="not-applicable">Item Desconhecido</span>
 					<?php endif ?>
 					<?php if ($item->slots): ?>
 						<?php echo htmlspecialchars(' [' . $item->slots . ']') ?>
@@ -264,16 +264,16 @@
 				<td><?php echo number_format($item->amount) ?></td>
 				<td>
 					<?php if ($item->identify): ?>
-						<span class="identified yes">Yes</span>
+						<span class="identified yes">Sim</span>
 					<?php else: ?>
-						<span class="identified no">No</span>
+						<span class="identified no">Não</span>
 					<?php endif ?>
 				</td>
 				<td>
 					<?php if ($item->attribute): ?>
-						<span class="broken yes">Yes</span>
+						<span class="broken yes">Sim</span>
 					<?php else: ?>
-						<span class="broken no">No</span>
+						<span class="broken no">Não</span>
 					<?php endif ?>
 				</td>
 				<td>
@@ -284,7 +284,7 @@
 							<?php echo $this->linkToItem($item->card0, $item->card0) ?>
 						<?php endif ?>
 					<?php else: ?>
-						<span class="not-applicable">None</span>
+						<span class="not-applicable">Nada</span>
 					<?php endif ?>
 				</td>
 				<td>
@@ -295,7 +295,7 @@
 							<?php echo $this->linkToItem($item->card1, $item->card1) ?>
 						<?php endif ?>
 					<?php else: ?>
-						<span class="not-applicable">None</span>
+						<span class="not-applicable">Nada</span>
 					<?php endif ?>
 				</td>
 				<td>
@@ -306,7 +306,7 @@
 							<?php echo $this->linkToItem($item->card2, $item->card2) ?>
 						<?php endif ?>
 					<?php else: ?>
-						<span class="not-applicable">None</span>
+						<span class="not-applicable">Nada</span>
 					<?php endif ?>
 				</td>
 				<td>
@@ -317,16 +317,16 @@
 							<?php echo $this->linkToItem($item->card3, $item->card3) ?>
 						<?php endif ?>
 					<?php else: ?>
-						<span class="not-applicable">None</span>
+						<span class="not-applicable">Nada</span>
 					<?php endif ?>
 				</td>
 			</tr>
 			<?php endforeach ?>
 		</table>
 	<?php else: ?>
-		<p>There are no guild storage items for this guild.</p>
+		<p>Não há itens no Armazém desse clã.</p>
 	<?php endif ?>
 <?php endif ?>
 <?php else: ?>
-<p>No such guild was found. <a href="javascript:history.go(-1)">Go back</a>.</p>
+<p>Nenhum clã encontrado. <a href="javascript:history.go(-1)">Voltar</a>.</p>
 <?php endif ?>

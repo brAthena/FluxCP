@@ -18,7 +18,7 @@
 		<td><?php echo number_format($char->char_num+1) ?></td>
 	</tr>
 	<tr>
-		<th>Personagem</th>
+		<th>Nome do Personagem</th>
 		<td colspan="2"><?php echo htmlspecialchars($char->char_name) ?></td>
 		<th>Conta</th>
 		<td>
@@ -38,9 +38,9 @@
 		</td>
 	</tr>
 	<tr>
-		<th>Base Level</th>
+		<th>Nível de Base</th>
 		<td colspan="2"><?php echo number_format((int)$char->char_base_level) ?></td>
-		<th>Base Exp</th>
+		<th>Nível de Exp de Base</th>
 		<td><?php echo number_format($char->char_base_exp) ?></td>
 		<th>Cônjuge</th>
 		<td>
@@ -56,9 +56,9 @@
 		</td>
 	</tr>
 	<tr>
-		<th>Job Level</th>
+		<th>Nível de Job</th>
 		<td colspan="2"><?php echo number_format((int)$char->char_job_level) ?></td>
-		<th>Job Exp</th>
+		<th>Nível de Exp de Job</th>
 		<td><?php echo number_format($char->char_job_exp) ?></td>
 		<th>Clã</th>
 		<td>
@@ -197,7 +197,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th>Stats do Personagem</th>
+		<th>Atributos do Personagem</th>
 		<td colspan="6">
 			<table class="character-stats">
 				<tr>
@@ -223,13 +223,13 @@
 <?php if ($char->party_name): ?>
 <h3>Outros membros do grupo <?php echo htmlspecialchars($char->party_name) ?></h3>
 	<?php if ($partyMembers): ?>
-		<p><?php echo htmlspecialchars($char->party_name) ?> has <?php echo count($partyMembers) ?> other party member(s) besides <?php echo htmlspecialchars($char->char_name) ?>.</p>
+		<p><?php echo htmlspecialchars($char->party_name) ?> tem <?php echo count($partyMembers) ?> outro(s) membros(s) além de <?php echo htmlspecialchars($char->char_name) ?>.</p>
 		<table class="vertical-table">
 			<tr>
 				<th>Nome</th>
 				<th>Classe</th>
-				<th>Base Level</th>
-				<th>Job Level</th>
+				<th>Nível de Base</th>
+				<th>Nível de Job</th>
 				<th colspan="2">Clã</th>
 				<th>Status</th>
 			</tr>
@@ -284,8 +284,8 @@
 		<tr>
 			<th>Nome</th>
 			<th>Classe</th>
-			<th>Base Level</th>
-			<th>Job Level</th>
+			<th>Nível de Base</th>
+			<th>Nível de Job</th>
 			<th colspan="2">Clã</th>
 			<th>Status</th>
 		</tr>
@@ -345,10 +345,10 @@
 			<th>Quantidade</th>
 			<th>Identificado</th>
 			<th>Quebrado</th>
-			<th>Card0</th>
-			<th>Card1</th>
-			<th>Card2</th>
-			<th>Card3</th>
+			<th>Carta 0</th>
+			<th>Carta 1</th>
+			<th>Carta 2</th>
+			<th>Carta 3</th>
 		</tr>
 		<?php foreach ($items AS $item): ?>
 		<?php $icon = $this->iconImage($item->nameid) ?>
@@ -466,10 +466,10 @@
 			<th>Quantidade</th>
 			<th>Identificado</th>
 			<th>Quebrado</th>
-			<th>Card0</th>
-			<th>Card1</th>
-			<th>Card2</th>
-			<th>Card3</th>
+			<th>Carta 0</th>
+			<th>Carta 1</th>
+			<th>Carta 2</th>
+			<th>Carta 3</th>
 			</th>
 		</tr>
 		<?php foreach ($cart_items AS $cart_item): ?>

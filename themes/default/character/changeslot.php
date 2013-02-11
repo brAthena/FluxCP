@@ -7,7 +7,7 @@
 	<input type="hidden" name="changeslot" value="1" />
 	<table class="generic-form-table">
 		<tr>
-			<th><label>Nome</label></th>
+			<th><label>Nome do Personagem</label></th>
 			<td><div><?php echo htmlspecialchars($char->name) ?></div></td>
 			<td></td>
 		</tr>

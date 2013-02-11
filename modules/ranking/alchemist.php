@@ -1,7 +1,7 @@
 <?php
 if (!defined('FLUX_ROOT')) exit;
 
-$title         = 'Alchemist Ranking';
+$title         = 'Ranking de Alquimista';
 $alchemistJobs = Flux::config('AlchemistJobClasses')->toArray();
 $jobClass      = $params->get('jobclass');
 $bind          = array();

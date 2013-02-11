@@ -44,7 +44,7 @@ return array(
 	'AccountStateTempBanned'  => 'Banido Temp. (Desbanir: %s)',
 	'OnlineLabel'             => 'Online',
 	'OfflineLabel'            => 'Offline',
-	'ItemIdLabel'             => 'Item ID',
+	'ItemIdLabel'             => 'ID do Item',
 	'ItemNameLabel'           => 'Nome do Item',
 	'ItemAmountLabel'         => 'Quantidade',
 	'ItemIdentifyLabel'       => 'Identificado',
@@ -491,7 +491,7 @@ return array(
 	// - logdata/command
 	'CommandLogTitle'         => 'Lista de comandos',
 	'CommandLogHeading'       => 'Log de comandos',
-	'CommandLogNotFound'      => 'Nehuma comando registrado',
+	'CommandLogNotFound'      => 'Nenhum comando registrado',
 	'CommandLogDateLabel'     => 'Comando Data/Hora',
 	'CommandLogAccountIdLabel'=> 'ID da conta',
 	'CommandLogCharIdLabel'   => 'ID do char',

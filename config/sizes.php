@@ -1,5 +1,5 @@
 <?php
-// rA monster sizes.
+// brA monster sizes.
 return array(
 	 0 => 'Pequeno',
 	 1 => 'Médio',

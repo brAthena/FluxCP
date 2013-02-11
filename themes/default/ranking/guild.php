@@ -7,11 +7,11 @@
 <?php if ($guilds): ?>
 	<table class="horizontal-table">
 		<tr>
-			<th>Rank</th>
+			<th>Posição no Rank</th>
 			<th colspan="2">Nome do Clã</th>
-			<th>Level do Clã</th>
-			<th>Membrps</th>
-			<th>Média de Level</th>
+			<th>Nível do Clã</th>
+			<th>Membros</th>
+			<th>Média de Nível</th>
 			<th>Experiência</th>
 		</tr>
 		<?php for ($i = 0; $i < $limit; ++$i): ?>

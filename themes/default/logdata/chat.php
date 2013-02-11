@@ -1,19 +1,19 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
-<h2>Chat Messages</h2>
+<h2>Mensagens de Chat</h2>
 <?php if ($messages): ?>
 <?php echo $paginator->infoText() ?>
 <table class="horizontal-table">
 	<tr>
-		<th><?php echo $paginator->sortableColumn('time', 'Date/Time') ?></th>
-		<th><?php echo $paginator->sortableColumn('type', 'Type') ?></th>
-		<th><?php echo $paginator->sortableColumn('type_id', 'Type ID') ?></th>
-		<th><?php echo $paginator->sortableColumn('src_charid', 'Char ID') ?></th>
-		<th><?php echo $paginator->sortableColumn('src_accountid', 'Account ID') ?></th>
-		<th><?php echo $paginator->sortableColumn('src_map', 'Map') ?></th>
+		<th><?php echo $paginator->sortableColumn('time', 'Data/Hora') ?></th>
+		<th><?php echo $paginator->sortableColumn('type', 'Tipo') ?></th>
+		<th><?php echo $paginator->sortableColumn('type_id', 'ID do Tipo') ?></th>
+		<th><?php echo $paginator->sortableColumn('src_charid', 'ID do Personagem') ?></th>
+		<th><?php echo $paginator->sortableColumn('src_accountid', 'ID da Conta') ?></th>
+		<th><?php echo $paginator->sortableColumn('src_map', 'Mapa') ?></th>
 		<th><?php echo $paginator->sortableColumn('src_map_x', 'X') ?></th>
 		<th><?php echo $paginator->sortableColumn('src_map_y', 'Y') ?></th>
-		<th><?php echo $paginator->sortableColumn('dst_charname', 'Receiver') ?></th>
-		<th><?php echo $paginator->sortableColumn('message', 'Message') ?></th>
+		<th><?php echo $paginator->sortableColumn('dst_charname', 'Receptor') ?></th>
+		<th><?php echo $paginator->sortableColumn('message', 'Mensagem') ?></th>
 	</tr>
 	<?php foreach ($messages as $message): ?>
 	<tr>
@@ -87,7 +87,7 @@
 <?php echo $paginator->getHTML() ?>
 <?php else: ?>
 <p>
-	No chat messages found.
+	Nenhuma mensagem de Chat encontrada.
 	<a href="javascript:history.go(-1)"><?php echo htmlspecialchars(Flux::message('GoBackLabel')) ?></a>
 </p>
 <?php endif ?>

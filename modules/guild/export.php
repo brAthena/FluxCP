@@ -2,12 +2,12 @@
 if (!defined('FLUX_ROOT')) exit;
 
 if (!extension_loaded('zip')) {
-	throw new Flux_Error('The `zip` extension needs to be loaded for this feature to work.  Please consult the PHP manual for instructions.');
+	throw new Flux_Error('A extensão `zip` precisa ser carregada para este recurso funcionar. Por favor consulte o manual do PHP para instruções.');
 }
 
 $this->loginRequired();
 
-$title = 'Export Guild Emblems';
+$title = 'Exportar Emblemas dos Clãs';
 
 require_once 'Flux/EmblemExporter.php';
 $exporter = new Flux_EmblemExporter($session->loginAthenaGroup);
@@ -31,7 +31,7 @@ if (count($_POST)) {
 		$exporter->exportArchive();
 	}
 	else {
-		$session->setMessageData('You must select a server first.');
+		$session->setMessageData('Você deve selecionar um servidor primeiro.');
 	}
 }
 ?>

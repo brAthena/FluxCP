@@ -3,7 +3,7 @@ if (!defined('FLUX_ROOT')) exit;
 
 $this->loginRequired();
 
-$title = 'Viewing Guild';
+$title = 'Vendo Clã';
 
 require_once 'Flux/TemporaryTable.php';
 
@@ -50,11 +50,11 @@ $sth->execute(array($guildID));
 $oppositions = $sth->fetchAll();
 
 if ($guild) {
-	$title = "Viewing Guild ({$guild->name})";
+	$title = "Vendo Clã ({$guild->name})";
 }
 
 $col  = "ch.account_id, ch.char_id, ch.name, ch.class, ch.base_level, ch.job_level, ";
-$col .= "IF(ch.online = 1, 'Online Now!', ";
+$col .= "IF(ch.online = 1, 'Online Agora!', ";
 $col .= "CASE DATE_FORMAT(acc.lastlogin, '%Y-%m-%d') ";
 $col .= "WHEN DATE_FORMAT(NOW(), '%Y-%m-%d') THEN 'Today' ";
 $col .= "WHEN DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 DAY), '%Y-%m-%d') THEN 'Yesterday' ";
