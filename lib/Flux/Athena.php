@@ -734,7 +734,7 @@ class Flux_Athena {
 	public function isWoe()
 	{
 		$serverTime = (int)$this->getServerTime();
-		$dayNames   = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+		$dayNames   = array('Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado');
 			
 		foreach ($this->woeDayTimes as $woeDayTime) {
 			$sDay  = $dayNames[$woeDayTime['startingDay']];

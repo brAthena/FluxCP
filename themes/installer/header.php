@@ -5,7 +5,7 @@ if (!defined('FLUX_ROOT')) exit;
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Control Panel: Install &amp; Update</title>
+		<title>Painel de Controle: Instalar &amp; Atualizar</title>
 		<style type="text/css">
 			body {
 				margin: 20px;
@@ -95,7 +95,7 @@ if (!defined('FLUX_ROOT')) exit;
 	
 	<body>
 		<h2><?php echo Flux::config('SiteTitle') ?></h2>
-		<h1>Install &amp; Update</h1>
+		<h1>Instalar &amp; Atualizar</h1>
 		
 		<div id="content">
 			<?php if ($message=$session->getMessage()): ?>

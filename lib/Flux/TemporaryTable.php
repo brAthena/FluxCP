@@ -62,7 +62,7 @@ class Flux_TemporaryTable {
 		$this->fromTables = $fromTables;
 		
 		if (empty($fromTables)) {
-			self::raise("One or more tables must be specified to import into the temporary table '$tableName'");
+			self::raise("Uma ou mais tabelas devem ser especificadas para importar para a tabela temporária '$tableName'");
 		}
 		
 		// Find the first table.
@@ -73,12 +73,12 @@ class Flux_TemporaryTable {
 			// Insert initial row set.
 			// Rows imported from the following tables should overwrite these rows.
 			if (!$this->import($firstTable, false)) {
-				self::raise("Failed to import rows from initial table '$firstTable'");
+				self::raise("Falha ao importar linhas da tabela inicial '$firstTable'");
 			}
 			
 			foreach (array_slice($this->fromTables, 1) as $table) {
 				if (!$this->import($table)) {
-					self::raise("Failed to import/replace rows from table '$table'");
+					self::raise("Falha ao importar/substituir linhas da tabela '$table'");
 				}
 			}
 		}

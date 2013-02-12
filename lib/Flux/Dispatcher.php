@@ -86,10 +86,10 @@ class Flux_Dispatcher {
 		}
 		
 		if (!$defaultModule) {
-			throw new Flux_Error('Please set the default module with $dispatcher->setDefaultModule()');
+			throw new Flux_Error('Por favor, defina o módulo padrão com $dispatcher->setDefaultModule()');
 		}
 		elseif (!$defaultAction) {
-			throw new Flux_Error('Please set the default action with $dispatcher->setDefaultAction()');
+			throw new Flux_Error('Por favor, definir a ação padrão com $dispatcher->setDefaultAction()');
 		}
 		
 		if (!$paramsArr) {
@@ -127,7 +127,7 @@ class Flux_Dispatcher {
 		$auth = Flux_Authorization::getInstance();
 		if ($auth->actionAllowed($moduleName, $actionName) === false) {
 			if (!Flux::$sessionData->isLoggedIn()) {
-				Flux::$sessionData->setMessageData('Please log-in to continue.');
+				Flux::$sessionData->setMessageData('Faça o login para continuar.');
 				$this->loginRequired($baseURI);
 			}
 			else {
@@ -208,7 +208,7 @@ class Flux_Dispatcher {
 	{
 		$session = Flux::$sessionData;
 		if (!$message) {
-			$message = 'Please login to continue.';
+			$message = 'Faça o login para continuar.';
 		}
 		
 		if (!$session->isLoggedIn()) {

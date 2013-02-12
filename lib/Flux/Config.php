@@ -207,7 +207,7 @@ class Flux_Config {
 			}
 			elseif ($argc < 1) {
 				$class = get_class($this);
-				$this->raise("Missing value argument in $class::$method()");
+				$this->raise("Argumento de valor ausente em $class::$method()");
 			}
 			return $this->set($m[1], $args[0], $options);
 		}

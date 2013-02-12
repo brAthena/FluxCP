@@ -20,7 +20,7 @@
 			<td><p>Você deve colocar um slot entre 1 e <?php echo (int)$server->maxCharSlots ?>.</p></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="right"><input type="submit" value="Change Slot" /></td>
+			<td colspan="2" align="right"><input type="submit" value="Mudar Slot" /></td>
 			<td></td>
 		</tr>
 	</table>

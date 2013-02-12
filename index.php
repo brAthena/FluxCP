@@ -1,8 +1,8 @@
 <?php
 if (version_compare(PHP_VERSION, '5.2.1', '<')) {
-	echo '<h2>Error</h2>';
-	echo '<p>PHP 5.2.1 or higher is required to use Flux Control Panel.</p>';
-	echo '<p>You are running '.PHP_VERSION.'</p>';
+	echo '<h2>Erro</h2>';
+	echo '<p>A versão do 5.2.1 ou maior é necessária para usar o Painel de Controle Flux.</p>';
+	echo '<p>Você está usando a versão '.PHP_VERSION.'</p>';
 	exit;
 }
 
@@ -56,10 +56,10 @@ require_once 'markdown/markdown.php';
 
 try {
 	if (!extension_loaded('pdo')) {
-		throw new Flux_Error('The PDO extension is required to use Flux, please make sure it is installed along with the PDO_MYSQL driver.');
+		throw new Flux_Error('A extensão PDO é necessária para usar o Flux, tenha certeza que você tem instalado junto com o driver PDO_MYSQL.');
 	}
 	elseif (!extension_loaded('pdo_mysql')) {
-		throw new Flux_Error('The PDO_MYSQL driver for the PDO extension must be installed to use Flux.  Please consult the PHP manual for installation instructions.');
+		throw new Flux_Error('O driver PDO_MYSQL para a extensão PDF deve ser instalada para se usar o Flux. Por favor, constule o manual PHP para instruções de instalação.');
 	}
 
 	// Initialize Flux.
@@ -75,7 +75,7 @@ try {
 	// Set default timezone for entire app.
 	$timezone = Flux::config('DateDefaultTimezone');
 	if ($timezone && !@date_default_timezone_set($timezone)) {
-		throw new Flux_Error("'$timezone' is not a valid timezone.  Consult http://php.net/timezones for a list of valid timezones.");
+		throw new Flux_Error("'$timezone' não é uma timezone válida.   Consulte http://php.net/timezones para uma lista de timezones válidos.");
 	}
 
 	// Create some basic directories.
@@ -128,7 +128,7 @@ try {
 	}
 	
 	if (ini_get('session.use_trans_sid'))
-		throw new Flux_Error("The 'session.use_trans_sid' php.ini configuration must be turned off for Flux to work.");
+		throw new Flux_Error("The 'session.use_trans_sid' no php.ini deve ser desligada para o Flux poder funcionar.");
 
 	// Installer library.
 	$installer = Flux_Installer::getInstance();

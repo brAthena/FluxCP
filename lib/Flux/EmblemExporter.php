@@ -30,7 +30,7 @@ class Flux_EmblemExporter {
 	{
 		if (!in_array($athenaServer, $this->loginAthenaGroup->athenaServers, true)) {
 			throw new Flux_Error(
-				"{$athenaServer->serverName} is not a valid char/map server defined in the {$this->loginAthenaGroup->serverName} group.");
+				"{$athenaServer->serverName} não é um servidor válido char/mapa definido no {$this->loginAthenaGroup->serverName} group.");
 		}
 		
 		$this->athenaServers[$athenaServer->serverName] = $athenaServer;

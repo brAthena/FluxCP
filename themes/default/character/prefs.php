@@ -26,7 +26,7 @@
 		</tr>
 		<?php endif ?>
 		<tr>
-			<td align="right"><p><input type="submit" value="Modify Preferences" /></p></td>
+			<td align="right"><p><input type="submit" value="Modificar Preferências" /></p></td>
 			<td colspan="2"></td>
 		</tr>
 	</table>

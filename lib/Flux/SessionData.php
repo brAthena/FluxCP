@@ -257,11 +257,11 @@ class Flux_SessionData {
 	{
 		$loginAthenaGroup = Flux::getServerGroupByName($server);
 		if (!$loginAthenaGroup) {
-			throw new Flux_LoginError('Invalid server.', Flux_LoginError::INVALID_SERVER);
+			throw new Flux_LoginError('Servidor inválido.', Flux_LoginError::INVALID_SERVER);
 		}
 		
 		if ($loginAthenaGroup->loginServer->isIpBanned() && !Flux::config('AllowIpBanLogin')) {
-			throw new Flux_LoginError('IP address is banned', Flux_LoginError::IPBANNED);
+			throw new Flux_LoginError('O endereço IP está Banido', Flux_LoginError::IPBANNED);
 		}
 		
 		if ($securityCode !== false && Flux::config('UseLoginCaptcha')) {
@@ -284,7 +284,7 @@ class Flux_SessionData {
 		}
 		
 		if (!$loginAthenaGroup->isAuth($username, $password)) {
-			throw new Flux_LoginError('Invalid login', Flux_LoginError::INVALID_LOGIN);
+			throw new Flux_LoginError('Login inválido', Flux_LoginError::INVALID_LOGIN);
 		}
 		
 		$creditsTable  = Flux::config('FluxTables.CreditsTable');
@@ -317,11 +317,11 @@ class Flux_SessionData {
 				$row2 = $sth->fetch();
 				
 				if ($row2 && $row2->id) {
-					throw new Flux_LoginError('Pending confirmation', Flux_LoginError::PENDING_CONFIRMATION);
+					throw new Flux_LoginError('Pendente confirmação', Flux_LoginError::PENDING_CONFIRMATION);
 				}
 			}
 			if (!Flux::config('AllowPermBanLogin') && $row->state == 5) {
-				throw new Flux_LoginError('Permanently banned', Flux_LoginError::PERMABANNED);
+				throw new Flux_LoginError('Banido Permanentemente', Flux_LoginError::PERMABANNED);
 			}
 			
 			$this->setServerNameData($server);
@@ -329,8 +329,8 @@ class Flux_SessionData {
 			$this->initialize(false);
 		}
 		else {
-			$message  = "Unexpected error during login.\n";
-			$message .= 'PDO error info, if any: '.print_r($smt->errorInfo(), true);
+			$message  = "Erro inesperado durante o login.\n";
+			$message .= 'Informações de erro do PDO, se houver: '.print_r($smt->errorInfo(), true);
 			throw new Flux_LoginError($message, Flux_LoginError::UNEXPECTED);
 		}
 		

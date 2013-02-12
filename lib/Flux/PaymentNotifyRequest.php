@@ -110,10 +110,10 @@ class Flux_PaymentNotifyRequest {
 	 */
 	public function process()
 	{
-		$this->logPayPal('Received notification from %s (%s)', $_SERVER['REMOTE_ADDR'], gethostbyaddr($_SERVER['REMOTE_ADDR']));
+		$this->logPayPal('Notificação recebida de %s (%s)', $_SERVER['REMOTE_ADDR'], gethostbyaddr($_SERVER['REMOTE_ADDR']));
 
 		if ($this->verify()) {
-			$this->logPayPal('Proceeding to validate the authenticity of the transaction...');
+			$this->logPayPal('Processo para validar a autenticidade da transação...');
 
 			$accountEmails = Flux::config('PayPalReceiverEmails');
 			$accountEmails = array_merge(array($this->myBusinessEmail), $accountEmails->toArray());
@@ -125,10 +125,10 @@ class Flux_PaymentNotifyRequest {
 			$trusted       = true;
 
 			// Identify transaction number.
-			$this->logPayPal('Transaction identified as %s.', $transactionID);
+			$this->logPayPal('Transação identificada como %s.', $transactionID);
 
 			if (!in_array($receiverEmail, $accountEmails)) {
-				$this->logPayPal('Receiver e-mail (%s) is not recognized, unauthorized to continue.', $receiverEmail);
+				$this->logPayPal('E-mail do receptor (%s) não é reconhecido, não autorizado para continuar.', $receiverEmail);
 			}
 			else {
 				$customArray  = @unserialize(base64_decode((string)$this->ipnVariables->get('custom')));
@@ -138,7 +138,7 @@ class Flux_PaymentNotifyRequest {
 				$serverName   = $customData->get('server_name');
 
 				if ($currencyCode != $this->myCurrencyCode) {
-					$this->logPayPal('Transaction currency not exchangeable, accepting anyways. (recv: %s, expected: %s)',
+					$this->logPayPal('Moeda de transação não passíveis de troca, aceitando qualquer forma. (recebido: %s, espera: %s)',
 						$currencyCode, $this->myCurrencyCode);
 
 					$exchangeableCurrency = false;
@@ -148,32 +148,32 @@ class Flux_PaymentNotifyRequest {
 				}
 
 				// How much was received? (and in what currency?)
-				$this->logPayPal('Received %s (%s).', $this->ipnVariables->get('mc_gross'), $currencyCode);
+				$this->logPayPal('Recebido %s (%s).', $this->ipnVariables->get('mc_gross'), $currencyCode);
 
 				// How much will be deposited?
 				$settleAmount   = $this->ipnVariables->get('settle_amount');
 				$settleCurrency = $this->ipnVariables->get('settle_currency');
 
 				if ($settleAmount && $settleCurrency) {
-					$this->logPayPal('Deposited into PayPal account: %s %s.', $settleAmount, $settleCurrency);
+					$this->logPayPal('Depositado na conta do PayPal: %s %s.', $settleAmount, $settleCurrency);
 				}
 
 				// Let's see where the donation credits should go to.
-				$this->logPayPal('Game server name: %s, account ID: %s',
+				$this->logPayPal('Nome do servidor do jogo: %s, account ID: %s',
 					($serverName ? $serverName : '(absent)'), ($accountID ? $accountID : '(absent)'));
 
 				if (!$accountID || !$serverName) {
-					$this->logPayPal('Account ID and/or game server name absent, cannot exchange for credits.');
+					$this->logPayPal('ID de conta e/ou nome no servidor de jogo ausente, não é possível trocar por créditos.');
 				}
 				elseif ($this->ipnVariables->get('txn_type') != 'web_accept') {
-					$this->logPayPal('Transaction type is not web_accept, amount will not be exchanged for credits.');
+					$this->logPayPal('Tipo de transação não é web_accept, a quantidade não será trocada por créditos.');
 				}
 				elseif (!($servGroup = Flux::getServerGroupByName($serverName))) {
-					$this->logPayPal('Unknown game server "%s", cannot process donation for credits.', $serverName);
+					$this->logPayPal('Servidor de jogo desconhecido "%s", não é possível processo de doação para créditos.', $serverName);
 				}
 
 				if ($paymentStatus == 'Completed') {
-					$this->logPayPal('Payment for txn_id#%s has been completed.', $transactionID);
+					$this->logPayPal('Pagamento para txn_id#%s foi concluído.', $transactionID);
 
 					if ($servGroup && $exchangeableCurrency) {
 						$sql = "SELECT COUNT(account_id) AS acc_id_count FROM {$servGroup->loginDatabase}.login WHERE sex != 'S' AND group_id >= 0 AND account_id = ?";
@@ -182,11 +182,11 @@ class Flux_PaymentNotifyRequest {
 						$res = $sth->fetch();
 
 						if (!$res) {
-							$this->logPayPal('Unknown account #%s on server %s, cannot exchange for credits.', $accountID, $serverName);
+							$this->logPayPal('Conta desconhecida #%s no servidor %s, não é possível trocar por créditos.', $accountID, $serverName);
 						}
 						else {
 							if (!$servGroup->loginServer->hasCreditsRecord($accountID)) {
-								$this->logPayPal('Identified as first-time donation to the server from this account.');
+								$this->logPayPal('Identificado como doação pela primeira vez desta conta ao servidor.');
 							}
 
 							$amount  = (float)$this->ipnVariables->get('mc_gross');
@@ -220,28 +220,28 @@ class Flux_PaymentNotifyRequest {
 									$sth->execute(array($accountID));
 									$acc = $sth->fetch();
 
-									$this->logPayPal('Updating account credit balance from %s to %s', (int)$acc->balance, $acc->balance + $credits);
+									$this->logPayPal('Atualizando o saldo de crédito de %s para %s', (int)$acc->balance, $acc->balance + $credits);
 									$res = $servGroup->loginServer->depositCredits($accountID, $credits, $amount);
 
 									if ($res) {
-										$this->logPayPal('Deposited credits.');
+										$this->logPayPal('Créditos depositados.');
 									}
 									else {
-										$this->logPayPal('Failed to deposit credits.');
+										$this->logPayPal('Não conseguiu depositar créditos.');
 									}
 								}
 								else {
-									$this->logPayPal('Account/e-mail is not trusted, holding donation credits for %d hours.', $holdHours);
+									$this->logPayPal('Conta/e-mail não é confiável, mantendo os créditos de doação para %d horas.', $holdHours);
 								}
 							}
 							else {
-								$this->logPayPal('User has donated less than the configured minimum, not exchanging credits.');
+								$this->logPayPal('Usuário doou menos do que o mínimo configurado, não trocar créditos.');
 							}
 						}
 					}
 				}
 				else {
-					$this->logPayPal('Incomplete payment status: %s (exchanging for credits will not take place)', $paymentStatus);
+					$this->logPayPal('Status de pagamento incompleto: %s (troca por créditos não vai ocorrer)', $paymentStatus);
 
 					$banStatuses = Flux::config('BanPaymentStatuses');
 
@@ -256,17 +256,17 @@ class Flux_PaymentNotifyRequest {
 					$banStatuses = array_map('strtolower', $banStatuses);
 
 					if (in_array($pymntStatus, $banStatuses)) {
-						$this->logPayPal('Auto-ban payment status detected: %s', $paymentStatus);
+						$this->logPayPal('Auto-banimento status de pagamento detectado: %s', $paymentStatus);
 
 						if ($servGroup && $serverName && $accountID) {
-							$this->logPayPal('Banning account! (serv: %s, account_id: %s)', $serverName, $accountID);
+							$this->logPayPal('Conta Banida! (servidor: %s, ID da Conta: %s)', $serverName, $accountID);
 							$servGroup->loginServer->permanentlyBan(
-								null, "Banned for invalid payment status: $paymentStatus",
+								null, "Banido por status de pagamento inválido: $paymentStatus",
 								$accountID
 							);
 						}
 						else {
-							$this->logPayPal("Couldn't ban account, it's unknown.");
+							$this->logPayPal("Não poderia proibir conta, ele é desconhecido.");
 						}
 					}
 				}
@@ -283,20 +283,20 @@ class Flux_PaymentNotifyRequest {
 					$this->logToPayPalTable($servGroup, $accountID, $serverName, $trusted, $credits);
 				}
 
-				$this->logPayPal('Saving transaction details for %s...', $transactionID);
+				$this->logPayPal('Detalhes de transações de poupança %s...', $transactionID);
 
 				if ($logFile=$this->saveDetailsToFile()) {
-					$this->logPayPal('Saved transaction details for %s to: %s', $transactionID, $logFile);
+					$this->logPayPal('Salvo os detalhes de transações %s para: %s', $transactionID, $logFile);
 				}
 				else {
-					$this->logPayPal('Failed to save transaction details for %s to file.', $transactionID);
+					$this->logPayPal('Falha ao salvar detalhes de transações %s para arquivo.', $transactionID);
 				}
 
-				$this->logPayPal('Done processing %s.', $transactionID);
+				$this->logPayPal('Processamento feito %s.', $transactionID);
 			}
 		}
 		else {
-			$this->logPayPal('Transaction invalid, aborting.');
+			$this->logPayPal('Transação inválida, abortando.');
 		}
 
 		return false;
@@ -335,20 +335,20 @@ class Flux_PaymentNotifyRequest {
 		$request .= $qString;
 
 		$this->logPayPal('Query string: %s', $qString);
-		$this->logPayPal('Establishing connection to PayPal server at %s:80...', $this->ppServer);
+		$this->logPayPal('Estabelecer conexão com o servidor do PayPal em %s:80...', $this->ppServer);
 
 		$fp = @fsockopen($this->ppServer, 80, $errno, $errstr, 20);
 		if (!$fp) {
-			$this->logPayPal("Failed to connect to PayPal server: [%d] %s", $errno, $errstr);
+			$this->logPayPal("Falha ao conectar ao servidor do PayPal: [%d] %s", $errno, $errstr);
 			return false;
 		}
 		else {
-			$this->logPayPal('Connected. Sending request back to PayPal...');
+			$this->logPayPal('Conectado. Solicitação de envio para o PayPal...');
 
 			// Send POST request just as PayPal sent it.
 
-			$this->logPayPal('Sent %d bytes of transaction data. Request size: %d bytes.', strlen($qString), fputs($fp, $request));
-			$this->logPayPal('Reading back response from PayPal...');
+			$this->logPayPal('Enviado %d bytes de dados de transação. Tamanho do pedido: %d bytes.', strlen($qString), fputs($fp, $request));
+			$this->logPayPal('Leitura de volta, resposta do PayPal...');
 
 			// Read until EOF, last line contains VERIFIED or INVALID.
 			while (!feof($fp)) {
@@ -360,12 +360,12 @@ class Flux_PaymentNotifyRequest {
 
 			// Check verification status of the notify request.
 			if (strtoupper($line) == 'VERIFIED') {
-				$this->logPayPal('Notification verified. (recv: VERIFIED)');
+				$this->logPayPal('Notificação verificada. (recebido: VERIFICADO)');
 				$this->txnIsValid = true;
 				return true;
 			}
 			else {
-				$this->logPayPal('Notification failed to verify. (recv: %s)', strtoupper($line));
+				$this->logPayPal('Notificação não conseguiu verificar. (recebido: %s)', strtoupper($line));
 				return false;
 			}
 		}
@@ -516,13 +516,13 @@ class Flux_PaymentNotifyRequest {
 
 			if ($ret) {
 				if (!trim($serverName)) {
-					$serverName = '(unknown)';
+					$serverName = '(Desconhecido)';
 				}
-				$this->logPayPal('Stored information in PayPal transactions table for server %s.', $serverName);
+				$this->logPayPal('Informações armazenadas na tabela de transações PayPal para o servidor %s.', $serverName);
 			}
 			else {
 				$errorInfo = implode('/', $sth->errorInfo());
-				$this->logPayPal('Failed to save information in PayPal transactions table. (%s)', $errorInfo);
+				$this->logPayPal('Falha ao salvar informações em tabela de operações do PayPal. (%s)', $errorInfo);
 			}
 		}
 	}

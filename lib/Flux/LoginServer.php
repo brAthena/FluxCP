@@ -100,49 +100,49 @@ class Flux_LoginServer extends Flux_BaseServer {
 	public function register($username, $password, $confirmPassword, $email, $gender, $birthdate, $securityCode)
 	{
 		if (preg_match('/^[^' . Flux::config('UsernameAllowedChars') . ']$/', $username)) {
-			throw new Flux_RegisterError('Invalid character(s) used in username', Flux_RegisterError::INVALID_USERNAME);
+			throw new Flux_RegisterError('Caractere(s) inválido usados no nome de usuário', Flux_RegisterError::INVALID_USERNAME);
 		}
 		elseif (strlen($username) < Flux::config('MinUsernameLength')) {
-			throw new Flux_RegisterError('Username is too short', Flux_RegisterError::USERNAME_TOO_SHORT);
+			throw new Flux_RegisterError('Nome de usuário é muito curto', Flux_RegisterError::USERNAME_TOO_SHORT);
 		}
 		elseif (strlen($username) > Flux::config('MaxUsernameLength')) {
-			throw new Flux_RegisterError('Username is too long', Flux_RegisterError::USERNAME_TOO_LONG);
+			throw new Flux_RegisterError('Nome de usuário é muito longo', Flux_RegisterError::USERNAME_TOO_LONG);
 		}
 		elseif (!Flux::config('AllowUserInPassword') && stripos($password, $username) !== false) {
-			throw new Flux_RegisterError('Password contains username', Flux_RegisterError::PASSWORD_HAS_USERNAME);
+			throw new Flux_RegisterError('Senha contém o nome de usuário', Flux_RegisterError::PASSWORD_HAS_USERNAME);
 		}
 		elseif (!ctype_graph($password)) {
-			throw new Flux_RegisterError('Invalid character(s) used in password', Flux_RegisterError::INVALID_PASSWORD);
+			throw new Flux_RegisterError('Caractere(s) inválido usado na senha', Flux_RegisterError::INVALID_PASSWORD);
 		}
 		elseif (strlen($password) < Flux::config('MinPasswordLength')) {
-			throw new Flux_RegisterError('Password is too short', Flux_RegisterError::PASSWORD_TOO_SHORT);
+			throw new Flux_RegisterError('Senha é muito curta', Flux_RegisterError::PASSWORD_TOO_SHORT);
 		}
 		elseif (strlen($password) > Flux::config('MaxPasswordLength')) {
-			throw new Flux_RegisterError('Password is too long', Flux_RegisterError::PASSWORD_TOO_LONG);
+			throw new Flux_RegisterError('Senha é muito longa', Flux_RegisterError::PASSWORD_TOO_LONG);
 		}
 		elseif ($password !== $confirmPassword) {
-			throw new Flux_RegisterError('Passwords do not match', Flux_RegisterError::PASSWORD_MISMATCH);
+			throw new Flux_RegisterError('Senhas não combinam', Flux_RegisterError::PASSWORD_MISMATCH);
 		}
 		elseif (Flux::config('PasswordMinUpper') > 0 && preg_match_all('/[A-Z]/', $password, $matches) < Flux::config('PasswordMinUpper')) {
-			throw new Flux_RegisterError('Passwords must contain at least ' + intval(Flux::config('PasswordMinUpper')) + ' uppercase letter(s)', Flux_RegisterError::PASSWORD_NEED_UPPER);
+			throw new Flux_RegisterError('As senhas devem conter pelo menos ' + intval(Flux::config('PasswordMinUpper')) + ' letra(s) maiúscula(s)', Flux_RegisterError::PASSWORD_NEED_UPPER);
 		}
 		elseif (Flux::config('PasswordMinLower') > 0 && preg_match_all('/[a-z]/', $password, $matches) < Flux::config('PasswordMinLower')) {
-			throw new Flux_RegisterError('Passwords must contain at least ' + intval(Flux::config('PasswordMinLower')) + ' lowercase letter(s)', Flux_RegisterError::PASSWORD_NEED_LOWER);
+			throw new Flux_RegisterError('As senhas devem conter pelo menos ' + intval(Flux::config('PasswordMinLower')) + ' letra(s) minúscula(s)', Flux_RegisterError::PASSWORD_NEED_LOWER);
 		}
 		elseif (Flux::config('PasswordMinNumber') > 0 && preg_match_all('/[0-9]/', $password, $matches) < Flux::config('PasswordMinNumber')) {
-			throw new Flux_RegisterError('Passwords must contain at least ' + intval(Flux::config('PasswordMinNumber')) + ' number(s)', Flux_RegisterError::PASSWORD_NEED_NUMBER);
+			throw new Flux_RegisterError('As senhas devem conter pelo menos ' + intval(Flux::config('PasswordMinNumber')) + ' número(s)', Flux_RegisterError::PASSWORD_NEED_NUMBER);
 		}
 		elseif (Flux::config('PasswordMinSymbol') > 0 && preg_match_all('/[^A-Za-z0-9]/', $password, $matches) < Flux::config('PasswordMinSymbol')) {
-			throw new Flux_RegisterError('Passwords must contain at least ' + intval(Flux::config('PasswordMinSymbol')) + ' symbol(s)', Flux_RegisterError::PASSWORD_NEED_SYMBOL);
+			throw new Flux_RegisterError('As senhas devem conter pelo menos ' + intval(Flux::config('PasswordMinSymbol')) + ' símbolo(s)', Flux_RegisterError::PASSWORD_NEED_SYMBOL);
 		}
 		elseif (!preg_match('/^(.+?)@(.+?)$/', $email)) {
-			throw new Flux_RegisterError('Invalid e-mail address', Flux_RegisterError::INVALID_EMAIL_ADDRESS);
+			throw new Flux_RegisterError('Endereço de e-mail inválido', Flux_RegisterError::INVALID_EMAIL_ADDRESS);
 		}
 		elseif (!in_array(strtoupper($gender), array('M', 'F'))) {
-			throw new Flux_RegisterError('Invalid gender', Flux_RegisterError::INVALID_GENDER);
+			throw new Flux_RegisterError('Gênero inválido', Flux_RegisterError::INVALID_GENDER);
 		}
 		elseif (($birthdatestamp = strtotime($birthdate)) === false || date('Y-m-d', $birthdatestamp) != $birthdate) {
-			throw new Flux_RegisterError('Invalid birthdate', Flux_RegisterError::INVALID_BIRTHDATE);
+			throw new Flux_RegisterError('Data de nascimento inválida', Flux_RegisterError::INVALID_BIRTHDATE);
 		}
 		elseif (Flux::config('UseCaptcha')) {
 			if (Flux::config('EnableReCaptcha')) {
@@ -155,11 +155,11 @@ class Flux_LoginServer extends Flux_BaseServer {
 					$_POST['recaptcha_response_field']);
 				
 				if (!$resp->is_valid) {
-					throw new Flux_RegisterError('Invalid security code', Flux_RegisterError::INVALID_SECURITY_CODE);
+					throw new Flux_RegisterError('Código de segurança inválido', Flux_RegisterError::INVALID_SECURITY_CODE);
 				}
 			}
 			elseif (strtolower($securityCode) !== strtolower(Flux::$sessionData->securityCode)) {
-				throw new Flux_RegisterError('Invalid security code', Flux_RegisterError::INVALID_SECURITY_CODE);
+				throw new Flux_RegisterError('Código de segurança inválido', Flux_RegisterError::INVALID_SECURITY_CODE);
 			}
 		}
 		
@@ -176,7 +176,7 @@ class Flux_LoginServer extends Flux_BaseServer {
 		
 		$res = $sth->fetch();
 		if ($res) {
-			throw new Flux_RegisterError('Username is already taken', Flux_RegisterError::USERNAME_ALREADY_TAKEN);
+			throw new Flux_RegisterError('Nome de usuário já está em uso', Flux_RegisterError::USERNAME_ALREADY_TAKEN);
 		}
 		
 		if (!Flux::config('AllowDuplicateEmails')) {
@@ -186,7 +186,7 @@ class Flux_LoginServer extends Flux_BaseServer {
 
 			$res = $sth->fetch();
 			if ($res) {
-				throw new Flux_RegisterError('E-mail address is already in use', Flux_RegisterError::EMAIL_ADDRESS_IN_USE);
+				throw new Flux_RegisterError('Endereço de e-mail já está em uso', Flux_RegisterError::EMAIL_ADDRESS_IN_USE);
 			}
 		}
 		

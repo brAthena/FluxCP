@@ -114,11 +114,11 @@ class Flux_Installer_Schema {
 				}
 				
 				if (!empty($errnum) && $errnum == 1045) {
-					throw new Flux_Error("Critical MySQL error in Installer/Updater: $errnum: $errmsg");
+					throw new Flux_Error("Erro crítico no MySQL ao instalador/atualizador: $errnum: $errmsg");
 				}
 				elseif (!empty($errnum) && $errnum == 1142) {
 					// Bail-out.
-					$message = "MySQL error: $errmsg\n\n";
+					$message = "MySQL erro: $errmsg\n\n";
 					throw new Flux_Installer_SchemaPermissionError(
 						$message,
 						$this->schemaInfo['files'][$version],
@@ -130,7 +130,7 @@ class Flux_Installer_Schema {
 				}
 				elseif (!empty($errmsg) && strcmp($errmsg,'00000') != 0) {
 					// Only quit with an error if there is actually an error.
-					throw new Flux_Error("Critical MySQL error in Installer/Updater: $errmsg");
+					throw new Flux_Error("Erro crítico no MySQL ao instalador/atualizador: $errmsg");
 				}
 			}
 			
