@@ -19,9 +19,9 @@ if ($session->installerAuth) {
 			
 			$res = $sth->fetch();
 			if (!$res || version_compare($res->mysql_version, $requiredMySqlVersion, '<')) {
-				$message  = "MySQL version $requiredMySqlVersion or greater is required for Flux.";
-				$message .= $res ? " You are running version {$res->mysql_version}" : "You are running an unknown version";
-				$message .= " on the server '$serverName'"; 
+				$message  = "Versão do MySQL $requiredMySqlVersion ou maior é necessária para o fluxo.";
+				$message .= $res ? " Você está executando a versão {$res->mysql_version}" : "Você está executando uma versão desconhecida";
+				$message .= " no servidor '$serverName'"; 
 				throw new Flux_Error($message);
 			}
 		}
@@ -30,7 +30,7 @@ if ($session->installerAuth) {
 			try {
 				$installer->updateAll();
 				if (!$installer->updateNeeded()) {
-					$session->setMessageData('Updates have been installed.');
+					$session->setMessageData('As Atualizações foram instaladas.');
 					$session->setInstallerAuthData(false);
 					$this->redirect();
 				}
@@ -71,17 +71,17 @@ if ($session->installerAuth) {
 			}
 			
 			if (!$updateNeeded || !$server) {
-				$errorMessage = 'Invalid server or the server has no updates.';
+				$errorMessage = 'Servidor inválido ou o tem nenhuma atualização.';
 			}
 			elseif (!$username || !$password) {
-				$errorMessage = "Username and password are required for individual server updates.";
+				$errorMessage = "Nome de usuário e senha são necessários para atualizações de servidor individual.";
 			}
 			else {
 				$connection = $server->loginAthenaGroup->connection;
 				$connection->reconnectAs($username, $password);
 				try {
 					$server->updateAll();
-					$session->setMessageData("Updates for $serverName have been installed.");
+					$session->setMessageData("Atualizações para $serverName foram Instaladas.");
 					$this->redirect();
 				}
 				catch (Flux_Installer_SchemaPermissionError $e) {
@@ -100,7 +100,7 @@ if (count($_POST) && !$session->installerAuth) {
 		$session->setInstallerAuthData(true);
 	}
 	else {
-		$errorMessage = 'Incorrect password.';
+		$errorMessage = 'Senha Incorreta.';
 	}
 }
 ?>
