@@ -24,13 +24,13 @@ $col .= "ch.int AS char_int, ch.dex AS char_dex, ch.luk AS char_luk, ch.max_hp A
 $col .= "ch.max_sp AS char_max_sp, ch.sp AS char_sp, ch.status_point AS char_status_point, ";
 $col .= "ch.skill_point AS char_skill_point, ch.online AS char_online, ch.party_id AS char_party_id, ";
 
-$col .= "login.userid, login.account_id AS char_account_id, ";
+$col .= "login.userid, login.account_id AS char_account_id, login.sex AS gender, ";
 $col .= "partner.name AS partner_name, partner.char_id AS partner_id, ";
 $col .= "mother.name AS mother_name, mother.char_id AS mother_id, ";
 $col .= "father.name AS father_name, father.char_id AS father_id, ";
 $col .= "child.name AS child_name, child.char_id AS child_id, ";
 $col .= "guild.guild_id, guild.name AS guild_name, guild.emblem_len AS guild_emblem_len, ";
-$col .= "guild_position.name AS guild_position, guild_position.exp_mode AS guild_tax, ";
+$col .= "guild_position.name AS guild_position, IFNULL(guild_position.exp_mode, 0) AS guild_tax, ";
 $col .= "party.name AS party_name, party.leader_char AS party_leader_id, party_leader.name AS party_leader_name, ";
 
 $col .= "homun.name AS homun_name, homun.class AS homun_class, homun.level AS homun_level, homun.exp AS homun_exp, ";

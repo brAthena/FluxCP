@@ -92,8 +92,6 @@ class Flux_Installer_Schema {
 	 */
 	public function install($version)
 	{
-		$version = (int)$version;
-		
 		if (!array_key_exists($version, $this->schemaInfo['versions']) || !$this->schemaInfo['versions'][$version]) {
 			// Switch database.
 			$this->connection->useDatabase($this->databaseName);
@@ -118,7 +116,7 @@ class Flux_Installer_Schema {
 				}
 				elseif (!empty($errnum) && $errnum == 1142) {
 					// Bail-out.
-					$message = "MySQL erro: $errmsg\n\n";
+					$message = "Erro no MySQL: $errmsg\n\n";
 					throw new Flux_Installer_SchemaPermissionError(
 						$message,
 						$this->schemaInfo['files'][$version],

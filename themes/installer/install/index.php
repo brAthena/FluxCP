@@ -91,7 +91,11 @@
 			</tr>
 				<?php foreach ($mainServer->schemas as $schema): ?>
 			<tr>
-				<td><?php echo htmlspecialchars($schema->schemaInfo['name']) ?></td>
+				<td>
+					<span class="<?php echo ($schema->versionInstalled == $schema->latestVersion) ? 'uptodate' : 'needtoupdate' ?>">
+						<?php echo htmlspecialchars($schema->schemaInfo['name']) ?>
+					</span>
+				</td>
 				<td>
 					<?php if ($schema->latestVersion > $schema->versionInstalled): ?>
 						<span class="schema-query" title="<?php echo htmlspecialchars(file_get_contents($schema->schemaInfo['files'][$schema->latestVersion])) ?>">
@@ -116,7 +120,11 @@
 			</tr>
 					<?php foreach ($charMapServer->schemas as $schema): ?>
 			<tr>
-				<td><?php echo htmlspecialchars($schema->schemaInfo['name']) ?></td>
+				<td>
+					<span class="<?php echo ($schema->versionInstalled == $schema->latestVersion) ? 'uptodate' : 'needtoupdate' ?>">
+						<?php echo htmlspecialchars($schema->schemaInfo['name']) ?>
+					</span>
+				</td>
 				<td><?php echo htmlspecialchars($schema->latestVersion) ?></td>
 				<td><?php echo $schema->versionInstalled ? htmlspecialchars($schema->versionInstalled) : '<span class="none">Nada</span>' ?></td>
 			</tr>

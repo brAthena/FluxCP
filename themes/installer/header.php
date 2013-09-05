@@ -71,6 +71,14 @@ if (!defined('FLUX_ROOT')) exit;
 				margin: 20px 10px 5px 10px;
 			}
 			
+			.uptodate {
+				color: #008000;
+			}
+			
+			.needtoupdate {
+				color: #ff0000;
+			}
+			
 			.none {
 				color: #bbb;
 			}

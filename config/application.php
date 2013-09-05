@@ -14,9 +14,10 @@ return array(
 	'ThemeName'            => 'default',                // The theme name of the theme you would like to use.  Themes are in FLUX_ROOT/themes.
 	'ScriptTimeLimit'      => 0,                        // Script execution time limit. Specifies (in seconds) how long a page should run before timing out. (0 means forever)
 	'MissingEmblemBMP'     => 'empty.bmp',              //
-	'ItemIconNameFormat'   => '%d.gif',                 // The filename format for item icons (defaults to {itemid}.gif).
+	'ItemIconNameFormat'   => '%d.png',                 // The filename format for item icons (defaults to {itemid}.png).
 	'ItemImageNameFormat'  => '%d.png',                 // The filename format for item images (defaults to {itemid}.png).
 	'MonsterImageNameFormat' => '%d.gif',               // The filename format for monster images (defaults to {monsterid}.gif).
+	'JobImageNameFormat'   => '%d.gif',                 // The filename format for job images (defaults to {jobid}.gif).
 	'ForceEmptyEmblem'     => false,                    // Forcefully display empty guild emblems, helpful when you don't have GD2 installed.
 	'EmblemCacheInterval'  => 12,                       // Hourly interval to re-cache guild emblems (set to 0 to disable emblem cache).
 	'SessionCookieExpire'  => 48,                       // Duration in hours.
@@ -111,6 +112,7 @@ return array(
 	'AutoRemoveTempBans'   => true,                     // Automatically remove expired temporary bans on certain pages.
 	'ItemShopMaxCost'      => 99,                       // Max price an item can be sold for.
 	'ItemShopMaxQuantity'  => 99,                       // Max quantity the item may be sold at once for.
+	'ItemShopItemPerPage'  => 5,                        // The number of items to display per page in the "Item Shop" page.
 	'HideFromWhosOnline'   => AccountLevel::LOWGM,      // Levels greater than or equal to this will be hidden from the "Who's Online" page.
 	'HideFromMapStats'     => AccountLevel::LOWGM,      // Levels greater than or equal to this will be hidden from the "Map Stats" page.
 	'EnableGMPassSecurity' => AccountLevel::LOWGM,      // Levels greater than or equal to this will be required to use passwords that meet the earlier GM Password settings.
