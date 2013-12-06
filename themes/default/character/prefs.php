@@ -16,7 +16,7 @@
 		<tr>
 			<th><label for="hide_map_from_whos_online">Esconder o mapa atual do "Quem Está Online"</label></th>
 			<td><input type="checkbox" name="hide_map_from_whos_online" id="hide_map_from_whos_online"<?php if ($hideMapFromWhosOnline) echo ' checked="checked"' ?> /></td>
-			<td><p>Isso vai esconder o mapa atual de <?php echo $charName ?>da página "Quem Está Online".</p></td>
+			<td><p>Isso vai esconder o mapa atual de <?php echo $charName ?> da página "Quem Está Online".</p></td>
 		</tr>
 		<?php if ($auth->allowedToHideFromZenyRank): ?>
 		<tr>

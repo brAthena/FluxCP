@@ -1,7 +1,7 @@
 <?php
 if (version_compare(PHP_VERSION, '5.2.1', '<')) {
 	echo '<h2>Erro</h2>';
-	echo '<p>A versão do 5.2.1 ou maior é necessária para usar o Painel de Controle Flux.</p>';
+	echo '<p>A versão do PHP precisa ser 5.2.1 ou maior, pois é necessária para usar o Painel de Controle Flux.</p>';
 	echo '<p>Você está usando a versão '.PHP_VERSION.'</p>';
 	exit;
 }

@@ -44,19 +44,19 @@
 				<?php echo $this->linkToItem($item->shop_item_nameid, 'View Item') ?>
 				<?php endif ?>
 				<?php if ($auth->allowedToEditShopItem): ?>
-				/ <a href="<?php echo $this->url('itemshop', 'edit', array('id' => $item->shop_item_id)) ?>">Modify</a>
+				/ <a href="<?php echo $this->url('itemshop', 'edit', array('id' => $item->shop_item_id)) ?>">Modificar</a>
 				<?php endif ?>
 				<?php if ($auth->allowedToDeleteShopItem): ?>
 				/ <a href="<?php echo $this->url('itemshop', 'delete', array('id' => $item->shop_item_id)) ?>"
-					onclick="return confirm('Are you sure you want to remove this item from the item shop?')">Delete</a>
+					onclick="return confirm('Você tem certeza que quer remover esse item do seu carrinho?')">Deletar</a>
 				<?php endif ?>
 			</p>
 		</td>
 		<td class="shop-item-cost-qty">
-			<p><span class="cost"><?php echo number_format($item->shop_item_cost) ?></span> credits.</p>
+			<p><span class="cost"><?php echo number_format($item->shop_item_cost) ?></span> Créditos.</p>
 			<p class="shop-item-action">
 				<?php if ($auth->actionAllowed('purchase', 'add')): ?>
-				<a href="<?php echo $this->url('purchase', 'add', array('id' => $item->shop_item_id)) ?>"><strong>Add to Cart</strong></a>
+				<a href="<?php echo $this->url('purchase', 'add', array('id' => $item->shop_item_id)) ?>"><strong>Adicionar ao Carrinho</strong></a>
 				<?php endif ?>
 			</p>
 		</td>
