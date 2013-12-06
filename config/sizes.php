@@ -1,8 +1,8 @@
 <?php
 // brA monster sizes.
 return array(
-	 0 => 'Pequeno',
-	 1 => 'Médio',
+	 0 => 'Médio',
+	 1 => 'Pequeno',
 	 2 => 'Grande'
 )
 ?>
