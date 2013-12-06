@@ -10,7 +10,7 @@ return array(
 	'DefaultLoginGroup'    => null,
 	'DefaultCharMapServer' => null,
 	'DefaultLanguage'      => 'pt_br',                  // Specify the default control panel language (see FLUX_ROOT/lang/ directory for available languages.)
-	'SiteTitle'            => 'Painel de Controle Flux',     // This value is only used if the theme decides to use it.
+	'SiteTitle'            => 'Painel de Controle Flux',// This value is only used if the theme decides to use it.
 	'ThemeName'            => 'default',                // The theme name of the theme you would like to use.  Themes are in FLUX_ROOT/themes.
 	'ScriptTimeLimit'      => 0,                        // Script execution time limit. Specifies (in seconds) how long a page should run before timing out. (0 means forever)
 	'MissingEmblemBMP'     => 'empty.bmp',              //
@@ -22,7 +22,7 @@ return array(
 	'EmblemCacheInterval'  => 12,                       // Hourly interval to re-cache guild emblems (set to 0 to disable emblem cache).
 	'SessionCookieExpire'  => 48,                       // Duration in hours.
 	'AdminMenuGroupLevel'  => AccountLevel::LOWGM,      // The starting group ID for which module actions are moved into the admin menu for display.
-	'DateDefaultTimezone'  => 'America/Sao_Paulo',                     // The default timezone, consult the PHP manual for valid timezones: http://php.net/timezones (null for defaut system TZ)
+	'DateDefaultTimezone'  => 'America/Sao_Paulo',      // The default timezone, consult the PHP manual for valid timezones: http://php.net/timezones (null for defaut system TZ)
 	'DateFormat'           => 'Y-m-d',                  // Default DATE format to be displayed in pages.
 	'DateTimeFormat'       => 'Y-m-d H:i:s',            // Default DATETIME format to be displayed in pages.
 	'ShowSinglePage'       => true,                     // Whether or not to show the page numbers even if there's only one page.
@@ -75,7 +75,7 @@ return array(
 	'ShowCopyright'        => true,                     // Whether or not to show the copyright footer.
 	'ShowRenderDetails'    => true,                     // Shows the "page rendered in X seconds" and "number of queries executed: X" in the default theme.
 	'UseCleanUrls'         => false,                    // Set to true if you're running Apache and it supports mod_rewrite and .htaccess files.
-	'DebugMode'            => false,                    // Set to false to minimize technical details from being output by Flux. WARNING: DO NOT USE THIS OPTION ON A PUBLICALLY-ACCESSIBLE CP.
+	'DebugMode'            => true,                     // Set to false to minimize technical details from being output by Flux. WARNING: DO NOT USE THIS OPTION ON A PUBLICALLY-ACCESSIBLE CP.
 	'UseCaptcha'           => true,                     // Use CAPTCHA image for account registration to prevent automated account creations. (Requires GD2/FreeType2)
 	'UseLoginCaptcha'      => false,                    // Use CAPTCHA image for account logins. (Requires GD2/FreeType2)
 	'EnableReCaptcha'      => false,                    // Enables the use of reCAPTCHA instead of Flux's native GD2 library (http://www.google.com/recaptcha)
@@ -89,7 +89,7 @@ return array(
 	'ColumnSortDescending' => ' ▼',                     // (Visual) Text displayed for descending sorted column names.
 	'CreditExchangeRate'   => 1.0,                      // The rate at which credits are exchanged for dollars.
 	'MinDonationAmount'    => 2.0,                      // Minimum donation amount. (NOTE: Actual donations made that are less than this account won't be exchanged)
-	'DonationCurrency'     => 'R$',                    // Preferred donation currency. Only donations made in this currency will be processed for credit deposits.
+	'DonationCurrency'     => 'R$',                     // Preferred donation currency. Only donations made in this currency will be processed for credit deposits.
 	'MoneyDecimalPlaces'   => 2,                        // (Visual) Number of decimal places to display in amount.
 	'MoneyThousandsSymbol' => ',',                      // (Visual) Thousandths place separator (a period in European currencies).
 	'MoneyDecimalSymbol'   => '.',                      // (Visual) Decimal separator (a comma in European currencies).
@@ -104,7 +104,7 @@ return array(
 	'DivorceKeepChild'     => false,                    // Keep child after divorce?
 	'DivorceKeepRings'     => false,                    // Keep wedding rings after divorce?
 	'IpWhitelistPattern'   =>                           // PCRE Format Pattern. It's recommended you add your gameserver, webserver and server owner's IPs here.
-		'(127\.0\.0\.1|0(\.[0\*]){3})',                 // WARNING: This string isn't escaped so be careful which chars you use!
+	'(127\.0\.0\.1|0(\.[0\*]){3})',                     // WARNING: This string isn't escaped so be careful which chars you use!
 		                                                // By default, whitelists 127.0.0.1 (localhost) and 0.0.0.0 (all interfaces; whitelists all wildcard bans that can achive this too)
 	'AllowIpBanLogin'      => false,                    // Allow logging into account from banned IP.
 	'AllowTempBanLogin'    => false,                    // Allow logging in of temporarily banned accounts.
@@ -118,8 +118,8 @@ return array(
 	'EnableGMPassSecurity' => AccountLevel::LOWGM,      // Levels greater than or equal to this will be required to use passwords that meet the earlier GM Password settings.
 	'ChargeGenderChange'   => 0,                        // You can specify this as the number of credits to charge for gender change.  Can be 0 for free change.
 	'BanPaymentStatuses'   => array(                    // Payment statuses that will automatically ban the account owner if received.
-		'Cancelled_Reversal',                           // -- 'Cancelled_Reversal'
-		'Reversed',                                     // -- 'Reversed'
+	'Cancelled_Reversal',                               // -- 'Cancelled_Reversal'
+	'Reversed',                                         // -- 'Reversed'
 	),
 	
 	'HoldUntrustedAccount' => 0,                        // This is the time in hours to hold a donation crediting process for, if the account
@@ -217,26 +217,36 @@ return array(
 			'Ranking' => array('module' => 'ranking', 'action' => 'character'),
 		),
 		'Database'    => array(
-			'Item Database' => array('module' => 'item'),
-			'Mob Database'  => array('module' => 'monster'),
+			'Item Database'    => array('module' => 'item'),
+			'Mob Database'     => array('module' => 'monster'),
 		),
 		'Staff' => array(
-			'brA Logs'       => array('module' => 'logdata'),
-			'CP Logs'       => array('module' => 'cplog'),
-			'IP\'s Banidos'   => array('module' => 'ipban'),
-			'Contas'      => array('module' => 'account'),
-			'Personagens'    => array('module' => 'character'),
-			'Clãs'        => array('module' => 'guild'),
+			'brA Logs'          => array('module' => 'logdata'),
+			'CP Logs'           => array('module' => 'cplog'),
+			'IP\'s Banidos'     => array('module' => 'ipban'),
+			'Contas'            => array('module' => 'account'),
+			'Personagens'       => array('module' => 'character'),
+			'Clãs'              => array('module' => 'guild'),
 			'Enviar E-mail'     => array('module' => 'mail'),
-			'Reinstalar'    => array('module' => 'install', 'action' => 'reinstall'),
-			//'Leilão'       => array('module' => 'auction'),
-			//'Economia'       => array('module' => 'economy'),
+			'Reinstalar'        => array('module' => 'install', 'action' => 'reinstall'),
+			//'Leilão'          => array('module' => 'auction'),
+			//'Economia'        => array('module' => 'economy'),
+		),
+		'Task List' => array(
+			'Lista de Tarefas'  => array('module' => 'tasks', 'action'=>'index'),
 		)
 	),
 	
 	// Sub-menu items that are displayed for any action belonging to a
 	// particular module. The format it simple.
-	'SubMenuItems' => array(
+	'SubMenuItems'  => array(
+		'tasks' => array(
+			'createnew'		=> 'Adicionar nova Tarefa',
+			'index'			=> 'Exibir tarefas atuais',
+			'viewmine'		=> 'Exibir minhas Tarefas',
+			'viewcompleted'	=> 'Exibir tarefas concluídas',
+			'staffsettings'	=> 'Configurações',
+		),
 		'history' => array(
 			'gamelogin'  => 'Logins no Jogo',
 			'cplogin'    => 'Logins no CP',
@@ -413,7 +423,9 @@ return array(
 		'ResetPasswordTable'  => 'cp_resetpass',
 		'ChangeEmailTable'    => 'cp_emailchange',
 		'LoginLogTable'       => 'cp_loginlog',
-		'ChangePasswordTable' => 'cp_pwchange'
+		'ChangePasswordTable' => 'cp_pwchange',
+		'TaskListTable'       => 'cp_tasklist',
+		'TaskListStaffTable'  => 'cp_taskliststaff'
 	)
 );
 ?>
