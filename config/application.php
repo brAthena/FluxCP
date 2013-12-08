@@ -97,8 +97,8 @@ return array(
 	'PayPalIpnUrl'         => 'www.sandbox.paypal.com', // The URL for PayPal's IPN responses (www.paypal.com for live and www.sandbox.paypal.com for testing)
 	'PayPalBusinessEmail'  => 'admin@localhost',        // Enter the e-mail under which you have registered your business account.
 	'PayPalReceiverEmails' => array(                    // These are the receiver e-mail addresses who are allowed to receive payment.
-		//'admin2@localhost',                             // -- This array may be empty if you only use one e-mail
-		//'admin3@localhost'                              // -- because your Business Email is also checked.
+		//'admin2@localhost',                            // -- This array may be empty if you only use one e-mail
+		//'admin3@localhost'                             // -- because your Business Email is also checked.
 	),
 	'GStorageLeaderOnly'   => false,                    // Only allow guild leader to view guild storage rather than all members?
 	'DivorceKeepChild'     => false,                    // Keep child after divorce?
@@ -186,35 +186,41 @@ return array(
 	'CpChangeLogShowPassword' => false,                 // Show password in CP "password changes" log (also see access.php's SeeCpChangePass).
 	
 	'AdminMenuNewStyle'       => true,                  // Use new-style admin menu;  Applies to 'default' theme.
-	
+
+// The following configs relate to customised FluxCP modules
+
+// Contact Form
+	'ContactFormEmail'       => 'a@a.com',              // This email address is where you want the form submissions to be sent.
+
 	// These are the main menu items that should be displayed by themes.
 	// They route to modules and actions.  Whether they are displayed or
 	// not at any given time depends on the user's account group level and/or
 	// their login status.
 	'MenuItems' => array(
 		'Menu Principal'   => array(
-			'Inicial'          => array('module' => 'main'),
-			'Fórum'        => array('exturl' => 'http://www.fluxro.com/community'),
+			'Inicial'      => array('module'  => 'main'),
+			'Fórum'        => array('exturl'  => 'http://www.fluxro.com/community'),
+			'Contate-nos'  => array('module' => 'contactform', 'action' => 'index'),
 		),
 		'Conta'     => array(
-			'Registrar'      => array('module' => 'account', 'action' => 'create'),
-			'Login'         => array('module' => 'account', 'action' => 'login'),
-			'Sair da Conta'        => array('module' => 'account', 'action' => 'logout'),
+			'Registrar'       => array('module' => 'account', 'action' => 'create'),
+			'Login'           => array('module' => 'account', 'action' => 'login'),
+			'Sair da Conta'   => array('module' => 'account', 'action' => 'logout'),
 			'Histórico'       => array('module' => 'history'),
-			'Minha Conta'    => array('module' => 'account', 'action' => 'view'),
+			'Minha Conta'     => array('module' => 'account', 'action' => 'view'),
 		),
 		'Doações'   => array(
-			'Comprar'      => array('module' => 'purchase'),
+			'Comprar'     => array('module' => 'purchase'),
 			'Doar'        => array('module' => 'donate'),
 		),
 		'Informações' => array(
-			'Informações do Server'  => array('module' => 'server', 'action' => 'info'),
-			'Status do Server' => array('module' => 'server', 'action' => 'status'),
-			'Horários da GdE'     => array('module' => 'woe'),
-			'Castles'       => array('module' => 'castle'),
-			"Quem Está Online"  => array('module' => 'character', 'action' => 'online'),
-			'Estatísticas de Mapas'=> array('module' => 'character', 'action' => 'mapstats'),
-			'Ranking' => array('module' => 'ranking', 'action' => 'character'),
+			'Informações do Server'   => array('module' => 'server', 'action' => 'info'),
+			'Status do Server'        => array('module' => 'server', 'action' => 'status'),
+			'Horários da GdE'         => array('module' => 'woe'),
+			'Castles'                 => array('module' => 'castle'),
+			"Quem Está Online"        => array('module' => 'character', 'action' => 'online'),
+			'Estatísticas de Mapas'   => array('module' => 'character', 'action' => 'mapstats'),
+			'Ranking'                 => array('module' => 'ranking', 'action' => 'character'),
 		),
 		'Database'    => array(
 			'Item Database'    => array('module' => 'item'),
