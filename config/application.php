@@ -192,6 +192,8 @@ return array(
 // Contact Form
 	'ContactFormEmail'       => 'a@a.com',              // This email address is where you want the form submissions to be sent.
 
+// Harmony Logs
+	'EnableHarmonyLogs'      => '0',                   // 0 to disable, 1 to enable. If you don't have a harmony log table, do not enable.
 	// These are the main menu items that should be displayed by themes.
 	// They route to modules and actions.  Whether they are displayed or
 	// not at any given time depends on the user's account group level and/or
@@ -433,7 +435,8 @@ return array(
 		'LoginLogTable'       => 'cp_loginlog',
 		'ChangePasswordTable' => 'cp_pwchange',
 		'TaskListTable'       => 'cp_tasklist',
-		'TaskListStaffTable'  => 'cp_taskliststaff'
+		'TaskListStaffTable'  => 'cp_taskliststaff',
+		'OnlinePeak'          => 'cp_onlinepeak'
 	)
 );
 ?>

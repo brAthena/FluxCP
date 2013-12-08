@@ -10,6 +10,9 @@
 		<td class="status"><?php echo htmlspecialchars(Flux::message('ServerStatusCharLabel')) ?></td>
 		<td class="status"><?php echo htmlspecialchars(Flux::message('ServerStatusMapLabel')) ?></td>
 		<td class="status"><?php echo htmlspecialchars(Flux::message('ServerStatusOnlineLabel')) ?></td>
+		<?php if(isset($peak)): ?>
+			<td class="status"><?php echo htmlspecialchars(Flux::message('ServerStatusPeakLabel')) ?></td>
+		<?php endif ?>
 	</tr>
 	<?php foreach ($gameServers as $serverName => $gameServer): ?>
 	<tr>
@@ -18,7 +21,12 @@
 		<td class="status"><?php echo $this->serverUpDown($gameServer['charServerUp']) ?></td>
 		<td class="status"><?php echo $this->serverUpDown($gameServer['mapServerUp']) ?></td>
 		<td class="status"><?php echo $gameServer['playersOnline'] ?></td>
+		<?php if(isset($peak)): ?>
+			<td class="status"><?php echo $peak['users'] ?></td>
+		<?php endif ?>
 	</tr>
 	<?php endforeach ?>
 </table>
+
+
 <?php endforeach ?>
