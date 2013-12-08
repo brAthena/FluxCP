@@ -646,5 +646,25 @@ return array(
 	'TLStatus2'               => 'Aguardando Implementação',
 	'TLStatus5'               => 'completo',
 	'TLHuh'                   => 'Você não deve ser capaz de ver isso!',
+	
+	// Module: contactform
+	'CFTitleSubmit'			  => 'Contate-nos',
+
+	// Module: logdata/harmony
+	'HARTitle'				  => 'Harmony Logs',
+	'HARSearchLink'			  => 'Pesquisar...',
+	'HARDateBetween'		  => 'Data entre',
+	'HARIPAddress'			  => 'Endereço IP',
+	'HARCharacter'			  => 'Personagem',
+	'HARAccountID'			  => 'ID da conta',
+	'HARNoData'				  => 'Nenhum dado foi encontrado.',
+	'HARGoback'				  => 'Voltar',
+	'HARTitle'				  => 'Harmony Logs',
+	'HARTitle'				  => 'Harmony Logs',
+	'HARTitle'				  => 'Harmony Logs',
+	'HARTitle'				  => 'Harmony Logs',
+	'HARTitle'				  => 'Harmony Logs',
+	'HARTitle'				  => 'Harmony Logs',
+	'HARTitle'				  => 'Harmony Logs',
 );
 ?>

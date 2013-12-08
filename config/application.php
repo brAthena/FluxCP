@@ -34,8 +34,8 @@ return array(
 	'SingleMatchRedirectItem' => false,                 // Same as above, for item module.
 	'SingleMatchRedirectMobs' => false,                 // Same as above, for monster module.
 	'UsernameAllowedChars' => 'a-zA-Z0-9_',             // PCRE Format Pattern. default: 'a-zA-Z0-9_' (alphanumeric and underscore)
-                                                        // WARNING: This string isn't escaped so be careful which chars you use!
-                                                        // PCRE Pattern Ref: http://php.net/manual/en/pcre.pattern.php
+	                                                    // WARNING: This string isn't escaped so be careful which chars you use!
+	                                                    // PCRE Pattern Ref: http://php.net/manual/en/pcre.pattern.php
 	'MinUsernameLength'    => 4,                        // Minimum username length.
 	'MaxUsernameLength'    => 23,                       // Maximum username length.
 	'MinPasswordLength'    => 8,                        // Minimum password length.
@@ -283,16 +283,18 @@ return array(
 			'status-xml' => 'Ver Status como XML'
 		),
 		'logdata' => array(
-			//'char'    => 'Personagens',
-			//'inter'   => 'Interações',
-			'command' => 'Comandos',
-			//'branch'  => 'Galhos',
-			'chat'    => 'Chats',
-			'login'   => 'Logins',
-			//'mvp'     => 'MVP',
-			//'npc'     => 'NPC',
-			'pick'    => 'Itens Apanhados',
-			'zeny'    => 'Zeny'
+			//'char'     => 'Personagens',
+			//'inter'    => 'Interações',
+			'command'    => 'Comandos',
+			//'branch'   => 'Galhos',
+			'chat'       => 'Chats',
+			'harmony'    => 'Harmony Logs',
+			//'inter'    => 'Interações',
+			'login'      => 'Logins',
+			'mvp'        => 'MVP',
+			//'npc'      => 'NPC',
+			'pick'       => 'Itens Apanhados',
+			'zeny'       => 'Zeny'
 		),
 		'cplog' => array(
 			'paypal'     => 'Transações do PayPal',
