@@ -150,6 +150,7 @@ return array(
 	'DeathRankingLimit'      => 20,                     //
 	'AlchemistRankingLimit'  => 20,                     //
 	'BlacksmithRankingLimit' => 20,                     //
+	'HomunRankingLimit'      => 20,                     //
 	
 	'RankingHideGroupLevel'  => AccountLevel::LOWGM,    //
 	'InfoHideZenyGroupLevel' => AccountLevel::LOWGM,    // Minimum group level of account to hide zeny from in server information page.
@@ -158,6 +159,7 @@ return array(
 	'ZenyRankingThreshold'      => 0,                   // Number of days the character must have logged in within to be listed in zeny ranking. (0 = disabled)
 	'DeathRankingThreshold'     => 0,                   // Number of days the character must have logged in within to be listed in death ranking. (0 = disabled)
 	'AlchemistRankingThreshold' => 0,                   // Number of days the character must have logged in within to be listed in death ranking. (0 = disabled)
+	'HomunRankingThreshold'     => 0,                   // Number of days the character must have logged in within to be listed in homunculus ranking. (0 = disabled)
 	
 	'HideTempBannedCharRank'  => false,                 // Hide temporarily banned characters from ranking.
 	'HidePermBannedCharRank'  => true,                  // Hide permanently banned characters from ranking.
@@ -176,7 +178,10 @@ return array(
 	
 	'HideTempBannedStats'     => false,                 // Hide temporarily banned accounts from statistics.
 	'HidePermBannedStats'     => true,                  // Hide permanently banned accounts from statistics.
-	
+
+	'HideTempBannedHomunRank' => false,                 // Hide temporarily banned characters from ranking.
+	'HidePermBannedHomunRank' => true,                  // Hide permanently banned characters from ranking.
+
 	'SortJobsByAmount'        => false,                 // Sort job class information on statistics page by descending quantity (false = Sort by Job ID).
 	
 	'CpLoginLogShowPassword'  => false,                 // Show password in CP login log (also see access.php's SeeCpLoginLogPass).
@@ -329,6 +334,7 @@ return array(
 			'zeny'       => 'Ranking de Zenys',
 			'death'      => 'Ranking de morte',
 			'alchemist'  => 'Ranking de Alquimista',
+			'homunculus' => 'Ranking de Homunculus',
 			'blacksmith' => 'Ranking de Ferreiro'
 		),
 		'item' => array(
