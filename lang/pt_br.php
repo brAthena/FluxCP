@@ -596,6 +596,7 @@ return array(
 	'ServerStatusCharLabel'   => 'Character Server',
 	'ServerStatusMapLabel'    => 'Map Server',
 	'ServerStatusOnlineLabel' => 'Jogadores Online',
+	'ServerStatusPeakLabel'   => 'Pico de jogador',
 	
 	// Module: service
 	// - service/tos
