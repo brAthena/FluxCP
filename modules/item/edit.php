@@ -193,7 +193,9 @@ if ($item) {
 		elseif (!is_null($equipLevelMax) && !ctype_digit($equipLevelMax)) {
 			$errorMessage = 'Level máximo para equipar deve ser um número.';
 		}
-		
+		elseif (!Flux_Security::csrfValidate('ItemEdit', $_POST, $error)) {
+			$errorMessage = $error;
+		}
 		else {
 			if (empty($errorMessage) && is_array($equipUpper)) {
 				$upper = Flux::getEquipUpperList();

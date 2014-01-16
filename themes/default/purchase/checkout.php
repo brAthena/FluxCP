@@ -11,6 +11,7 @@
 	<form action="<?php echo $this->url ?>" method="post">
 		<?php echo $this->moduleActionFormInputs($params->get('module'), 'checkout') ?>
 		<input type="hidden" name="process" value="1" />
+		<?php echo Flux_Security::csrfGenerate('PurchaseCheckOut', true) ?>
 		<button type="submit" onclick="return confirm('Você deseja continuar com a compra desse(s) item(s)?')">
 			<strong>Comprar Itens</strong>
 		</button>

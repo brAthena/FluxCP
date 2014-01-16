@@ -104,7 +104,7 @@ if (count($_POST) && $params->get('additem')) {
 	}
 	elseif (!is_null($matk) && !ctype_digit($matk)) {
 		$errorMessage = 'MATK deve ser um número.';
-	}		
+	}
 	elseif (!is_null($defense) && !ctype_digit($defense)) {
 		$errorMessage = 'Defesa deve ser um número.';
 	}
@@ -119,6 +119,9 @@ if (count($_POST) && $params->get('additem')) {
 	}
 	elseif (!is_null($equipLevelMax) && !ctype_digit($equipLevelMax)) {
 		$errorMessage = 'Level máximo para equipar deve ser um número.';
+	}
+	elseif (!Flux_Security::csrfValidate('ItemAdd', $_POST, $error)) {
+		$errorMessage = $error;
 	}
 	else {
 		if (empty($errorMessage) && is_array($equipLocs)) {

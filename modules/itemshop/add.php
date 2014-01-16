@@ -63,6 +63,9 @@ if ($item && count($_POST)) {
 	elseif (!$info) {
 		$errorMessage = 'Você deve colocar alguma informação sobre o item.';
 	}
+	elseif (!Flux_Security::csrfValidate('ItemShopAdd', $_POST, $error)) {
+		$errorMessage = $error;
+	}
 	else {
 		if ($id=$shop->add($itemID, $category, $cost, $quantity, $info, $useExisting)) {
 			$message = 'Item adicionado com sucesso à loja';

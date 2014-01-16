@@ -7,10 +7,10 @@ if (($isMine || $auth->allowedToChangeSlot) && $auth->actionAllowed('character',
 	$pageMenu['Mudar Slot'] = $this->url('character', 'changeslot', array('id' => $char->char_id));
 }
 if (($isMine || $auth->allowedToResetLook) && $auth->actionAllowed('character', 'resetlook')) {
-	$pageMenu['Resetar Aparência'] = $this->url('character', 'resetlook', array('id' => $char->char_id));
+	$pageMenu['Resetar Aparência'] = $this->url('character', 'resetlook', array('id' => $char->char_id, 'Session' => Flux_Security::csrfGet('Session')));
 }
 if (($isMine || $auth->allowedToResetPosition) && $auth->actionAllowed('character', 'resetpos')) {
-	$pageMenu['Resetar Posição'] = $this->url('character', 'resetpos', array('id' => $char->char_id));
+	$pageMenu['Resetar Posição'] = $this->url('character', 'resetpos', array('id' => $char->char_id, 'Session' => Flux_Security::csrfGet('Session')));
 }
 if ($char->partner_id && ($isMine || $auth->allowedToDivorceCharacter) && $auth->actionAllowed('character', 'divorce')) {
 	$pageMenu['Divórcio'] = $this->url('character', 'divorce', array('id' => $char->char_id));

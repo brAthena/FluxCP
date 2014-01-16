@@ -55,6 +55,11 @@ return array(
 	'ItemCard2Label'          => 'Carta 2',
 	'ItemCard3Label'          => 'Carta 3',
 	
+	// Security
+	'SecuritySessionInvalid'  => 'Desculpe, a sessão expirou, tente novamente.',
+	'SecurityNeedSession'     => 'Desculpe, nenhuma sessão de forma encontrados (tentativa de hack?)',
+	'SecurityNeedToken'       => 'Desculpe, nenhum sinal encontrado para identificar esta forma (tentativa de hack?)',
+	
 	// Module: account
 	// - account/changemail
 	'EmailChangeTitle'        => 'Alterar E-mail',
