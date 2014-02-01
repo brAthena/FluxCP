@@ -57,7 +57,7 @@ return array(
 	
 	// Security
 	'SecuritySessionInvalid'  => 'Desculpe, a sessão expirou, tente novamente.',
-	'SecurityNeedSession'     => 'Desculpe, nenhuma sessão de forma encontrados (tentativa de hack?)',
+	'SecurityNeedSession'     => 'Desculpe, nenhuma sessão foi encontrada (tentativa de hack?)',
 	'SecurityNeedToken'       => 'Desculpe, nenhum sinal encontrado para identificar esta forma (tentativa de hack?)',
 	
 	// Module: account
