@@ -89,12 +89,12 @@ return array(
 	'ColumnSortDescending' => ' ▼',                     // (Visual) Text displayed for descending sorted column names.
 	'CreditExchangeRate'   => 1.0,                      // The rate at which credits are exchanged for dollars.
 	'MinDonationAmount'    => 2.0,                      // Minimum donation amount. (NOTE: Actual donations made that are less than this account won't be exchanged)
-	'DonationCurrency'     => 'R$',                     // Preferred donation currency. Only donations made in this currency will be processed for credit deposits.
+	'DonationCurrency'     => 'BRL',                     // Preferred donation currency. Only donations made in this currency will be processed for credit deposits.
 	'MoneyDecimalPlaces'   => 2,                        // (Visual) Number of decimal places to display in amount.
 	'MoneyThousandsSymbol' => ',',                      // (Visual) Thousandths place separator (a period in European currencies).
 	'MoneyDecimalSymbol'   => '.',                      // (Visual) Decimal separator (a comma in European currencies).
 	'AcceptDonations'      => true,                     // Whether or not to accept donations.
-	'PayPalIpnUrl'         => 'www.sandbox.paypal.com', // The URL for PayPal's IPN responses (www.paypal.com for live and www.sandbox.paypal.com for testing)
+	'PayPalIpnUrl'         => 'www.paypal.com', // The URL for PayPal's IPN responses (www.paypal.com for live and www.sandbox.paypal.com for testing)
 	'PayPalBusinessEmail'  => 'admin@localhost',        // Enter the e-mail under which you have registered your business account.
 	'PayPalReceiverEmails' => array(                    // These are the receiver e-mail addresses who are allowed to receive payment.
 		//'admin2@localhost',                            // -- This array may be empty if you only use one e-mail
