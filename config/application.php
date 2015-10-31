@@ -218,8 +218,9 @@ return array(
 			'Minha Conta'     => array('module' => 'account', 'action' => 'view'),
 		),
 		'Doações'   => array(
-			'Comprar'     => array('module' => 'purchase'),
-			'Doar'        => array('module' => 'donate'),
+			//'Comprar'     => array('module' => 'purchase'), // Caso tenha interesse em utilizar a loja de itens do Paypal, descomente esta linha.
+			'Paypal'        => array('module' => 'donate'),
+			'Pagseguro'        => array('module' => 'doa'),
 		),
 		'Informações' => array(
 			'Informações do Server'   => array('module' => 'server', 'action' => 'info'),
