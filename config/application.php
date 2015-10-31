@@ -208,6 +208,7 @@ return array(
 			'Inicial'      => array('module'  => 'main'),
 			'Fórum'        => array('exturl'  => 'http://www.fluxro.com/community'),
 			'Contate-nos'  => array('module' => 'contactform', 'action' => 'index'),
+			'Vote por Pontos' => array('module' => 'voteforpoints'),
 		),
 		'Conta'     => array(
 			'Registrar'       => array('module' => 'account', 'action' => 'create'),
