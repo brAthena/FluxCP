@@ -55,6 +55,9 @@ if (count($_POST)) {
 	elseif (Flux::config('PasswordMinSymbol') > 0 && preg_match_all('/[^A-Za-z0-9]/', $newPassword, $matches) < $passwordMinSymbol) {
 		$errorMessage = sprintf(Flux::message('NewPasswordNeedSymbol'), $passwordMinSymbol);
 	}
+	elseif (Flux::config('PasswordMaxSymbols') > 0 && preg_match_all('/[^A-Za-z0-9]/', $newPassword, $matches) > Flux::config('PasswordMaxSymbols')) {
+		$errorMessage = sprintf(Flux::message ('PasswordMAXSymbol'), Flux::config('PasswordMaxSymbols'));
+	}
 	elseif (!Flux_Security::csrfValidate('PasswordEdit', $_POST, $error)) {
 		$errorMessage = $error;
 	}

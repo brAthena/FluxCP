@@ -19,7 +19,7 @@
 				<td id="copyright">
 					<p>
 						<strong>Powered by brA's Flux Painel de Controle (<?php echo htmlspecialchars(Flux::VERSION) ?><?php echo Flux::REPOSVERSION ? '.'.Flux::REPOSVERSION : '' ?>)</strong>
-						&mdash; Copyright &copy; 2008-2012, Matthew Harris, Nikunj Mehta, Xantara e Megasantos.
+						&mdash; Copyright &copy; 2008-2015, Matthew Harris, Nikunj Mehta, Xantara, Megasantos e Tidus.
 					</p>
 				</td>
 				<td></td>

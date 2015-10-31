@@ -139,6 +139,9 @@ if (count($_POST)) {
 			case Flux_RegisterError::INVALID_BIRTHDATE:
 				$errorMessage = Flux::message('InvalidBirthdate');
 				break;
+			case Flux_RegisterError::PASSWORD_MAX_SYMBOLS:
+				$errorMessage = sprintf(Flux::message ('PasswordMAXSymbol'), Flux::config('PasswordMaxSymbols'));
+				break;
 			default:
 				$errorMessage = Flux::message('CriticalRegisterError');
 				break;
