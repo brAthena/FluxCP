@@ -53,7 +53,7 @@
 		
 		<h2 class="heading">Detalhes da Exceção</h2>
 		<p>Erro: <strong><?php echo get_class($e) ?></strong></p>
-		<p>Mensagem: <em><?php echo nl2br(htmlspecialchars($e->getMessage())) ?></em></p>
+		<p>Mensagem: <font color="MAGENTA"><em><?php echo nl2br(htmlspecialchars($e->getMessage())) ?></em></font></p>
 		<p>Arquivo: <?php echo $e->getFile() ?>:<?php echo $e->getLine() ?></p>
 		
 		<?php if (count($e->getTrace())): ?>
