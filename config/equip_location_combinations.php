@@ -1,9 +1,15 @@
 <?php
 return array(
 	    0 => 'Nada',
-	 4096 => 'Fantasia Baixo',
-	 2048 => 'Fantasia Meio',
-	 1024 => 'Fantasia Cima',
+	 65536 => 'Shadow Armor',
+	 131072 => 'Shadow Weapon',
+	 262144 => 'Shadow Shield',
+	 524288 => 'Shadow Shoes',
+	 1048576 => 'Shadow Accessory 2',
+	 2097152 => 'Shadow Accessory 1',
+	 4096 => 'Costume baixo',
+	 2048 => 'Costume meio',
+	 1024 => 'Costume Cima',
 	  256 => 'Superior Cabeça',
 	  512 => 'Meio Cabeça',
 	    1 => 'Baixo Cabeça',

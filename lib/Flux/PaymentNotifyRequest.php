@@ -355,22 +355,27 @@ class Flux_PaymentNotifyRequest {
 			$this->logPayPal('Enviado %d bytes de dados de transação. Tamanho do pedido: %d bytes.', strlen($qString), fputs($fp, $request));
 			$this->logPayPal('Leitura de volta, resposta do PayPal...');
 
-			// Read until EOF, last line contains VERIFIED or INVALID.
+			// Read until body starts
+			while (!feof($fp) && ($line = trim(fgets($fp))) != '');
+
+			$line = '';
+
+			// Read until EOF, contains VERIFIED or INVALID.
 			while (!feof($fp)) {
-				$line = trim(fgets($fp));
+				$line .= strtoupper(trim(fgets($fp)));
 			}
 
 			// Close connection.
 			fclose($fp);
 
 			// Check verification status of the notify request.
-			if (strtoupper($line) == 'VERIFIED') {
-				$this->logPayPal('Notificação verificada. (recebido: VERIFICADO)');
+			if (strpos($line, 'VERIFIED') !== false) {
+				$this->logPayPal('Notificação verificada. (recebido: %s)', $line);
 				$this->txnIsValid = true;
 				return true;
 			}
 			else {
-				$this->logPayPal('Notificação não conseguiu verificar. (recebido: %s)', strtoupper($line));
+				$this->logPayPal('Notificação não conseguiu verificar. (recebido: %s)', $line);
 				return false;
 			}
 		}

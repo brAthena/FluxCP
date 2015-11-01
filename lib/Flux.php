@@ -273,6 +273,9 @@ class Flux {
 
 			if ($cache) {
 				$fp = fopen($cachefile, 'w');
+				if ( !$fp ){
+					self::raise("Failed to write ".$cachefile." permission error or data/tmp not exist in Flux::parseConfigFile()");
+				}
 				fwrite($fp, '<?php exit("Forbidden."); ?>');
 				fwrite($fp, $s=serialize($cf), strlen($s));
 				fclose($fp);
@@ -385,6 +388,7 @@ class Flux {
 				//
 				// Char/Map normalization.
 				//
+				$maxBaseLevel = 150;
 				$expRates = array(
 					'Base'        => 100,
 					'Job'         => 100,
@@ -403,6 +407,7 @@ class Flux {
 					'CardBoss'    => 100,
 					'MvpItem'     => 100
 				);
+				$charMapServer->setMaxBaseLevel($maxBaseLevel, $options);
 				$charMapServer->setExpRates($expRates, $options);
 				$charMapServer->setDropRates($dropRates, $options);
 				$charMapServer->setRenewal(true, $options);

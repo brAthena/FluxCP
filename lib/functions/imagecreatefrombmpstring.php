@@ -1,95 +1,120 @@
 <?php
 /**
- * Code taken from https://cerescp.svn.sourceforge.net/svnroot/cerescp/emblema.php
- * under the GNU General Public license version 2.
- *
- * @license GPLv2 <http://www.gnu.org/licenses/gpl-2.0.txt>
+ * Convert a bmp string to Image resource
+ * @param {string} $data - BMP string content
+ * @return {resource} image resource
  */
-function imagecreatefrombmpstring($im) {
-	$header = unpack("vtype/Vsize/v2reserved/Voffset", substr($im, 0, 14));
-	$info = unpack("Vsize/Vwidth/Vheight/vplanes/vbits/Vcompression/Vimagesize/Vxres/Vyres/Vncolor/Vimportant", substr($im, 14, 40));
-	extract($info);
-	extract($header);
-	if($type != 0x4D42)
+function imagecreatefrombmpstring($data)
+{
+	// Read header
+	extract( unpack("a2signature/x8/Voffset/x4/Vwidth/Vheight/x2/vbits", substr($data, 0, 30)));
+	if ($signature !== 'BM') {
 		return false;
-	$palette_size = $offset - 54;
-	$ncolor = $palette_size / 4;
-	$imres=imagecreatetruecolor($width, $height);
-	imagealphablending($imres, false);
-	imagesavealpha($imres, true);
-	$pal=array();
-	if($palette_size) {
-		$palette = substr($im, 54, $palette_size);
-		$gd_palette = "";
-		$j = 0; $n = 0;
-		while($j < $palette_size) {
-			$b = ord($palette{$j++});
-			$g = ord($palette{$j++});
-			$r = ord($palette{$j++});
-			$a = ord($palette{$j++});
-			if ( ($r & 0xf8 == 0xf8) && ($g == 0) && ($b & 0xf8 == 0xf8))
-				$a = 127; // alpha = 255 on 0xFF00FF
-			$pal[$n++] = imagecolorallocatealpha($imres, $r, $g, $b, $a);
+	}
+
+
+	// Create image
+	$img = imagecreatetruecolor($width, $height);
+	imagealphablending($img, false);
+	imagesavealpha($img, true);
+
+
+	// Load palette (if used)
+	$paletteSize  = $offset - 54;
+	$imagePalette = array();
+	if ($paletteSize > 0 && $bits < 16) {
+		$palette = unpack('C'. $paletteSize, substr($data, 54, $paletteSize));
+
+		for ($i = 1, $p = 0; $i < $paletteSize; $i += 4, $p++ ) {
+			$b = $palette[$i+0];
+			$g = $palette[$i+1];
+			$r = $palette[$i+2];
+			$a = $palette[$i+3];
+
+			// Magenta is transparent.
+			if (($r & 0xf8 === 0xf8) && ($g === 0) && ($b & 0xf8 === 0xf8)) {
+				$a = 127;
+			}
+
+			$imagePalette[$p] = imagecolorallocatealpha($img, $r, $g, $b, $a);
 		}
 	}
-	$scan_line_size = (($bits * $width) + 7) >> 3;
-	$scan_line_align = ($scan_line_size & 0x03) ? 4 - ($scan_line_size & 0x03): 0;
-	for($i = 0, $l = $height - 1; $i < $height; $i++, $l--) {
-		$scan_line = substr($im, $offset + (($scan_line_size + $scan_line_align) * $l), $scan_line_size);
-		if($bits == 24) {
-			$j = 0; $n = 0;
-			while($j < $scan_line_size) {
-				$b = ord($scan_line{$j++});
-				$g = ord($scan_line{$j++});
-				$r = ord($scan_line{$j++});
-				$a = 0;
-				if ( ($r & 0xf8 == 0xf8) && ($g == 0) && ($b & 0xf8 == 0xf8))
-					$a = 127; // alpha = 255 on 0xFF00FF
-				$col=imagecolorallocatealpha($imres, $r, $g, $b, $a);
-				imagesetpixel($imres, $n++, $i, $col);
+
+	// Read ImageData
+	$skip      = ( 4 - ( (( ($bits * $width) + 7) >> 3 ) & 3 ) ) % 4;
+	$size      = $width * $height * ($bits >> 3) + $skip * $height; 
+	$imageData = unpack('C'. $size, substr($data, $offset, $size) );
+
+
+	switch ($bits) {
+
+		// Not an original DIB file ?
+		default:
+			return false;
+
+		// 24 bits BMP
+		case 24:
+			for ($i = 1, $y = $height-1; $y > -1; $y--, $i += $skip) {
+				for ($x = 0; $x < $width; $x++, $i+=3) {
+					$b = $imageData[$i+0];
+					$g = $imageData[$i+1];
+					$r = $imageData[$i+2];
+
+					if ($r === 255 && $g === 0 && $b === 255) {
+						$c = imagecolorallocatealpha($img, $r, $g, $b, 127);
+					}
+					else {
+						$c = imagecolorallocate($img, $r, $g, $b);
+					}
+
+					imagesetpixel($img, $x, $y, $c );
+				}
 			}
-		}
-		else if($bits == 8) {
-			$j = 0;
-			while($j < $scan_line_size) {
-				$col = $pal[ord($scan_line{$j++})];
-				imagesetpixel($imres, $j-1, $i, $col);
+			break;
+
+
+		// 8 bits BMP
+		case 8:
+			for ($i = 1, $y = $height-1; $y > -1; $y--, $i += $skip) {
+				for ($x = 0; $x < $width; $x++, $i++) {
+					imagesetpixel($img, $x, $y, $imagePalette[$imageData[$i]] );
+				}
 			}
-		}
-		else if($bits == 4) {
-			$j = 0; $n = 0;
-			while($j < $scan_line_size) {
-				$byte = ord($scan_line{$j++});
-				$p1 = $byte >> 4;
-				$p2 = $byte & 0x0F;
-				imagesetpixel($imres, $n++, $i, $pal[$p1]);
-				imagesetpixel($imres, $n++, $i, $pal[$p2]);
+			break;
+
+
+		// 4 bits BMP
+		case 4:
+			for ($i = 1, $y = $height-1; $y > -1; $y--, $i += $skip) {
+				for ($x = 0; $x < $width; $x+=2, $i++) {
+					$byte = &$imageData[$i];
+					imagesetpixel($img, $x+0, $y, $imagePalette[$byte >> 4  ]);
+					imagesetpixel($img, $x+1, $y, $imagePalette[$byte & 0x0F]);
+				}
 			}
-		}
-		else if($bits == 1) {
-			$j = 0; $n = 0;
-			while($j < $scan_line_size) {
-				$byte = ord($scan_line{$j++});
-				$p1 = (int) (($byte & 0x80) != 0);
-				$p2 = (int) (($byte & 0x40) != 0);
-				$p3 = (int) (($byte & 0x20) != 0);
-				$p4 = (int) (($byte & 0x10) != 0);
-				$p5 = (int) (($byte & 0x08) != 0);
-				$p6 = (int) (($byte & 0x04) != 0);
-				$p7 = (int) (($byte & 0x02) != 0);
-				$p8 = (int) (($byte & 0x01) != 0);
-				imagesetpixel($imres, $n++, $i, $pal[$p1]);
-				imagesetpixel($imres, $n++, $i, $pal[$p2]);
-				imagesetpixel($imres, $n++, $i, $pal[$p3]);
-				imagesetpixel($imres, $n++, $i, $pal[$p4]);
-				imagesetpixel($imres, $n++, $i, $pal[$p5]);
-				imagesetpixel($imres, $n++, $i, $pal[$p6]);
-				imagesetpixel($imres, $n++, $i, $pal[$p7]);
-				imagesetpixel($imres, $n++, $i, $pal[$p8]);
+			break;
+
+
+		// 1 bit BMP
+		case 1:
+			for ($i = 1, $y = $height-1; $y > -1; $y--, $i += $skip) {
+				for ($x = 0; $x < $width; $x+=8, $i++) {
+					$byte = &$imageData[$i];
+					imagesetpixel($img, $x+0, $y, $imagePalette[ !!($byte & 0x80) ]);
+					imagesetpixel($img, $x+1, $y, $imagePalette[ !!($byte & 0x40) ]);
+					imagesetpixel($img, $x+2, $y, $imagePalette[ !!($byte & 0x20) ]);
+					imagesetpixel($img, $x+3, $y, $imagePalette[ !!($byte & 0x10) ]);
+					imagesetpixel($img, $x+4, $y, $imagePalette[ !!($byte & 0x08) ]);
+					imagesetpixel($img, $x+5, $y, $imagePalette[ !!($byte & 0x04) ]);
+					imagesetpixel($img, $x+6, $y, $imagePalette[ !!($byte & 0x02) ]);
+					imagesetpixel($img, $x+7, $y, $imagePalette[ !!($byte & 0x01) ]);
+				}
 			}
-		}
+			break;
 	}
-	return $imres;
+
+
+	return $img;
 }
 
 ?>

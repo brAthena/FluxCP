@@ -54,12 +54,7 @@ return array(
 	'ItemCard1Label'          => 'Carta 1',
 	'ItemCard2Label'          => 'Carta 2',
 	'ItemCard3Label'          => 'Carta 3',
-	
-	// Security
-	'SecuritySessionInvalid'  => 'Desculpe, a sessão expirou, tente novamente.',
-	'SecurityNeedSession'     => 'Desculpe, nenhuma sessão foi encontrada (tentativa de hack?)',
-	'SecurityNeedToken'       => 'Desculpe, nenhum sinal encontrado para identificar esta forma (tentativa de hack?)',
-	
+
 	// Module: account
 	// - account/changemail
 	'EmailChangeTitle'        => 'Alterar E-mail',
@@ -602,7 +597,8 @@ return array(
 	'ServerStatusCharLabel'   => 'Character Server',
 	'ServerStatusMapLabel'    => 'Map Server',
 	'ServerStatusOnlineLabel' => 'Jogadores Online',
-	'ServerStatusPeakLabel'   => 'Pico de jogador',
+	'ServerStatusATMerchantsLabel' => 'Autotrade de Comerciantes',
+	'ServerStatusPopulationLabel' => 'População',
 	
 	// Module: service
 	// - service/tos
@@ -615,7 +611,7 @@ return array(
 	// - unauthorized/index
 	'UnauthorizedTitle'       => 'Não Autorizado',
 	'UnauthorizedHeading'     => 'Não Autorizado',
-	'UnauthorizedInfo'        => 'Você não está autrizado a ver essa página. <a href="%s">Redirecionando…</a>',
+	'UnauthorizedInfo'        => 'Você não está autorizado a ver essa página. <a href="%s">Redirecionando…</a>',
 	
 	// Module: woe
 	// - woe/index
@@ -626,7 +622,13 @@ return array(
 	'WoeServerLabel'          => 'Servidores',
 	'WoeTimesLabel'           => 'Horários da Guerra do Emperium',
 	'WoeNotScheduledInfo'     => 'Não há nenhuma Guerra do Emperium agendada.',
-	
+
+	// Security
+	'SecuritySessionInvalid'  => 'Desculpe, a sessão expirou, tente novamente.',
+	'SecurityNeedSession'     => 'Desculpe, nenhuma sessão foi encontrada (tentativa de hack?)',
+	'SecurityNeedToken'       => 'Desculpe, nenhum sinal encontrado para identificar esta forma (tentativa de hack?)',
+
+
 	// Module: tasks
 	'TaskListHeader'          => 'Lista de tarefas',
 	'TaskListHeaderCompleted' => 'Tarefas concluídas',

@@ -80,7 +80,7 @@
 				document.preferred_server_form.preferred_server.value = preferred;
 				document.preferred_server_form.submit();
 			}
-			
+
 			// Preload spinner image.
 			var spinner = new Image();
 			spinner.src = '<?php echo $this->themePath('img/spinner.gif') ?>';

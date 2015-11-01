@@ -24,16 +24,22 @@ foreach ($serverStatus as $privServerName => $gameServers) {
 		$cserv  = $dom->createAttribute('charServer');
 		$mserv  = $dom->createAttribute('mapServer');
 		$online = $dom->createAttribute('playersOnline');
+		$atmerc = $dom->createAttribute('autotradeMerchants');
+		$population = $dom->createAttribute('population');
 		
 		$lserv->nodeValue  = (int)$gameServer['loginServerUp'];
 		$cserv->nodeValue  = (int)$gameServer['charServerUp'];
 		$mserv->nodeValue  = (int)$gameServer['mapServerUp'];
 		$online->nodeValue = (int)$gameServer['playersOnline'];
+		$atmerc->nodeValue = (int)$gameServer['autotradeMerchants'];
+		$population->nodeValue = (int)$gameServer['population'];
 		
 		$serv->appendChild($lserv);
 		$serv->appendChild($cserv);
 		$serv->appendChild($mserv);
 		$serv->appendChild($online);
+		$serv->appendChild($atmerc);
+		$serv->appendChild($population);
 		$group->appendChild($serv);
 	}
 	
