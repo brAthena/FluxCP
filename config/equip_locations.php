@@ -1,11 +1,11 @@
 <?php
 return array(
-	 65536 => 'Shadow Armor',
-	 131072 => 'Shadow Weapon',
-	 262144 => 'Shadow Shield',
-	 524288 => 'Shadow Shoes',
-	 1048576 => 'Shadow Accessory 2',
-	 2097152 => 'Shadow Accessory 1',
+	 65536 => 'Vestimenta das Sombras',
+	 131072 => 'Arma das Sombras',
+	 262144 => 'Escudo das Sombras',
+	 524288 => 'Sapatos das Sombras',
+	 1048576 => 'Acessório das Sombras 2',
+	 2097152 => 'Acessório das Sombras 1',
 	 4096 => 'Costume Baixo',
 	 2048 => 'Costume Meio',
 	 1024 => 'Costume Cima',
