@@ -71,7 +71,7 @@ return array(
 	'DefaultAction'        => 'index',                  // This is the default action for any module, probably should leave this alone. (Deprecated)
 	'GzipCompressOutput'   => false,                    // Whether or not to compress output using zlib.
 	'GzipCompressionLevel' => 9,                        // zlib compression level. (1~9)
-	'OutputCleanHTML'      => true,                     // Use this if you have Tidy installed to clean your HTML output when serving pages.
+	'OutputCleanHTML'      => false,                     // Use this if you have Tidy installed to clean your HTML output when serving pages.
 	'ShowCopyright'        => true,                     // Whether or not to show the copyright footer.
 	'ShowRenderDetails'    => true,                     // Shows the "page rendered in X seconds" and "number of queries executed: X" in the default theme.
 	'UseCleanUrls'         => false,                    // Set to true if you're running Apache and it supports mod_rewrite and .htaccess files.
@@ -213,9 +213,9 @@ return array(
 		'Conta'     => array(
 			'Registrar'       => array('module' => 'account', 'action' => 'create'),
 			'Login'           => array('module' => 'account', 'action' => 'login'),
-			'Sair da Conta'   => array('module' => 'account', 'action' => 'logout'),
-			'Histórico'       => array('module' => 'history'),
 			'Minha Conta'     => array('module' => 'account', 'action' => 'view'),
+			'Histórico'       => array('module' => 'history'),
+			'Sair da Conta'   => array('module' => 'account', 'action' => 'logout'),
 		),
 		'Doações'   => array(
 			//'Comprar'     => array('module' => 'purchase'), // Caso tenha interesse em utilizar a loja de itens do Paypal, descomente esta linha.
@@ -256,9 +256,9 @@ return array(
 	// particular module. The format it simple.
 	'SubMenuItems'  => array(
 		'tasks' => array(
-			'createnew'		=> 'Adicionar nova Tarefa',
-			'index'			=> 'Exibir tarefas atuais',
-			'viewmine'		=> 'Exibir minhas Tarefas',
+			'createnew'	=> 'Adicionar nova Tarefa',
+			'index'		=> 'Exibir tarefas atuais',
+			'viewmine'	=> 'Exibir minhas Tarefas',
 			'viewcompleted'	=> 'Exibir tarefas concluídas',
 			'staffsettings'	=> 'Configurações',
 		),

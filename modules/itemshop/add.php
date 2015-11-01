@@ -13,11 +13,7 @@ $itemID = $params->get('id');
 $category   = null;
 $categories = Flux::config('ShopCategories')->toArray();
 
-if($server->isRenewal) {
-	$fromTables = array("{$server->charMapDatabase}.item_db_re", "{$server->charMapDatabase}.item_db2");
-} else {
-	$fromTables = array("{$server->charMapDatabase}.item_db", "{$server->charMapDatabase}.item_db2");
-}
+$fromTables = array("{$server->charMapDatabase}.item_db", "{$server->charMapDatabase}.item_db2");
 $tableName = "{$server->charMapDatabase}.items";
 $tempTable = new Flux_TemporaryTable($server->connection, $tableName, $fromTables);
 $shopTable = Flux::config('FluxTables.ItemShopTable');
@@ -41,7 +37,7 @@ if ($item && count($_POST)) {
 	$shop        = new Flux_ItemShop($server);
 	$cost        = (int)$params->get('cost');
 	$quantity    = (int)$params->get('qty');
-	$info        = trim(htmlspecialchars($params->get('info')));
+	$info        = trim($params->get('info'));
 	$image       = $files->get('image');
 	$useExisting = (int)$params->get('use_existing');
 	

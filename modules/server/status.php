@@ -3,8 +3,6 @@ if (!defined('FLUX_ROOT')) exit;
 
 $title = Flux::message('ServerStatusTitle');
 $cache = FLUX_DATA_DIR.'/tmp/ServerStatus.cache';
-$onlinepeaktbl = Flux::config('FluxTables.OnlinePeak'); 
-
 
 if (file_exists($cache) && (time() - filemtime($cache)) < (Flux::config('ServerStatusCache') * 60)) {
 	$serverStatus = unserialize(file_get_contents($cache));
@@ -21,22 +19,26 @@ else {
 		foreach ($loginAthenaGroup->athenaServers as $athenaServer) {
 			$serverName = $athenaServer->serverName;
 
-			$sql = "SELECT COUNT(char_id) AS players_online FROM {$athenaServer->charMapDatabase}.char WHERE online > 0";
+			$sql = "SELECT COUNT(char_id) AS population FROM {$athenaServer->charMapDatabase}.char WHERE online > 0";
 			$sth = $loginAthenaGroup->connection->getStatement($sql);
 			$sth->execute();
 			$res = $sth->fetch();
+			$population = intval($res ? $res->population : 0);
+
+			$sql = "SELECT COUNT(char_id) AS autotrade_merchants FROM {$athenaServer->charMapDatabase}.autotrade_merchants";
+			$sth = $loginAthenaGroup->connection->getStatement($sql);
+			$sth->execute();
+			$res = $sth->fetch();
+			$autotrade_merchants = intval($res ? $res->autotrade_merchants : 0);
 
 			$serverStatus[$groupName][$serverName] = array(
 				'loginServerUp' => $loginServerUp,
 				 'charServerUp' => $athenaServer->charServer->isUp(),
 				  'mapServerUp' => $athenaServer->mapServer->isUp(),
-				'playersOnline' => intval($res ? $res->players_online : 0)
+				'playersOnline' => $population - $autotrade_merchants,
+				'autotradeMerchants' => $autotrade_merchants,
+				'population' => $population
 			);
-			if(Flux::config('EnableHarmonyLogs') == 1){
-				$sth = $server->connection->getStatement("SELECT users FROM {$server->charMapDatabase}.?");
-				$sth->execute(array($onlinepeaktbl));
-				$peak = $sth->fetchAll();
-			}
 		}
 	}
 	
@@ -46,6 +48,4 @@ else {
 		fclose($fp);
 	}
 }
-
-
 ?>

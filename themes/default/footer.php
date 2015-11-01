@@ -18,8 +18,8 @@
 				<td colspan="3"></td>
 				<td id="copyright">
 					<p>
-						<strong>Powered by brA's Flux Painel de Controle (<?php echo htmlspecialchars(Flux::VERSION) ?><?php echo Flux::REPOSVERSION ? '.'.Flux::REPOSVERSION : '' ?>)</strong>
-						&mdash; Copyright &copy; 2008-2015, Matthew Harris, Nikunj Mehta, Xantara, Megasantos e Tidus.
+						<strong>Powered by <a href="https://github.com/brAthena/FluxCP">FluxCP</a> and <a href="https://github.com/brAthena/brAthena">brAthena</a>.</strong>
+						&mdash;  Copyright &copy; 2015 Megasantos e Tidus. Version <?php echo htmlspecialchars(Flux::VERSION) ?> &#64;<?php echo Flux::REPOSVERSION ? Flux::REPOSVERSION : '' ?>
 					</p>
 				</td>
 				<td></td>

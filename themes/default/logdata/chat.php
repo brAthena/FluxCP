@@ -75,7 +75,7 @@
 		</td>
 		<td>
 			<?php if ($message->dst_charname): ?>
-				<?php echo $message->dst_charname ?>
+				<?php echo htmlspecialchars($message->dst_charname) ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
 			<?php endif ?>

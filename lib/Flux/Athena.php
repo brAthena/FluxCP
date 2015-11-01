@@ -171,6 +171,7 @@ class Flux_Athena {
 		$this->loginDatabase   = $loginServer->config->getDatabase();
 
 		$this->serverName      = $charMapConfig->getServerName();
+		$this->maxBaseLevel    = (int)$charMapConfig->getMaxBaseLevel();
 		$this->expRates        = $charMapConfig->getExpRates()->toArray();
 		$this->dropRates       = $charMapConfig->getDropRates()->toArray();
 		$this->isRenewal       = (boolean)$charMapConfig->getRenewal();

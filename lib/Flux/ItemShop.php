@@ -137,11 +137,7 @@ class Flux_ItemShop {
 	{
 		$db = $this->server->charMapDatabase;
 		
-		if($this->server->isRenewal) {
-			$fromTables = array("$db.item_db_re", "$db.item_db2");
-		} else {
-			$fromTables = array("$db.item_db", "$db.item_db2");
-		}
+		$fromTables = array("$db.item_db", "$db.item_db2");
 		
 		$temp  = new Flux_TemporaryTable($this->server->connection, "$db.items", $fromTables);
 		$shop  = Flux::config('FluxTables.ItemShopTable');
@@ -167,11 +163,7 @@ class Flux_ItemShop {
 		$bind = array();
 		$db   = $this->server->charMapDatabase;
 		
-		if($this->server->isRenewal) {
-			$fromTables = array("$db.item_db_re", "$db.item_db2");
-		} else {
-			$fromTables = array("$db.item_db", "$db.item_db2");
-		}
+		$fromTables = array("$db.item_db", "$db.item_db2");
 		
 		$temp  = new Flux_TemporaryTable($this->server->connection, "$db.items", $fromTables);
 		$shop  = Flux::config('FluxTables.ItemShopTable');

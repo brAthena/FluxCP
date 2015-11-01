@@ -50,7 +50,7 @@ class Flux_Addon {
 			return false;
 		}
 	}
-	
+
 	public function hasView($module, $action)
 	{
 		$path = "{$this->themeDir}/$module/$action.php";

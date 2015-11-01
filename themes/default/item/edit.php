@@ -67,19 +67,17 @@
 
 		</tr>
 		<tr>
-			<th><label for="attack">Ataque</label></th>
-			<td><input type="text" name="attack" id="attack" value="<?php echo htmlspecialchars($attack) ?>" /></td>
+			<th><label for="atk">Ataque</label></th>
+			<td><input type="text" name="atk" id="atk" value="<?php echo htmlspecialchars($atk) ?>" /></td>
 			<th><label for="equip_level">Mínimo de Level para Equipar</label></th>
 			<td><input type="text" name="equip_level_min" id="equip_level_min" value="<?php echo htmlspecialchars($equipLevelMin) ?>" /></td>
 		</tr>
-		<?php if($server->isRenewal): ?>
 		<tr>
 			<th><label for="matk">MATK</label></th>
 			<td><input type="text" name="matk" id="matk" value="<?php echo htmlspecialchars($matk) ?>" /></td>
 			<th><label for="equip_level_max">Máximo de Level para Equipar</label></th>
 			<td><input type="text" name="equip_level_max" id="equip_level_max" value="<?php echo htmlspecialchars($equipLevelMax) ?>" /></td>
 		</tr>
-		<?php endif ?>
 		<tr>
 			<th><label>Refinável</label></th>
 			<td colspan="3">

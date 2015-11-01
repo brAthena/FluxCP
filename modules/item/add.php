@@ -14,7 +14,7 @@ $slots         = $params->get('slots');
 $npcBuy        = $params->get('npc_buy');
 $npcSell       = $params->get('npc_sell');
 $weight        = $params->get('weight');
-$attack        = $params->get('attack');
+$atk           = $params->get('atk');
 $matk          = $params->get('matk');
 $defense       = $params->get('defense');
 $range         = $params->get('range');
@@ -31,9 +31,101 @@ $script        = $params->get('script');
 $equipScript   = $params->get('equip_script');
 $unequipScript = $params->get('unequip_script');
 
-// Weight is defaulted to an zero value.
+// NPC Buy/Sell is defaulted to twice/half the sell/buy price, or a zero value if both are null.
+if (is_null($npcBuy) && is_null($npcSell)) {
+	$npcBuy = 0;
+	$npcSell = 0;
+}
+else if (is_null($npcBuy)) {
+	$npcBuy = $npcSell * 2;
+}
+else if (is_null($npcSell)) {
+	$npcSell = $npcBuy / 2;
+}
+
+// Weight is defaulted to a zero value.
 if (is_null($weight)) {
 	$weight = 0;
+}
+
+// ATK is defaulted to a zero value.
+if (is_null($atk)) {
+	$atk = 0;
+}
+
+// MATK is defaulted to a zero value.
+if (is_null($matk)) {
+	$matk = 0;
+}
+
+// Defence is defaulted to a zero value.
+if (is_null($defense)) {
+	$defense = 0;
+}
+
+// Range is defaulted to a zero value.
+if (is_null($range)) {
+	$range = 0;
+}
+
+// Slots is defaulted to a zero value.
+if (is_null($slots)) {
+	$slots = 0;
+}
+
+// Equip Jobs is defaulted to "All Jobs".
+if (is_null($equipJobs)) {
+	$equipJobs = 0xffffffff;
+}
+
+// Equip Upper is defaulted to "No Restrictions".
+if (is_null($equipJobs)) {
+	$equipJobs = 0x63;
+}
+
+// Equip Location is defaulted to a zero value.
+if (is_null($equipLocs)) {
+	$equipLocs = 0;
+}
+
+// Weapon Level is defaulted to a zero value.
+if (is_null($weaponLevel)) {
+	$weaponLevel = 0;
+}
+
+// Equip Level Minimum is defaulted to a zero value.
+if (is_null($equipLevelMin)) {
+	$equipLevelMin = 0;
+}
+
+// Equip Level Maximum is defaulted to server default.
+if (is_null($equipLevelMax)) {
+	$equipLevelMax = $server->maxBaseLevel;
+}
+
+// Refineable is defaulted to true for types 4 or 5.
+if (is_null($refineable) && ($type == 4 || $type == 5)) {
+	$refineable = 1;
+}
+
+// View ID is defaulted to a zero value.
+if (is_null($viewID)) {
+	$viewID = 0;
+}
+
+// Script is defaulted to blank text.
+if (is_null($script)) {
+	$script = '';
+}
+
+// Equip Script is defaulted to blank text.
+if (is_null($equipScript)) {
+	$equipScript = '';
+}
+
+// Unequip Script is defaulted to blank text.
+if (is_null($unequipScript)) {
+	$unequipScript = '';
 }
 
 if (count($_POST) && $params->get('additem')) {
@@ -52,15 +144,12 @@ if (count($_POST) && $params->get('additem')) {
 		$equipJobs = $equipJobs->toArray();
 	}
 	
-	// Sanitize to NULL: viewid, slots, npcbuy, npcsell, weight, attack, defense, range, weaponlevel, equipLevelMin
+	// Sanitize to NULL
 	$nullables = array(
-		'viewID', 'slots', 'npcBuy', 'npcSell', 'weight', 'attack', 'defense',
-		'range', 'weaponLevel', 'equipLevelMin', 'script', 'equipScript', 'unequipScript'
+		'viewID', 'slots', 'npcBuy', 'npcSell', 'weight', 'atk', 'matk', 'defense', 'range',
+		'weaponLevel', 'equipLevelMin', 'equipLevelMax', 'script', 'equipScript', 'unequipScript'
 	);
-	// If renewal is enabled, sanitize matk and equipLevelMax to NULL
-	if($server->isRenewal) {
-		array_push($nullables, 'matk', 'equipLevelMax');
-	}
+	
 	foreach ($nullables as $nullable) {
 		if (trim($$nullable) == '') {
 			$$nullable = null;
@@ -99,7 +188,7 @@ if (count($_POST) && $params->get('additem')) {
 	elseif (!is_null($weight) && !ctype_digit($weight)) {
 		$errorMessage = 'Peso deve ser um número.';
 	}
-	elseif (!is_null($attack) && !ctype_digit($attack)) {
+	elseif (!is_null($atk) && !ctype_digit($attack)) {
 		$errorMessage = 'Ataque deve ser um número.';
 	}
 	elseif (!is_null($matk) && !ctype_digit($matk)) {
@@ -138,7 +227,7 @@ if (count($_POST) && $params->get('additem')) {
 			$upper = Flux::getEquipUpperList();
 			foreach ($equipUpper as $bit) {
 				if (!array_key_exists($bit, $upper)) {
-						$errorMessage = 'Equipamento superior inválido.';
+					$errorMessage = 'Equipamento superior inválido.';
 					$equipUpper = null;
 					break;
 				}
@@ -157,11 +246,7 @@ if (count($_POST) && $params->get('additem')) {
 		if (empty($errorMessage)) {
 			require_once 'Flux/TemporaryTable.php';
 
-			if($server->isRenewal) {
-				 $fromTables = array("{$server->charMapDatabase}.item_db_re", "{$server->charMapDatabase}.item_db2");
-			} else {
-				$fromTables = array("{$server->charMapDatabase}.item_db", "{$server->charMapDatabase}.item_db2");
-			}
+			$fromTables = array("{$server->charMapDatabase}.item_db", "{$server->charMapDatabase}.item_db2");
 			$tableName = "{$server->charMapDatabase}.items";
 			$tempTable = new Flux_TemporaryTable($server->connection, $tableName, $fromTables);
 			$shopTable = Flux::config('FluxTables.ItemShopTable');
@@ -175,11 +260,6 @@ if (count($_POST) && $params->get('additem')) {
 				$errorMessage = sprintf($errorMessage, $item->name_japanese, $item->origin_table, $item->id);
 			}
 			else {
-				$equipLevel = $equipLevelMin;
-				if($server->isRenewal && !is_null($equipLevelMax)) {
-					$equipLevel .= ':'. $equipLevelMax;
-				}
-				
 				$cols = array('id', 'name_english', 'name_japanese', 'type', 'weight');
 				$bind = array($itemID, $identifier, $itemName, $type, $weight*10);
 				$vals = array(
@@ -187,32 +267,18 @@ if (count($_POST) && $params->get('additem')) {
 					'slots'          => $slots,
 					'price_buy'      => $npcBuy,
 					'price_sell'     => $npcSell,
+					'atk'            => $atk,
+					'matk'           => $matk,
 					'defence'        => $defense,
 					'`range`'        => $range,
 					'weapon_level'   => $weaponLevel,
-					'equip_level'    => $equipLevel,
+					'equip_level_min'=> $equipLevelMin,
+					'equip_level_max'=> $equipLevelMax,
 					'script'         => $script,
 					'equip_script'   => $equipScript,
 					'unequip_script' => $unequipScript,
 					'refineable'     => $refineable
 				);
-				
-				if($server->isRenewal) {
-					if(!is_null($matk)) {
-						$atk = $attack .':'. $matk;
-					}
-					else {
-						$atk = $attack;
-					}
-					$vals = array_merge($vals, array(
-						'`atk:matk`' => $atk
-					));
-				}
-				else {
-					$vals = array_merge($vals, array(
-						'attack' => $attack
-					));
-				}
 				
 				foreach ($vals as $col => $val) {
 					if (!is_null($val)) {
