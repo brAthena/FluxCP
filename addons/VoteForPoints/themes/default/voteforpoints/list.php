@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <?php if(!empty($vp_sites)): ?>
 <br/>
-<h2>Lista de Sites - Administração</h2>
+<h2>Administração - Lista de Sites</h2>
 <table class="horizontal-table" width="100%">  
 	<tr>
 		<th align="center">Nome</th>
