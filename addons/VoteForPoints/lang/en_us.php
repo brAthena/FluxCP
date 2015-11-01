@@ -3,21 +3,21 @@
 return array(
 	//Labels
 	'BLOCK_TIME_LABEL' 					=> 'Tempo Bloqueado:',
-	'BANNER_IS_UPLOADED' 				=> 'The banner is uploaded to the database',
+	'BANNER_IS_UPLOADED' 				=> 'O Banner foi carregado para o banco de dados',
 	'POINTS_LABEL' 						=> 'Pontos:',
 	'ADDRESS_LABEL'						=> 'URL/Address',
 	'BANNER_LABEL'						=> 'Banner:',
 	'SITE_NAME_LABEL'					=> 'Nome do Site:',
 	
 	//Add/Edit Errors
-	'SITE_NAME_ERROR'					=> 'Please enter the Site Name.',
-	'URL/ADDRESS_ERROR'					=> 'Please enter the Site URL/Address.',
-	'POINTS_ERROR' 						=> 'Please enter how many reward points.',
-	'BANNER_URL_ERROR' 					=> 'Please specify the url/address of the banner/image.',
-	'BANNER_FILE_SIZE_ERROR'			=> 'Cannot upload image with 0 byte as filesize.',
-	'BANNER_FILE_TYPE_ERROR'			=> 'File type not allowed. Allowed file types are: ',
-	'BANNER_MAX_FILE_SIZE_ERROR'		=> 'Max file size error. Max file size is: ',
-	'POINTS_MUST_BE_NUMBER'				=> 'Points must be a number.',
+	'SITE_NAME_ERROR'					=> 'Por favor entre com o Nome do Site.',
+	'URL/ADDRESS_ERROR'					=> 'Por favor entre com o URL/Address.',
+	'POINTS_ERROR' 						=> 'Por favor especifique os pontos de recompensa.',
+	'BANNER_URL_ERROR' 					=> 'Por favor especifique o link para o imagem do banner.',
+	'BANNER_FILE_SIZE_ERROR'			=> 'Não é possível carregar imagem com 0 byte de tamanho.',
+	'BANNER_FILE_TYPE_ERROR'			=> 'Tipo de arquivo não permitido. Tipos de arquivos permitidos são: ',
+	'BANNER_MAX_FILE_SIZE_ERROR'		=> 'Erro no tamanho máximo de arquivo. Tamanho máximo permitido é: ',
+	'POINTS_MUST_BE_NUMBER'				=> 'Pontos devem ser um número.',
 	
 	//Vote Error
 	'INVALID_VOTING_SITE'				=> 'Site de votos inválido',
