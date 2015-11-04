@@ -18,3 +18,5 @@ Caso não queira fazer uso da Loja e queira que o Retorno de Dados seja mais din
 
 Att, Tidus.
 Equipe brAthena.
+
+Contribuidores / Créditos: Matthew Harris, Nikunj Mehta, Xantara.
