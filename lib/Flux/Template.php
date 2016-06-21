@@ -1263,6 +1263,17 @@ class Flux_Template {
 	/**
 	 *
 	 */
+	public function pagSeguroButton($amount)
+	{
+		ob_start();
+		include FLUX_DATA_DIR.'/pagseguro/button.php';
+		$button = ob_get_clean();
+		return $button;
+	}
+	
+	/**
+	 *
+	 */
 	public function shopItemImage($shopItemID, $serverName = null, $athenaServerName = null)
 	{
 		if (!$serverName) {
