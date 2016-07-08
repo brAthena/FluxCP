@@ -49,7 +49,7 @@ if ($banUntil) {
 	$bind[]      = $banUntil;
 }
 
-$sql = "SELECT COUNT(id) AS total FROM {$server->loginDatabase}.$ipBanTable $sqlpartial";
+$sql = "SELECT COUNT(id) AS total, l.userid FROM {$server->loginDatabase}.$ipBanTable AS i LEFT JOIN {$server->loginDatabase}.login AS l ON l.account_id = i.banned_by $sqlpartial";
 $sth = $server->connection->getStatement($sql);
 $sth->execute($bind);
 
