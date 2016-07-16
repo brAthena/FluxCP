@@ -103,7 +103,6 @@ return array(
 		),
 		'logdata'   => array(
 			'index'   => AccountLevel::ADMIN,
-			'txnview' => AccountLevel::ADMIN,
 			'char'    => AccountLevel::ADMIN,
 			'inter'   => AccountLevel::ADMIN,
 			'command' => AccountLevel::ADMIN,
@@ -124,7 +123,8 @@ return array(
 			'changepass' => AccountLevel::ADMIN,
 			'changemail' => AccountLevel::ADMIN,
 			'ban'        => AccountLevel::ADMIN,
-			'ipban'      => AccountLevel::ADMIN
+			'ipban'      => AccountLevel::ADMIN,
+			'txnview'    => AccountLevel::ADMIN
 		),
 		'ipban'     => array(
 			'index'    => AccountLevel::ADMIN,
