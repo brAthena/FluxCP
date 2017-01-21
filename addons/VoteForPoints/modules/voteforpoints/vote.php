@@ -13,9 +13,10 @@ if(preg_match("/^[0-9]{1,}$/",$site_id))
 {
 
 	//Somewhat Prevent of using Proxy Servers
-	$xcf = $_SERVER["HTTP_CF_CONNECTING_IP"];
-	$xforward= $_SERVER["HTTP_X_FORWARDED_FOR"];
-	if (empty($xcf) && !empty($xforward)) {
+	$xcf = @$_SERVER["HTTP_CF_CONNECTING_IP"];
+	$xforward = @$_SERVER["HTTP_X_FORWARDED_FOR"];
+	
+	if ($xcf && !empty($xforward)) {
 		$error = Flux::message('PROXY_NOT_ALLOWED');
 	}
 	else

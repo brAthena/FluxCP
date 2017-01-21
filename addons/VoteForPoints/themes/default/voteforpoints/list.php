@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
-<?php if(!empty($vp_sites)): ?>
+<?php if($vp): ?>
 <br/>
-<h2>Administração - Lista de Sites</h2>
+<h2>LISTA DE SITES PARA VOTAR</h2>
 <table class="horizontal-table" width="100%">  
 	<tr>
 		<th align="center">Nome</th>
@@ -10,7 +10,7 @@
 		<th align="center">Tempo de Bloqueio</th>
 		<th align="center">Opções</th>
 	</tr>
-<?php foreach($vp_sites as $site): ?>
+<?php foreach($vp as $site): ?>
 	<tr>
 		<td><?php echo $site->site_name;?></td>
 		<td align="center" width="150" height="50"><img src="<?php if($site->banner_url!="") { echo $site->banner_url; } else { echo "index.php?module=voteforpoints&action=image&sid=".$site->site_id; }?>" width="150" height="50"/></td>
@@ -23,7 +23,8 @@
 	</tr>
 <?php endforeach; ?>
 </table>
-<?php else: ?>
+<?php endif; ?>
+<?php if(!$vp): ?>
 <br/>
-<i>Não há nenhum site para votar</i>
+<i>Não há sites de votos</i>
 <?php endif; ?>

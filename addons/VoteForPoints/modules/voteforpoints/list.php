@@ -18,11 +18,10 @@ $vp_logs = Flux::config('FluxTables.Logs');
 $serverObj = $server->connection;
 
 
-$sql = "SELECT site_id,site_name,address,points,blocking_time,banner,banner_url FROM {$server->loginDatabase}.{$vp}";
+$sql = "SELECT site_id,site_name,address,points,blocking_time,banner,banner_url FROM {$server->loginDatabase}.$vp";
 $sth = $server->connection->getStatement($sql);
 $sth->execute();
 
-$vp_sites = $sth->fetchAll();
-
+$vp = $sth->fetchAll();
 
 ?>

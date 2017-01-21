@@ -1,6 +1,6 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <br/>
-<h2>Administração - Adicione novo Site para Voto</h2>
+<h2>ADICIONAR NOVO SITE PARA VOTO</h2>
 <?php if(count($error)>0): ?>
 <h3>Error:</h3>
 <ul>
@@ -24,7 +24,7 @@
 		<?php echo Flux::message('ADDRESS_LABEL'); ?>						
 		</th>
 		<td>
-			<input type="text" name="site_address" id="id_site_address"  value="<?php echo $params->get('site_address'); ?>" placeholder="Link de Voto" required="required" />
+			<input type="text" name="site_address" id="id_site_address"  value="<?php echo $params->get('site_address'); ?>" placeholder="Link do Top" required="required" />
 		</td>
 	</tr>
 	<tr>

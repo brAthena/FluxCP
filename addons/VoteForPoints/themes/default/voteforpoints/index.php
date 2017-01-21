@@ -5,10 +5,10 @@
 <table class="horizontal-table" width="100%">  
 	<tr>
 		<td colspan="3" align="left">
-			<b>Pontos ganhos por cada voto:</b> <?php echo $curr_points; ?> <i>pt(s).</i>
+			<b>Total de pontos ganhos:</b> <?php echo $curr_points; ?> <i>pt(s).</i>
 		</td>
 		<td align="left" colspan="2">
-		<b>Tempo do Site:</b> <?php echo date("Y-m-d G:i:s",time()); ?>
+		<b>Horário Atual:</b> <?php echo date("Y-m-d G:i:s",time()); ?>
 		</td>
 	</tr>
 	<tr>
@@ -26,12 +26,12 @@
 		<td align="center"><?php echo strBlockTime($site->blocking_time); ?></td>
 		<td align="center" style="width:100px;">
 			<?php 
-			$date_block = $vs_list[$site->site_id]['dateblock'];
+			$date_block = isBlock($account_id,$site->site_id,$current_time,$ip_address,$serverLogDB,$vp_logs,$serverObj);
 			if($date_block<=0){ ?>
 
-				<a href="index.php?module=voteforpoints&action=vote&sid=<?php echo $site->site_id; ?>" target="_blank">Vote Agora</a>
+				<a href="index.php?module=voteforpoints&action=vote&sid=<?php echo $site->site_id; ?>" target="_blank">Votar</a>
 			<?php } else { ?>
-				<label style="color:red" onclick="javascript: alert('Blocked in voting for this site until: <?php echo date("Y-m-d G:i:s",$date_block); ?>');">Votado</label>
+				<label style="color:red" onclick="javascript: alert('Você não pode votar nesse site até as: <?php echo date("Y-m-d G:i:s",$date_block); ?>');">Votar</label>
 			<?php } ?>
 		</td>
 	</tr>
@@ -40,5 +40,5 @@
 <?php endif; ?>
 <?php if(!$vp): ?>
 <br/>
-<i>No voting sites found</i>
+<i>Não há nenhum site para votar. Volte para a página anterior.</i>
 <?php endif; ?>

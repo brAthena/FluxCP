@@ -11,7 +11,7 @@ return array(
 	
 	'SubMenuItems' => array(
         'voteforpoints' => array(
-            'add'   => 'Adicionar Site para Voto',
+            'add'   => 'Adicionar Novo Site de Voto',
             'list'   => 'Editar - Deletar Site de Voto',
         ),
     ),

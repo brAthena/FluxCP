@@ -2,7 +2,7 @@
 
 return array(
 	//Labels
-	'BLOCK_TIME_LABEL' 					=> 'Tempo Bloqueado:',
+	'BLOCK_TIME_LABEL' 					=> 'Tempo de Bloqueio:',
 	'BANNER_IS_UPLOADED' 				=> 'O Banner foi carregado para o banco de dados',
 	'POINTS_LABEL' 						=> 'Pontos:',
 	'ADDRESS_LABEL'						=> 'URL/Address',

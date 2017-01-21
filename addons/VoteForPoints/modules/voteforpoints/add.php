@@ -45,7 +45,10 @@ if(!empty($add))
 	$block_time = (($params->get('blocking_hours')*60*60)+($params->get('blocking_minutes')*60));
 	$use_banner_url = $params->get('cbox_banner_url');
 if(empty($use_banner_url))
-{
+{	
+	$imgtamanho = $_FILES['banner_upload']['size'];  
+	$imgError = $_FILES['banner_upload']['error'];	
+	if ($imgtamanho != 0 && $imgError == 0) {	
 	$banner_file = $files->get('banner_upload');
 	$banner = file_get_contents($banner_file->get('tmp_name'));
 	$banner_file_type = $banner_file->get('type');
@@ -58,6 +61,9 @@ if(empty($use_banner_url))
 		$error[count($error)] = Flux::message("BANNER_MAX_FILE_SIZE_ERROR").Flux::config('MAX_FILE_SIZE')." kb";		
 	if(!in_array($banner_file->get('type'),$types))
 		$error[count($error)] = Flux::message("BANNER_FILE_TYPE_ERROR");
+	} else {
+		$error[count($error)] = Flux::message("BANNER_FILE_TYPE_ERROR");
+	}
 }
 else
 {
