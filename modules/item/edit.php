@@ -250,7 +250,7 @@ if ($item) {
 		elseif (!is_null($weight) && !ctype_digit($weight)) {
 			$errorMessage = 'Peso deve ser um número.';
 		}
-		elseif (!is_null($atk) && !ctype_digit($attack)) {
+		elseif (!is_null($atk) && !ctype_digit($atk)) {
 			$errorMessage = 'Ataque deve ser um número.';
 		}
 		elseif (!is_null($matk) && !ctype_digit($matk)) {

@@ -90,7 +90,7 @@
 			<td colspan="3">
 				<select name="equip_locations" id="equip_locations">
 				<?php foreach (Flux::config('EquipLocationCombinations')->toArray() as $locId => $locName): ?>
-					<option value="<?php echo htmlspecialchars($locId) ?>"<?php if ($locId == $equipLoc) echo ' selected="selected"' ?>>
+					<option value="<?php echo htmlspecialchars($locId) ?>"<?php if ($locId == $equipLocs) echo ' selected="selected"' ?>>
 						<?php echo htmlspecialchars($locName) ?>
 					</option>
 				<?php endforeach ?>
