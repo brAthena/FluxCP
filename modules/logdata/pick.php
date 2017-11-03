@@ -3,18 +3,18 @@ if (!defined('FLUX_ROOT')) exit;
 
 $title = Flux::message('PickLogTitle');
 
-$sql = "SELECT COUNT(id) AS total FROM {$server->logsDatabase}.picklog";
+$sql = "SELECT COUNT(ItemID) AS total FROM {$server->logsDatabase}.pickdrop_log";
 $sth = $server->connection->getStatementForLogs($sql);
 $sth->execute();
 
 $paginator = $this->getPaginator($sth->fetch()->total);
 $paginator->setSortableColumns(array(
-	'time' => 'desc', 'char_id', 'type', 'nameid', 'amount',
-	'refine', 'card0', 'card1', 'card2', 'card3', 'map'
+	'Date' => 'CharID', 'Name', 'Action', 'Source', 'ItemID', 'ItemName', 'Amount', 'Subject',
+	'ItemRefiningLevel', 'ItemSerial', 'ItemSlot1', 'ItemSlot2', 'ItemSlot3', 'ItemSlot4', 'Mapname'
 ));
 
-$col = "time, char_id, type, nameid, amount, refine, card0, card1, card2, card3, map";
-$sql = $paginator->getSQL("SELECT $col FROM {$server->logsDatabase}.picklog");
+$col = "Date, CharID, Name, Action, Source, ItemID, ItemName, Amount, Subject, ItemRefiningLevel, ItemSerial, ItemSlot1, ItemSlot2, ItemSlot3, ItemSlot4, Mapname";
+$sql = $paginator->getSQL("SELECT $col FROM {$server->logsDatabase}.pickdrop_log");
 $sth = $server->connection->getStatementForLogs($sql);
 $sth->execute();
 
@@ -25,32 +25,6 @@ if ($picks) {
 	$itemIDs   = array();
 	$mobIDs    = array();
 	$pickTypes = Flux::config('PickTypes');
-	
-	foreach ($picks as $pick) {
-		$itemIDs[$pick->nameid] = null;
-		
-		if ($pick->type == 'M' || $pick->type == 'L') {
-			$mobIDs[$pick->char_id] = null;
-		}
-		else {
-			$charIDs[$pick->char_id] = null;
-		}
-		
-		if ($pick->card0) {
-			$itemIDs[$pick->card0] = null;
-		}
-		if ($pick->card1) {
-			$itemIDs[$pick->card1] = null;
-		}
-		if ($pick->card2) {
-			$itemIDs[$pick->card2] = null;
-		}
-		if ($pick->card3) {
-			$itemIDs[$pick->card3] = null;
-		}
-		
-		$pick->pick_type = $pickTypes->get($pick->type);
-	}
 	
 	if ($charIDs) {
 		$ids = array_keys($charIDs);
@@ -99,34 +73,9 @@ if ($picks) {
 
 		$ids = $sth->fetchAll();
 
-		// Map nameid to name.
+		// Map ItemID to name.
 		foreach ($ids as $id) {
 			$itemIDs[$id->id] = $id->name_japanese;
-		}
-	}
-	
-	foreach ($picks as $pick) {
-		if (($pick->type == 'M' || $pick->type == 'L') && array_key_exists($pick->char_id, $mobIDs)) {
-			$pick->char_name = $mobIDs[$pick->char_id];
-		}
-		elseif (array_key_exists($pick->char_id, $charIDs)) {
-			$pick->char_name = $charIDs[$pick->char_id];
-		}
-		
-		if (array_key_exists($pick->nameid, $itemIDs)) {
-			$pick->item_name = $itemIDs[$pick->nameid];
-		}
-		if (array_key_exists($pick->card0, $itemIDs)) {
-			$pick->card0_name = $itemIDs[$pick->card0];
-		}
-		if (array_key_exists($pick->card1, $itemIDs)) {
-			$pick->card1_name = $itemIDs[$pick->card1];
-		}
-		if (array_key_exists($pick->card2, $itemIDs)) {
-			$pick->card2_name = $itemIDs[$pick->card2];
-		}
-		if (array_key_exists($pick->card3, $itemIDs)) {
-			$pick->card3_name = $itemIDs[$pick->card3];
 		}
 	}
 }
